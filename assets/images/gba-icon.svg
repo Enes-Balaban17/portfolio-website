@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 50" role="img" aria-label="Game Boy Advance icon">
-  <path d="M15 10C7.8 11.8 4 20 4 29c0 8.5 3 12 7.2 12 4.4 0 7-5.8 11.3-7.3 5.6-2 33.4-2 39 0C65.8 35.2 68.4 41 72.8 41 77 41 80 37.5 80 29c0-9-3.8-17.2-11-19-13.4-3.4-40.6-3.4-54 0Z" fill="#d33682"/>
-  <rect x="29" y="12.5" width="26" height="16" rx="2.5" fill="#25252b"/>
-  <rect x="31.5" y="15" width="21" height="11" rx="1" fill="#fcdc97"/>
-  <path d="M16 21v10M11 26h10" stroke="#fdf9ee" stroke-width="2.8" stroke-linecap="round"/>
-  <circle cx="67.5" cy="22" r="2.4" fill="#fdf9ee"/>
-  <circle cx="62" cy="27" r="2.4" fill="#fdf9ee"/>
-</svg>

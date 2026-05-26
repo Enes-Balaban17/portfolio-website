@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap");
+
 /* Variables */
 :root {
   color-scheme: light;
@@ -34,10 +36,11 @@
   --footer-height: 60px;
   --sidebar-width: 260px;
   --content-width: 760px;
+  --right-column-width: 260px;
   --radius: 6px;
-  --body-font: -apple-system, BlinkMacSystemFont, Avenir, Helvetica, Arial, sans-serif;
-  --heading-font: Outfit, -apple-system, BlinkMacSystemFont, "DM Sans", Avenir, Helvetica, Arial, sans-serif;
-  --mono-font: Menlo, "Google Sans Code", monospace;
+  --font-family: -apple-system, BlinkMacSystemFont, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-heading: "Outfit", -apple-system, BlinkMacSystemFont, "DM Sans", Avenir, Helvetica, Arial, sans-serif;
+  --font-family-monospace: Menlo, "Google Sans Code", monospace;
 }
 
 [data-theme="dark"] {
@@ -71,9 +74,12 @@ body {
   min-width: 280px;
   background: var(--background);
   color: var(--text);
-  font-family: var(--body-font);
+  font-family: var(--font-family);
   font-size: 1rem;
-  line-height: 1.65;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
@@ -288,7 +294,7 @@ p {
 .nav-heading {
   margin: 0 0 0.65rem;
   color: var(--text-muted);
-  font-family: var(--mono-font);
+  font-family: var(--font-family-monospace);
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -305,6 +311,20 @@ p {
   padding: 4px 0.5rem;
 }
 
+.sidebar-about h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sidebar-about p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 /* Typography */
 h1,
 h2,
@@ -312,7 +332,7 @@ h3,
 h4 {
   margin: 0 0 1rem;
   color: var(--text-strong);
-  font-family: var(--heading-font);
+  font-family: var(--font-family-heading);
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.2;
@@ -320,6 +340,7 @@ h4 {
 
 h1 {
   font-size: 2.2rem;
+  font-weight: 700;
 }
 
 h2 {
@@ -355,12 +376,18 @@ input:focus-visible {
 .page-label {
   margin: 0 0 0.85rem;
   color: var(--text-muted);
-  font-family: var(--mono-font);
+  font-family: var(--font-family-monospace);
   font-size: 0.86rem;
 }
 
 .hero {
   padding-top: 1.3rem;
+}
+
+.hero-index {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
 }
 
 .hero h1 {
@@ -369,8 +396,23 @@ input:focus-visible {
 
 .hero-copy {
   max-width: 570px;
+}
+
+.hero-intro {
   margin-bottom: 2.25rem;
   font-size: 1.13rem;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-visual img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
 }
 
 .link-stack {
@@ -382,7 +424,7 @@ input:focus-visible {
 
 .hero-actions {
   font-size: 1.08rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .hero-divider {
@@ -573,7 +615,7 @@ input:focus-visible {
 .archive-year > h2 {
   margin: 0;
   color: var(--text-muted);
-  font-family: var(--mono-font);
+  font-family: var(--font-family-monospace);
   font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0;
@@ -592,7 +634,7 @@ input:focus-visible {
 
 .archive-date {
   color: var(--text-muted);
-  font-family: var(--mono-font);
+  font-family: var(--font-family-monospace);
   font-size: 0.88rem;
 }
 
@@ -629,7 +671,7 @@ input:focus-visible {
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   color: var(--text-muted);
-  font-family: var(--mono-font);
+  font-family: var(--font-family-monospace);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -734,6 +776,26 @@ body,
   .main-content {
     max-width: calc(var(--content-width) + 4rem);
     padding: 4.75rem 2rem 0;
+  }
+
+  .main-content-home {
+    max-width: calc(var(--content-width) + var(--right-column-width) + 4rem);
+  }
+
+  .hero-index {
+    display: grid;
+    grid-template-columns: minmax(350px, 1fr) minmax(250px, 400px);
+    align-items: start;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .hero-visual {
+    justify-content: flex-end;
+    padding-top: 2.1rem;
+  }
+
+  .hero-visual img {
+    max-width: 400px;
   }
 
   .skills-grid {

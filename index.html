@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Enes Balaban's personal portfolio website.">
     <title>Enes Balaban | Software Developer</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260527">
     <script src="js/main.js" defer></script>
   </head>
   <body>
@@ -14,7 +14,7 @@
       <header class="mobile-header">
         <div class="mobile-header-bar">
           <div class="identity">
-            <img class="brand-icon" src="assets/images/gba-icon.svg" alt="Game Boy Advance icon">
+            <img class="brand-icon" src="assets/images/gba-icon.png" alt="Game Boy Advance icon">
             <a class="site-name" href="index.html">Enes Balaban</a>
             <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch theme">
               <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -32,7 +32,7 @@
       <aside class="sidebar">
         <div class="sidebar-section">
           <div class="identity">
-            <img class="brand-icon" src="assets/images/gba-icon.svg" alt="Game Boy Advance icon">
+            <img class="brand-icon" src="assets/images/gba-icon.png" alt="Game Boy Advance icon">
             <a class="site-name" href="index.html">Enes Balaban</a>
             <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch theme">
               <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -40,6 +40,10 @@
             </button>
           </div>
         </div>
+        <section class="sidebar-section sidebar-about" aria-labelledby="sidebar-about-title">
+          <h2 id="sidebar-about-title">About Me</h2>
+          <p>I'm Enes, a software developer and Computer Programming graduate. This is my personal website.</p>
+        </section>
         <nav class="sidebar-section sidebar-nav" aria-label="Primary">
           <a href="about.html">About Me</a>
           <a href="notes.html">Notes</a>
@@ -52,27 +56,32 @@
           <span class="contact-pending">LinkedIn</span>
         </nav>
       </aside>
-      <main class="main-content" id="main-content">
-        <section class="hero">
-          <p class="page-label">About Me</p>
-          <h1>Hey, I'm Enes!</h1>
+      <main class="main-content main-content-home" id="main-content">
+        <section class="hero hero-index">
           <div class="hero-copy">
-            <p>I'm a Computer Programming graduate and software developer.</p>
-            <p>This is my personal website.</p>
-          </div>
-          <nav class="link-stack hero-actions" aria-label="Explore">
-            <a href="notes.html">Notes</a>
-            <a href="projects.html">Projects</a>
-            <a href="about.html">About Me</a>
-          </nav>
-          <hr class="hero-divider">
-          <section class="hero-contact" aria-labelledby="home-contact-title">
-            <h2 id="home-contact-title">Contact</h2>
-            <div class="link-stack">
-              <a href="mailto:balabanenes111@icloud.com?subject=Email%20Newsletter%20Signup">Email signup</a>
-              <span class="contact-pending">LinkedIn</span>
+            <p class="page-label">About Me</p>
+            <h1>Hey, I'm Enes!</h1>
+            <div class="hero-intro">
+              <p>I'm a Computer Programming graduate and software developer.</p>
+              <p>This is my personal website.</p>
             </div>
-          </section>
+            <nav class="link-stack hero-actions" aria-label="Explore">
+              <a href="notes.html">Notes</a>
+              <a href="projects.html">Projects</a>
+              <a href="about.html">About Me</a>
+            </nav>
+            <hr class="hero-divider">
+            <section class="hero-contact" aria-labelledby="home-contact-title">
+              <h2 id="home-contact-title">Contact</h2>
+              <div class="link-stack">
+                <a href="mailto:balabanenes111@icloud.com?subject=Email%20Newsletter%20Signup">Email signup</a>
+                <span class="contact-pending">LinkedIn</span>
+              </div>
+            </section>
+          </div>
+          <div class="hero-visual">
+            <img src="assets/images/enescot.png" alt="Cute lizard mascot holding a circuit board">
+          </div>
         </section>
         <footer class="site-footer">
           <p>&copy; 2026 Enes Balaban</p>
