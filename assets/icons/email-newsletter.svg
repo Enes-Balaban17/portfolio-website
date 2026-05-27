@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <symbol id="email-newsletter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5.25" width="17" height="13.5" rx="1.8"/>
+    <path d="m4.5 6.25 7.5 6 7.5-6"/>
+    <path d="M5.25 17.25 10 12.8M18.75 17.25 14 12.8"/>
+  </symbol>
+  <use href="#email-newsletter"/>
+</svg>

@@ -432,10 +432,10 @@ input:focus-visible {
 .hero-mascot-frame::before {
   content: "";
   position: absolute;
-  top: 52%;
-  left: 45%;
+  top: 55%;
+  left: 48%;
   z-index: 0;
-  width: clamp(200px, 56%, 270px);
+  width: clamp(190px, 52%, 255px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--color-mascot-circle);
@@ -458,9 +458,22 @@ input:focus-visible {
   gap: 0.52rem;
 }
 
-.hero-actions {
-  font-size: 1.08rem;
-  font-weight: 600;
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-button {
+  gap: 0.55rem;
+  white-space: nowrap;
+}
+
+.hero-button-icon {
+  flex: none;
+  width: 22px;
+  height: 22px;
 }
 
 .hero-divider {
@@ -574,6 +587,60 @@ input:focus-visible {
 .button-small {
   padding: 0.5rem 0.75rem;
   font-size: 14px;
+}
+
+/* Home Sections */
+.home-sections {
+  max-width: var(--content-width);
+  margin-top: 4rem;
+}
+
+.home-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.7rem;
+}
+
+.home-section-header h2 {
+  margin: 0;
+}
+
+.icon-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.section-icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  color: var(--accent);
+}
+
+.home-section-link {
+  flex: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.home-preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.home-preview-list .archive-body h3 a {
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.home-preview-list .archive-body h3 a:hover {
+  color: var(--accent);
 }
 
 /* Skills Grid */
@@ -836,6 +903,19 @@ body,
 
   .skills-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 
