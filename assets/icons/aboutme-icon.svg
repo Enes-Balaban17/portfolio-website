@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="About Me icon">
+  <title>About Me</title>
+  <g shape-rendering="crispEdges">
+    <path d="M12 9h33v5h5v40H12z" fill="#f7f7f2"/>
+    <path d="M12 9h33v3H12z" fill="#223042"/>
+    <path d="M17 5h6v10h-6zM27 5h6v10h-6zM37 5h6v10h-6z" fill="#223042"/>
+    <path d="M19 5h2v7h-2zM29 5h2v7h-2zM39 5h2v7h-2z" fill="#ffffff"/>
+    <path d="M12 14h38v3H12z" fill="#d6dde3"/>
+    <path d="M12 54h38v4H12z" fill="#c3ccd3"/>
+    <path d="M12 9h3v49h-3zM50 14h3v44h-3z" fill="#c3ccd3"/>
+    <path d="M18 24h18v2H18zM18 32h14v2H18zM18 40h20v2H18z" fill="#e8ecef"/>
+    <path d="M43 12h7v7h-7z" fill="#ff8ac0"/>
+    <path d="M39 18h7v7h-7z" fill="#ffd400"/>
+    <path d="M35 24h7v7h-7z" fill="#f5c000"/>
+    <path d="M31 30h7v7h-7z" fill="#e4ad00"/>
+    <path d="M27 36h7v7h-7z" fill="#d19b00"/>
+    <path d="M23 42h7v7h-7z" fill="#1c2733"/>
+    <path d="M20 49h7v5h-7z" fill="#1c2733"/>
+    <path d="M48 11h4v4h-4z" fill="#e14b91"/>
+    <path d="M39 18h3v3h-3zM35 24h3v3h-3zM31 30h3v3h-3zM27 36h3v3h-3z" fill="#ffe45c"/>
+  </g>
+</svg>

@@ -474,6 +474,7 @@ input:focus-visible {
   flex: none;
   width: 22px;
   height: 22px;
+  object-fit: contain;
 }
 
 .hero-divider {
@@ -758,6 +759,40 @@ input:focus-visible {
   gap: 0.8rem;
   font-size: 0.95rem;
   font-weight: 500;
+}
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.source-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.github-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+.github-icon-dark {
+  display: none;
+}
+
+[data-theme="dark"] .github-icon-dark {
+  display: block;
+}
+
+[data-theme="dark"] .github-icon-light {
+  display: none;
 }
 
 .archive-links a + a::before {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="382.582" height="382.582" viewBox="0 0 382.582 382.582" role="img" aria-labelledby="title desc">
+  <title id="title">Icon variation 1</title>
+  <desc id="desc">Original flat vector circular badge icon with golden gradient envelope and newsletter lines.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFD85A"/>
+      <stop offset="0.55" stop-color="#F4B829"/>
+      <stop offset="1" stop-color="#B87800"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF7E6"/>
+      <stop offset="1" stop-color="#FFDFA5"/>
+    </linearGradient>
+  </defs>
+  <circle cx="191.291" cy="191.291" r="191.291" fill="#F5F0E4"/>
+  <circle cx="191.291" cy="191.291" r="145" fill="#FF8AC0"/>
+  <rect x="95" y="112" width="192" height="150" rx="14" fill="url(#gold)" stroke="#1D1D22" stroke-width="12"/>
+  <path d="M104 125l87 72 87-72" fill="none" stroke="#1D1D22" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M105 248l70-68" fill="none" stroke="#1D1D22" stroke-width="10" stroke-linecap="round"/>
+  <path d="M277 248l-70-68" fill="none" stroke="#1D1D22" stroke-width="10" stroke-linecap="round"/>
+  <rect x="139" y="146" width="104" height="88" rx="8" fill="url(#cream)" stroke="#1D1D22" stroke-width="8"/>
+  <path d="M158 169h66M158 190h66M158 211h48" stroke="#1D1D22" stroke-width="9" stroke-linecap="round"/>
+</svg>
