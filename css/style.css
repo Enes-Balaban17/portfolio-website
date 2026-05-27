@@ -424,6 +424,7 @@ input:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
   width: 100%;
   max-width: 380px;
 }
@@ -431,10 +432,10 @@ input:focus-visible {
 .hero-mascot-frame::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 52%;
+  left: 45%;
   z-index: 0;
-  width: 72%;
+  width: clamp(200px, 56%, 270px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--color-mascot-circle);
@@ -445,7 +446,7 @@ input:focus-visible {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
   height: auto;
   object-fit: contain;
 }
