@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">TUSAS LIFT UP logo placeholder</title>
+  <desc id="desc">Temporary placeholder. Replace this file with the logo you want to use for TUSAS LIFT UP.</desc>
+  <rect width="128" height="128" rx="24" fill="#25252b"/>
+  <path d="M24 72c24-24 54-34 88-30-25 9-44 22-58 40l-18 4 8-14z" fill="#fbfbfb" opacity="0.92"/>
+  <path d="M54 82l-10 22 24-19" fill="#6ab0f3"/>
+  <text x="64" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ff8ac0">LIFT</text>
+  <text x="64" y="64" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ff8ac0">UP</text>
+</svg>
