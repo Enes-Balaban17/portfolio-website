@@ -38,6 +38,8 @@
   --sidebar-width: 260px;
   --content-width: 760px;
   --right-column-width: 260px;
+  --desktop-content-offset: 200px;
+  --desktop-content-gutter: 2rem;
   --radius: 6px;
   --font-family: -apple-system, BlinkMacSystemFont, Avenir, Helvetica, Arial, sans-serif;
   --font-family-heading: "Outfit", -apple-system, BlinkMacSystemFont, "DM Sans", Avenir, Helvetica, Arial, sans-serif;
@@ -301,6 +303,50 @@ p {
   padding: 4px 0.5rem;
 }
 
+.sidebar-nav-link {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  column-gap: 2.5px;
+}
+
+.sidebar-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  overflow: visible;
+}
+
+.sidebar-link-icon img,
+.sidebar-link-icon svg,
+.sidebar-link-icon .github-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transform-origin: center;
+}
+
+.sidebar-link-icon img:not(.github-icon-dark):not(.github-icon-light),
+.sidebar-link-icon svg {
+  display: block;
+}
+
+.sidebar-link-icon--about img {
+  transform: scale(1.60);
+}
+
+.sidebar-link-icon--notes > * {
+  transform: translateX(7.5px) scale(2);
+  transform-origin: center;
+}
+
+.sidebar-link-text {
+  line-height: 1.2;
+}
+
 .nav-heading {
   margin: 0 0 0.65rem;
   color: var(--text-muted);
@@ -458,23 +504,55 @@ input:focus-visible {
   gap: 0.52rem;
 }
 
-.hero-buttons {
+.hero-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.hero-button {
+.hero-action-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
   gap: 0.55rem;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
   white-space: nowrap;
 }
 
-.hero-button-icon {
-  flex: none;
-  width: 22px;
-  height: 22px;
+.hero-action-button:hover {
+  background: var(--accent-soft);
+}
+
+.hero-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.hero-action-icon img,
+.hero-action-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
+}
+
+.hero-action-button[href="about.html"] .hero-action-icon img {
+  transform: scale(1.35);
+  transform-origin: center;
 }
 
 .hero-divider {
@@ -525,6 +603,39 @@ input:focus-visible {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.certificate-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.certificate-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.certificate-logo-frame {
+  display: grid;
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  place-items: center;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--background);
+  padding: 0;
+}
+
+.certificate-logo-frame img {
+  display: block;
+  width: 84px;
+  height: 84px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .certificate-item h3 {
@@ -846,6 +957,24 @@ body,
 }
 
 /* Responsive */
+@media (max-width: 599px) {
+  .certificate-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .certificate-logo-frame {
+    width: 84px;
+    height: 84px;
+    flex-basis: 84px;
+  }
+
+  .certificate-logo-frame img {
+    width: 72px;
+    height: 72px;
+  }
+}
+
 @media (min-width: 600px) {
   .mobile-header,
   .main-content {
@@ -912,12 +1041,12 @@ body,
   }
 
   .main-content {
-    max-width: calc(var(--content-width) + 4rem);
-    padding: 3.75rem 2rem 0 86px;
+    max-width: calc(var(--content-width) + var(--desktop-content-offset) + var(--desktop-content-gutter));
+    padding: 3.75rem var(--desktop-content-gutter) 0 var(--desktop-content-offset);
   }
 
   .main-content-home {
-    max-width: calc(var(--content-width) + var(--right-column-width) + 4rem);
+    max-width: calc(var(--content-width) + var(--right-column-width) + var(--desktop-content-offset) + var(--desktop-content-gutter));
   }
 
   .hero-index {
@@ -942,7 +1071,7 @@ body,
 }
 
 @media (max-width: 420px) {
-  .hero-buttons {
+  .hero-actions {
     flex-direction: column;
     align-items: flex-start;
   }
