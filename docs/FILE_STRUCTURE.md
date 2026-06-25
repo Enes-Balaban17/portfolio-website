@@ -32,7 +32,6 @@ portfolio-website/
 ├── index.html
 ├── notes.html
 ├── projects.html
-├── skills.html
 ├── about.html
 ├── resume.html
 ├── minigames.html
@@ -44,24 +43,37 @@ portfolio-website/
 │
 ├── assets/
 │   ├── icons/
+│   │   ├── aboutme-icon.svg
+│   │   ├── aboutme_icon.png
 │   │   ├── assembly.svg
+│   │   ├── blender.svg
 │   │   ├── c.svg
 │   │   ├── cpp.svg
 │   │   ├── csharp.svg
-│   │   ├── java.svg
-│   │   ├── kotlin.svg
-│   │   ├── react.svg
-│   │   ├── html.svg
 │   │   ├── css.svg
+│   │   ├── email-newsletter.svg
+│   │   ├── filesection_icon.png
+│   │   ├── folder-open.svg
+│   │   ├── github-dark-theme.svg
+│   │   ├── github-light-theme.svg
+│   │   ├── html.svg
+│   │   ├── java.svg
 │   │   ├── javascript.svg
-│   │   ├── typescript.svg
-│   │   ├── terminal.svg
-│   │   ├── blender.svg
+│   │   ├── kotlin.svg
+│   │   ├── mailnewsletter-icon.svg
+│   │   ├── notebook.svg
+│   │   ├── oracle-db.svg
+│   │   ├── projects.svg
+│   │   ├── react.svg
 │   │   ├── sql.svg
-│   │   └── oracle-db.svg
+│   │   ├── terminal.svg
+│   │   ├── theme-moon.svg
+│   │   ├── theme-sun.svg
+│   │   └── typescript.svg
 │   │
 │   ├── images/
-│   │   ├── gba-icon.png or gba-icon.svg
+│   │   ├── enescot.png
+│   │   ├── gba-icon.png
 │   │   └── profile/optional
 │   │
 │   ├── cv/
@@ -93,7 +105,11 @@ Includes:
 
 - Sidebar
 - About Me / Hero intro
-- Vertical links to Notes, Projects, About Me
+- Hero mascot with CSS accent circle
+- About Me and Email Newsletter action buttons
+- Skills grid section
+- Notes preview section
+- Projects preview section
 - Contact block in sidebar
 
 ### `about.html`
@@ -133,16 +149,6 @@ Includes:
 - Project descriptions
 - Demo / Source / Details links
 - Optional project status labels
-
-### `skills.html`
-
-Skills grid page.
-
-Includes:
-
-- 3-column icon grid on desktop
-- SVG icons from `assets/icons/`
-- Responsive layout
 
 ### `resume.html`
 
@@ -203,6 +209,12 @@ Initial JavaScript responsibilities:
 - Dark/light theme toggle
 - Save selected theme to localStorage
 - Optional search/filter for Notes and Projects later
+
+## Skills Structure Decision
+
+The current version does not use a separate `skills.html` page.
+
+Skills are shown as a homepage section in `index.html` using the order and grid rules from `docs/SKILLS_PLAN.md`.
 
 ## Deployment Plan
 

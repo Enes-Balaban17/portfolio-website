@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CSS icon">
-  <image href="data:image/webp;base64,UklGRvIBAABXRUJQVlA4WAoAAAAQAAAAJwAAJwAAQUxQSF0AAAABcBvbtqq8m/Jbw6FDTb0k1wK47+z4nZQkIiYAw++pXyIcEItescgfCw9I5jZbE3E2gWrzBy6b6lJfyEGcD6RDsp24TMuGTLVRJpsS3RLRWCy7EhHDw1UtdD0MIwIAVlA4IG4BAADQBwCdASooACgAPtFWpUyoJKOiLjQMyQAaCWQAt80M+eqsmYr5nbHa6li2VNhXue3rKy4hOa6A//iW7AdzEGpbUNl4BI6WAAD+7kMf8OfbH72Sv6stRC8WnOZRfxBS8wiy088srrHlJ93zUbgVoQFDrY/TzYKhG7tayn+obY1fKBkZlRdHY1ok2Zj7nc/vp7dmugzd33lnppyvWnIeIEx+H7P3ytd+CeQ/QbhmHgWcn9fvNpx5+j6trcrRJi/QRRcOvwnpR0m9Rno13iJhTPWDCDvvXRjhpvVGHwg/tielTF38/b0Z+9VIFoA6dy4QbA7GH3vAmq4muMZI11gD6lsg7b/RyvlyzCm29sUP97md1hQWhNsvk+mPWjuVHc945QVeQB0NulxFvNbE/Y2ul+2N//2/9e5JZrL8Df3X4sO3uUa0C6M+bEVEhaVj1HqG8moq+0HiG4/9eLFsv55Wzi49UcYR5Z4PPFhoNthNAAA=" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="CSS icon">
+  <title>CSS</title>
+  <rect width="80" height="80" fill="#663399" shape-rendering="crispEdges"/>
+  <text x="47" y="72" text-anchor="middle"
+        font-family="Arial Narrow, Roboto Condensed, Helvetica Neue, Arial, sans-serif"
+        font-size="37" font-weight="700" letter-spacing="-1.5"
+        fill="#ffffff">CSS</text>
 </svg>

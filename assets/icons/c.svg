@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="C language icon">
-  <rect width="64" height="64" rx="14" fill="#283593"/>
-  <text x="32" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#ffffff">C</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="C icon">
+  <title>C</title>
+  <rect width="80" height="80" fill="#00599c" shape-rendering="crispEdges"/>
+  <text x="51" y="72" text-anchor="middle"
+        font-family="Arial Narrow, Roboto Condensed, Helvetica Neue, Arial, sans-serif"
+        font-size="52" font-weight="700" letter-spacing="-1.4"
+        fill="#fff">C</text>
 </svg>

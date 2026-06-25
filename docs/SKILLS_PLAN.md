@@ -1,17 +1,15 @@
-# Skills Page Plan
+# Skills Section Plan
 
-This document defines the visual and content plan for the Skills page.
+This document defines the visual and content plan for the homepage Skills section.
 
 ## Purpose
 
-The Skills page will present the technologies, languages, and tools used in the portfolio as a compact visual grid. The goal is to create a clean, scannable skill index rather than a long resume-style list.
+The Skills section will present the technologies, languages, and tools used in the portfolio as a compact visual grid on the homepage. The goal is to create a clean, scannable skill index rather than a long resume-style list.
 
 ## Main Layout
 
 ```txt
 Skills
-
-Technologies, languages, and tools I use while building software projects.
 
 [Icon Card] C
 [Icon Card] C++
@@ -37,12 +35,15 @@ Technologies, languages, and tools I use while building software projects.
 ## Grid Rules
 
 - Use a single aesthetic grid.
+- Show the grid on the homepage after the hero section.
 - Use 3 cards per row on desktop.
 - After 3 cards, the next skill moves to the next row.
 - Use 2 cards per row on medium screens if needed.
 - Use 1 card per row on mobile screens.
 - Keep all cards compact and consistent.
 - Do not add long descriptions inside the cards.
+- Do not add a separate `skills.html` page for the current version.
+- Do not add a "View all skills" link in the current version.
 
 ## Final Skill Order
 
@@ -129,4 +130,4 @@ Terminal, Blender
 
 ## First Version Decision
 
-For the first version, use one visual grid with local icons and no detailed descriptions.
+For the first version, use one homepage visual grid with local icons and no detailed descriptions.

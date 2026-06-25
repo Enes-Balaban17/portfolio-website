@@ -38,6 +38,9 @@ border radius: 6px
 - show left sidebar
 - hide compact top navigation
 - use two-column layout: 260px sidebar + main content
+- main content left padding: 200px
+- main content right padding: 2rem
+- main content max width preserves the readable text column by adding the desktop offset and right padding to the content width
 
 1360px and above:
 - allow wider layout with optional right-side content area
@@ -67,9 +70,13 @@ Sidebar identity styling:
 ```txt
 horizontal flex row
 items centered vertically
-0.75rem gap
+0.35rem gap between identity items
+Game Boy Advance icon width: 35px
 site name font size: 18px
 site name weight: 500
+theme toggle margin-left: 0.50rem
+theme toggle size: 32px by 32px
+theme toggle icon size: 20px by 20px
 ```
 
 Sidebar section styling:
@@ -91,6 +98,44 @@ padding: 4px 0.5rem
 small negative horizontal margin for alignment
 border radius: 6px
 active link uses highlighted background and accent text
+```
+
+Primary sidebar navigation link structure:
+
+```txt
+[28px icon box] [text label]
+```
+
+Primary sidebar navigation icon rules:
+
+```txt
+display each primary nav link as a grid
+grid-template-columns: 28px 1fr
+column gap: 2.5px
+icon box: 28px by 28px
+visible icon image/SVG: 24px by 24px
+center icon inside the icon box
+text label line-height: 1.2
+do not set different icon sizes per sidebar link
+do not use per-icon margin-left or manual offsets
+use transform scaling inside the fixed icon box when an icon has internal whitespace
+```
+
+Primary sidebar navigation icons:
+
+```txt
+About Me: assets/icons/filesection_icon.png
+Notes: assets/icons/aboutme_icon.png
+Projects: assets/icons/github-dark-theme.svg and assets/icons/github-light-theme.svg
+```
+
+Projects icon switches between dark-theme and light-theme GitHub assets based on the active theme.
+
+About Me and Notes icons may use shared modifier classes for visual tuning inside the fixed icon box:
+
+```txt
+About Me icon scale: 1.60
+Notes icon visual transform: translateX(7.5px) scale(2)
 ```
 
 ## Color Palette
@@ -138,6 +183,37 @@ First version accent:
 
 ```txt
 pink
+```
+
+Mascot circle colors:
+
+```txt
+light theme mascot circle: #d33682
+dark theme mascot circle: #ff8ac0
+```
+
+Mascot frame rules:
+
+```txt
+hero mascot image: assets/images/enescot.png
+desktop mascot frame max width: 400px
+base mascot frame max width: 380px
+mascot image uses object-fit: contain
+circle is created with CSS only using .hero-mascot-frame::before
+circle width: clamp(190px, 52%, 255px)
+circle position: left 48%, top 55%
+mascot image stays above the circle
+```
+
+Homepage desktop hero layout:
+
+```txt
+display as grid
+grid-template-columns: minmax(350px, 1fr) minmax(250px, 400px)
+align-items: start
+gap: clamp(1.5rem, 4vw, 3rem)
+hero visual aligns right
+hero visual padding-top: 2.1rem
 ```
 
 Main color mapping:
@@ -248,6 +324,33 @@ Link rules:
 accent color for normal text links
 active sidebar link is visually clear
 hover state changes color or background subtly
+```
+
+Hero action button icons:
+
+```txt
+About Me button: assets/icons/filesection_icon.png
+Email Newsletter button: assets/icons/mailnewsletter-icon.svg
+button min-height: 44px
+button padding: 0.55rem 0.9rem
+button border: 2px solid accent color
+button border radius: 6px
+icon box: 24px by 24px
+icon image/SVG: 24px by 24px
+About Me icon image scale: 1.35 inside fixed icon box
+icons appear before button text
+icon and text gap: 0.55rem
+```
+
+Theme toggle rules:
+
+```txt
+icon-only button
+default background transparent
+default border transparent
+hover/focus shows subtle background and border
+use assets/icons/theme-sun.svg and assets/icons/theme-moon.svg
+only one theme icon is visible at a time
 ```
 
 ## Archive Lists

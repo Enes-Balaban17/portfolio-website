@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Enes Balaban's personal portfolio website.">
     <title>Enes Balaban | Software Developer</title>
-    <link rel="stylesheet" href="css/style.css?v=20260527-action-icons">
+    <link rel="stylesheet" href="css/style.css?v=20260625-certificate-logo-fix">
     <script src="js/main.js" defer></script>
   </head>
   <body>
@@ -26,7 +26,6 @@
           <a href="about.html">About Me</a>
           <a href="notes.html">Notes</a>
           <a href="projects.html">Projects</a>
-          <a href="skills.html">Skills</a>
         </nav>
       </header>
       <aside class="sidebar">
@@ -45,10 +44,9 @@
           <p>I'm Enes, a software developer and Computer Programming graduate. This is my digital base. 🚀</p>
         </section>
         <nav class="sidebar-section sidebar-nav" aria-label="Primary">
-          <a href="about.html">About Me</a>
-          <a href="notes.html">Notes</a>
-          <a href="projects.html">Projects</a>
-          <a href="skills.html">Skills</a>
+          <a class="sidebar-nav-link" href="about.html"><span class="sidebar-link-icon sidebar-link-icon--about" aria-hidden="true"><img src="assets/icons/filesection_icon.png" alt=""></span><span class="sidebar-link-text">About Me</span></a>
+          <a class="sidebar-nav-link" href="notes.html"><span class="sidebar-link-icon sidebar-link-icon--notes" aria-hidden="true"><img src="assets/icons/aboutme_icon.png" alt=""></span><span class="sidebar-link-text">Notes</span></a>
+          <a class="sidebar-nav-link" href="projects.html"><span class="sidebar-link-icon sidebar-link-icon--projects" aria-hidden="true"><img class="github-icon github-icon-dark" src="assets/icons/github-dark-theme.svg" alt=""><img class="github-icon github-icon-light" src="assets/icons/github-light-theme.svg" alt=""></span><span class="sidebar-link-text">Projects</span></a>
         </nav>
         <nav class="sidebar-section sidebar-nav" aria-label="Contact">
           <h2 class="nav-heading">Contact</h2>
@@ -64,24 +62,20 @@
               <p>I'm a Software Developer and graduate from Ege University Computer Programming.</p>
               <p>I'm interested in unmanned aerial systems, artificial intelligence, and embedded systems, and I create content around these fields.</p>
             </div>
-            <nav class="hero-buttons" aria-label="Explore">
-              <a class="button button-small hero-button" href="about.html">
-                <img class="hero-button-icon" src="assets/icons/aboutme-icon.svg" alt="" aria-hidden="true">
+            <nav class="hero-actions" aria-label="Explore">
+              <a class="hero-action-button" href="about.html">
+                <span class="hero-action-icon" aria-hidden="true">
+                  <img src="assets/icons/filesection_icon.png?v=2" alt="">
+                </span>
                 <span>About Me</span>
               </a>
-              <a class="button button-small hero-button" href="mailto:balabanenes111@icloud.com?subject=Email%20Newsletter%20Signup">
-                <img class="hero-button-icon" src="assets/icons/mailnewsletter-icon.svg" alt="" aria-hidden="true">
+              <a class="hero-action-button" href="mailto:balabanenes111@icloud.com?subject=Email%20Newsletter%20Signup">
+                <span class="hero-action-icon" aria-hidden="true">
+                  <img src="assets/icons/mailnewsletter-icon.svg?v=2" alt="">
+                </span>
                 <span>Email Newsletter</span>
               </a>
             </nav>
-            <hr class="hero-divider">
-            <section class="hero-contact" aria-labelledby="home-contact-title">
-              <h2 id="home-contact-title">Contact</h2>
-              <div class="link-stack">
-                <a href="mailto:balabanenes111@icloud.com?subject=Email%20Newsletter%20Signup">Email signup</a>
-                <span class="contact-pending">LinkedIn</span>
-              </div>
-            </section>
           </div>
           <div class="hero-visual">
             <div class="hero-mascot-frame">
@@ -90,10 +84,9 @@
           </div>
         </section>
         <div class="home-sections">
-          <section class="content-section home-section" aria-labelledby="home-skills-title">
+          <section class="content-section home-section" id="skills" aria-labelledby="home-skills-title">
             <div class="home-section-header">
               <h2 id="home-skills-title">Skills</h2>
-              <a class="home-section-link" href="skills.html">View all skills</a>
             </div>
             <div class="skills-grid" aria-label="Technology skills">
               <div class="skill-card"><img src="assets/icons/c.svg" alt="C icon"><span>C</span></div>

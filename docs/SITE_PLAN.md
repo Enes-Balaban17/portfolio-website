@@ -20,7 +20,7 @@ Before coding, read the planning files in this order:
    - Use the values in this file when implementing `css/style.css`.
 
 4. `docs/SKILLS_PLAN.md`
-   - Source for the Skills page content.
+   - Source for the homepage Skills section content.
    - Use this file for the exact skill order, grid rules, and skill card behavior.
    - The Skills section in this file is only a summary. The detailed implementation rules are in `docs/SKILLS_PLAN.md`.
 
@@ -35,7 +35,7 @@ Implementation rule:
 SITE_PLAN.md tells what pages and sections exist.
 FILE_STRUCTURE.md tells where files must be created.
 DESIGN_SYSTEM.md tells how the site must look.
-SKILLS_PLAN.md tells how the Skills page/grid must be built.
+SKILLS_PLAN.md tells how the homepage Skills grid must be built.
 ICON_SOURCES.md tells which icon files to use.
 ```
 
@@ -56,10 +56,9 @@ Icon usage: ICON_SOURCES.md
 3. About Me Page
 4. Notes Page
 5. Projects Page
-6. Skills Page
-7. Resume Page
-8. Minigames Page
-9. Illustrations Page
+6. Resume Page
+7. Minigames Page
+8. Illustrations Page
 
 ## Sidebar Layout
 
@@ -68,10 +67,9 @@ Desktop sidebar structure:
 ```txt
 [Small Game Boy Advance icon] Enes Balaban [Theme Toggle]
 
-About Me
-Notes
-Projects
-Skills
+[Folder icon] About Me
+[Notepad icon] Notes
+[Theme-aware GitHub icon] Projects
 
 Contact
 Email signup
@@ -84,41 +82,68 @@ Sidebar rules:
 - Place the Game Boy Advance icon immediately to the left of the name.
 - Place the theme toggle immediately to the right of the name.
 - Keep navigation links vertical.
+- Primary sidebar navigation has only About Me, Notes, and Projects.
+- Do not include a separate Skills navigation link.
+- Primary sidebar links use a shared icon column and a shared text column so icon left edges and label start positions align.
 - Keep contact links vertical.
 - Keep the sidebar sticky on desktop.
 - On mobile, move the navigation above the content or use a compact top navigation.
+- Include a short About Me block after the identity row and before primary navigation.
+
+Sidebar About Me block:
+
+```txt
+About Me
+
+I'm Enes, a software developer and Computer Programming graduate. This is my digital base. 🚀
+```
 
 ## Home / Hero
 
 Home page content:
 
 ```txt
-About Me
-
 Hey, I'm Enes!
 
-I'm a Computer Programming graduate and software developer.
+I'm a Software Developer and graduate from Ege University Computer Programming.
 
-This is my personal website.
+I'm interested in unmanned aerial systems, artificial intelligence, and embedded systems, and I create content around these fields.
 
-Notes
-Projects
-About Me
+[About Me icon] About Me
+[Email newsletter icon] Email Newsletter
 
 ------------------------------------------------------------
 
-Contact
+Skills
 
-Email signup
-LinkedIn
+[Skill grid]
+
+------------------------------------------------------------
+
+[Notebook icon] Notes
+
+[Recent notes preview]
+
+------------------------------------------------------------
+
+[Projects icon] Projects
+
+[Selected projects preview]
 ```
 
 Hero rules:
 
-- Action links are vertical.
-- Contact links are vertical.
+- Use a two-column hero layout on desktop.
+- Keep hero copy on the left and the mascot visual on the right.
+- Use `assets/images/enescot.png` for the hero mascot.
+- Place a themed accent circle behind the mascot with CSS only, not baked into the PNG.
+- Use `#d33682` for the mascot circle in light theme.
+- Use `#ff8ac0` for the mascot circle in dark theme.
+- Action buttons are side by side on desktop and can stack on mobile.
+- About Me action button links to `about.html`.
+- Email Newsletter action button links to the newsletter email signup placeholder.
 - Use clear spacing between text blocks.
-- Use a divider between action links and contact links.
+- Do not include the old Contact block inside the homepage hero. Contact remains in the sidebar and About page.
 
 ## About Me Page
 
@@ -266,9 +291,9 @@ Link display rules:
 - If a project needs more explanation but no demo exists, show: Details / Source
 - If a project is not public yet, show: In Progress or Private
 
-## Skills Page
+## Skills Section
 
-The Skills page must be implemented according to:
+The Skills section appears on the homepage and must be implemented according to:
 
 ```txt
 docs/SKILLS_PLAN.md
@@ -292,6 +317,7 @@ Summary of grid rules:
 - Use local icons from `assets/icons/`.
 - Use icon file details from `docs/ICON_SOURCES.md`.
 - Use card dimensions, colors, spacing, hover rules, and responsive rules from `docs/DESIGN_SYSTEM.md`.
+- Do not create or link to a separate `skills.html` page in the current version.
 
 ## Visual Direction
 

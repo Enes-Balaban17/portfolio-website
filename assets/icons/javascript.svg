@@ -1,3 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JavaScript icon">
-  <image href="data:image/webp;base64,UklGRjIBAABXRUJQVlA4ICYBAAAQBwCdASooACgAPs1YpkunpSOhrjv7MPAZiWgAw0IkneNUaCEA1hVDBP+9TJk/7+3E90J4e509lR9bxrfcIwxwIAD+8M2j/82B/5B/9vPIX61ytWkJuzZcenbvHtGN4t/AobTMfxC/75btSMfP01/rOU9HF8WT6i1JVeur5bQ8OuqktofmwcwBTngqSJSjJoqnAdDin+vpRJ+JfRW+B1afvqAGoR2RShApQcUewoedLkPYe6BHlRNe2aG6ZbAeBOYyuqAD9/IXgHhh35UD9/qvvTL++zSpnSe7atB3mOrB586pOEk8Tnj0Woo7BH09/kL2ehshvSS6sCZyOpvbACIqQS9A+nLcTH93FLSV+hdTqUeLjs7AhxkPNxud484+PRTfi1AAAAA=" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="JavaScript icon">
+  <title>JS</title>
+  <rect width="80" height="80" fill="#f0dc4e" shape-rendering="crispEdges"/>
+  <text x="47.5" y="72" text-anchor="middle"
+        font-family="Arial Narrow, Roboto Condensed, Helvetica Neue, Arial, sans-serif"
+        font-size="48" font-weight="700" letter-spacing="-2.2"
+        fill="#323330">JS</text>
 </svg>

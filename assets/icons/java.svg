@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Java icon">
-  <rect width="64" height="64" rx="14" fill="#f57c00"/>
-  <path d="M24 43h15c4 0 7-2 8-5H18c1 3 3 5 6 5Z" fill="#ffffff" opacity=".95"/>
-  <path d="M25 31c-4-3 7-5 2-13 7 5-3 8 2 13 2 2 1 4-1 5 1-2 0-4-3-5Z" fill="#ffffff"/>
-  <path d="M34 31c-4-3 7-5 2-13 7 5-3 8 2 13 2 2 1 4-1 5 1-2 0-4-3-5Z" fill="#ffffff" opacity=".9"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Java icon">
+  <title>Java</title>
+  <rect width="80" height="80" fill="none"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M37 7c8 7-11 10-1 20" stroke="#f89820" stroke-width="5"/>
+    <path d="M48 11c7 6-8 9-1 17" stroke="#f89820" stroke-width="4"/>
+    <path d="M23 36h28v13c0 8-6 14-14 14s-14-6-14-14V36z" fill="#5382a1" stroke="#1f4e68" stroke-width="3"/>
+    <path d="M51 40h7c5 0 8 3 8 7s-3 7-8 7h-6" stroke="#1f4e68" stroke-width="5"/>
+    <path d="M21 68h38" stroke="#5382a1" stroke-width="5"/>
+  </g>
 </svg>

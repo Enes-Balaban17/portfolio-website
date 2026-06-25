@@ -618,24 +618,29 @@ input:focus-visible {
 }
 
 .certificate-logo-frame {
+  --certificate-logo-size: 96px;
   display: grid;
-  flex: 0 0 96px;
-  width: 96px;
-  height: 96px;
+  flex: 0 0 auto;
+  width: var(--certificate-logo-size);
+  height: var(--certificate-logo-size);
   place-items: center;
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  background: var(--background);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   padding: 0;
 }
 
 .certificate-logo-frame img {
   display: block;
-  width: 84px;
-  height: 84px;
+  width: var(--certificate-logo-size);
+  height: var(--certificate-logo-size);
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.certificate-card:nth-child(2) .certificate-logo-frame {
+  --certificate-logo-size: 140px;
 }
 
 .certificate-item h3 {
@@ -964,14 +969,11 @@ body,
   }
 
   .certificate-logo-frame {
-    width: 84px;
-    height: 84px;
-    flex-basis: 84px;
+    --certificate-logo-size: 84px;
   }
 
-  .certificate-logo-frame img {
-    width: 72px;
-    height: 72px;
+  .certificate-card:nth-child(2) .certificate-logo-frame {
+    --certificate-logo-size: 128px;
   }
 }
 

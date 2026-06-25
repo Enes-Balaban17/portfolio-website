@@ -1,3 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Terminal icon">
-  <image href="data:image/webp;base64,UklGRm4BAABXRUJQVlA4WAoAAAAQAAAAJwAAJwAAQUxQSGcAAAABcBvbtqqc7/5DL8BDwUPXOmmASmiAHly/RbglETEBeH0JaOPplSc2CBBQFuk5veo5XeogSFTSy7VPaR8UiWZ6Sa98Tsf/Ya1bmJSiNL1c6ZK2QRHgZ4fV+qqrw1wFAYB3wit7El5hAFZQOCDgAAAAMAcAnQEqKAAoAD7RVKRNKCQjIiq1XqkAGglnANRwTGPAAgIljy0Mc/iS5QVPlxtaKuAjCAjVPJmwfnaAVAq5pgMAAJ3TDdvMmVemT/PG2f9H+nm4OVQWUxlXkCPG8QvOXH4po7dvuF761Bs4wkiws5pi96/ZtH7lFYGUucuva+JFxW2nFS4utFTvVdf0Pgoz9W2qt8DVSrc2SUdqfFRLxZsyRfSPq7TwdsdrnqO7AZAy/I/o/fLvK6rqXOK70rUVtrD71veCTWEegQkCvTTB7XTFaRsW7LRj4AtUrBwAAAA=" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid meet"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Terminal icon">
+  <title>Terminal</title>
+  <rect width="80" height="80" fill="none"/>
+  <g shape-rendering="crispEdges">
+    <rect x="5" y="8" width="70" height="62" fill="#262626"/>
+    <path d="M5 8h70v62H5z" fill="none" stroke="#0d0d0d" stroke-width="2"/>
+    <path d="M6 9h68v60H6z" fill="none" stroke="#565656" stroke-width="1"/>
+    <path d="M7 10h66v58H7z" fill="none" stroke="#1b1b1b" stroke-width="1"/>
+    <path d="M5 8h70" stroke="#7ee7d8" stroke-width="1" opacity=".55"/>
+    <path d="M75 10v58" stroke="#b04fd1" stroke-width="1" opacity=".45"/>
+    <path d="M12 19l8 4-8 4" fill="none" stroke="#f2f2f2" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+    <rect x="25" y="30" width="9" height="2" fill="#f2f2f2"/>
+  </g>
 </svg>
