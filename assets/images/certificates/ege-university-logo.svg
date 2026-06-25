@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Ege University logo placeholder</title>
+  <desc id="desc">Temporary placeholder. Replace this file with the official Ege University logo.</desc>
+  <rect width="128" height="128" rx="24" fill="#25252b"/>
+  <circle cx="64" cy="64" r="44" fill="none" stroke="#ff8ac0" stroke-width="6"/>
+  <text x="64" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#fbfbfb">EU</text>
+</svg>
