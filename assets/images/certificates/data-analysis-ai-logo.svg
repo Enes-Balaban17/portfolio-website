@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Data Analysis School AI module logo placeholder</title>
+  <desc id="desc">Temporary placeholder. Replace this file with the logo you want to use for the Data Analysis School AI module.</desc>
+  <rect width="128" height="128" rx="24" fill="#25252b"/>
+  <path d="M32 78h64M38 88h52M44 98h40" stroke="#6ab0f3" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="46" cy="48" r="10" fill="#ff8ac0"/>
+  <circle cx="66" cy="38" r="10" fill="#d48ceb"/>
+  <circle cx="86" cy="56" r="10" fill="#92d192"/>
+  <path d="M46 48l20-10 20 18" fill="none" stroke="#fbfbfb" stroke-width="4" stroke-linecap="round"/>
+  <text x="64" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fbfbfb">AI</text>
+</svg>
