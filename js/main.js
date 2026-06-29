@@ -76,7 +76,6 @@
     searchInput.addEventListener("input", function () {
       var query = searchInput.value.trim().toLowerCase();
       var items = document.querySelectorAll("[data-note-item]");
-      var years = document.querySelectorAll("[data-note-year]");
       var visibleItems = 0;
 
       items.forEach(function (item) {
@@ -85,10 +84,6 @@
         if (matches) {
           visibleItems += 1;
         }
-      });
-
-      years.forEach(function (year) {
-        year.hidden = !year.querySelector("[data-note-item]:not([hidden])");
       });
 
       if (emptyResult) {
@@ -136,20 +131,6 @@
       day: "numeric",
       year: includeYear ? "numeric" : undefined
     }).format(date);
-  }
-
-  function yearFromDate(value) {
-    if (!value) {
-      return "Undated";
-    }
-
-    var match = String(value).match(/^\d{4}/);
-    if (match) {
-      return match[0];
-    }
-
-    var date = new Date(value);
-    return Number.isNaN(date.getTime()) ? "Undated" : String(date.getFullYear());
   }
 
   function listText(value) {
@@ -354,35 +335,23 @@
   }
 
   function renderNotes(container, items) {
-    var groups = groupByYear(items, function (item) {
-      return yearFromDate(item.date);
-    });
-
-    container.innerHTML = groups.map(function (group) {
-      var id = "notes-" + group.year.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-      var rows = group.items.map(function (item) {
-        var tags = renderLabels(item.tags, "tag");
-        var slug = item.slug || item.id || slugify(item.title);
-        var detailUrl = "note.html?slug=" + encodeURIComponent(slug);
-
-        return [
-          '<article class="archive-item" data-note-item>',
-          '  <time class="archive-date" datetime="' + escapeHtml(item.date || "") + '">' + escapeHtml(readableDate(item.date, true)) + "</time>",
-          '  <div class="archive-body">',
-          '    <h3><a class="archive-title-link" href="' + escapeHtml(detailUrl) + '">' + escapeHtml(item.title) + "</a>" + (tags ? " " + tags : "") + "</h3>",
-          "    <p>" + escapeHtml(item.summary || item.body || "") + "</p>",
-          "  </div>",
-          "</article>"
-        ].join("");
-      }).join("");
+    var rows = items.map(function (item) {
+      var tags = renderLabels(item.tags, "tag");
+      var slug = item.slug || item.id || slugify(item.title);
+      var detailUrl = "note.html?slug=" + encodeURIComponent(slug);
 
       return [
-        '<section class="archive-year" data-note-year aria-labelledby="' + escapeHtml(id) + '">',
-        '  <h2 id="' + escapeHtml(id) + '">' + escapeHtml(group.year) + "</h2>",
-        '  <div class="archive-items">' + rows + "</div>",
-        "</section>"
+        '<article class="archive-item" data-note-item>',
+        '  <time class="archive-date" datetime="' + escapeHtml(item.date || "") + '">' + escapeHtml(readableDate(item.date, true)) + "</time>",
+        '  <div class="archive-body">',
+        '    <h3><a class="archive-title-link" href="' + escapeHtml(detailUrl) + '">' + escapeHtml(item.title) + "</a>" + (tags ? " " + tags : "") + "</h3>",
+        "    <p>" + escapeHtml(item.summary || item.body || "") + "</p>",
+        "  </div>",
+        "</article>"
       ].join("");
     }).join("");
+
+    container.innerHTML = '<div class="archive-items notes-list">' + rows + "</div>";
   }
 
   function renderProjects(container, items) {

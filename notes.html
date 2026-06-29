@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Short development notes and learning logs from Enes Balaban.">
     <title>Notes | Enes Balaban</title>
-    <link rel="stylesheet" href="css/style.css?v=20260629-cms-renderers">
-    <script src="js/main.js?v=20260629-cms-renderers" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=20260629-notes-layout">
+    <script src="js/main.js?v=20260629-notes-layout" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -54,7 +54,7 @@
           <a href="https://www.linkedin.com/in/enes-balaban/" target="_blank" rel="noopener">LinkedIn</a>
         </nav>
       </aside>
-      <main class="main-content" id="main-content">
+      <main class="main-content notes-page" id="main-content">
         <header class="page-header">
           <h1>Notes</h1>
           <p class="page-intro">Short records of development progress, learning, completed work, and events.</p>
@@ -64,18 +64,15 @@
           <input id="note-search" data-note-search type="search" placeholder="Search title, date, or tag">
         </div>
         <div data-content-type="notes" data-content-source="content/notes/notes.json">
-          <section class="archive-year" data-note-year aria-labelledby="notes-2026">
-            <h2 id="notes-2026">2026</h2>
-            <div class="archive-items">
-              <article class="archive-item" data-note-item>
-                <time class="archive-date" datetime="2026-05-25">May 25, 2026</time>
-                <div class="archive-body">
-                  <h3><a class="archive-title-link" href="note.html?slug=building-my-personal-portfolio-website">Building my personal portfolio website</a> <span class="tag">Progress</span></h3>
-                  <p>Creating the first static version with HTML, CSS, and JavaScript for GitHub Pages.</p>
-                </div>
-              </article>
-            </div>
-          </section>
+          <div class="archive-items notes-list">
+            <article class="archive-item" data-note-item>
+              <time class="archive-date" datetime="2026-05-25">May 25, 2026</time>
+              <div class="archive-body">
+                <h3><a class="archive-title-link" href="note.html?slug=building-my-personal-portfolio-website">Building my personal portfolio website</a> <span class="tag">Progress</span></h3>
+                <p>Creating the first static version with HTML, CSS, and JavaScript for GitHub Pages.</p>
+              </div>
+            </article>
+          </div>
         </div>
         <p class="no-results" data-no-results hidden>No notes match your search.</p>
         <footer class="site-footer">

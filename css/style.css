@@ -954,6 +954,52 @@ textarea:focus-visible {
   margin: 0 0 0.5rem;
 }
 
+.notes-page .search-field {
+  max-width: 520px;
+  margin-bottom: 2.25rem;
+}
+
+.notes-page .search-field input {
+  padding: 0.78rem 0.9rem;
+}
+
+.notes-list {
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.notes-list .archive-item {
+  padding: 1.4rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.notes-list .archive-date {
+  padding-top: 0.12rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.notes-list .archive-body h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  margin-bottom: 0.45rem;
+}
+
+.notes-list .archive-body p {
+  max-width: 58ch;
+  margin-bottom: 0;
+  text-wrap: pretty;
+}
+
+.notes-list .tag {
+  margin-left: 0;
+}
+
+.notes-page .site-footer {
+  margin-top: 2.75rem;
+}
+
 .archive-links {
   display: flex;
   align-items: center;
@@ -1616,6 +1662,11 @@ body,
 
   .archive-item[data-note-item] {
     grid-template-columns: 120px minmax(0, 1fr);
+  }
+
+  .notes-list .archive-item[data-note-item] {
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 1.5rem;
   }
 
   .archive-item--grouped {
