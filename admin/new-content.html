@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Protected portfolio content hub.">
+    <title>New Content | Enes Balaban</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
+    <script src="admin-auth.js" defer></script>
+  </head>
+  <body class="admin-page admin-protected">
+    <div class="admin-auth-loading" role="status" aria-live="polite">Checking admin session...</div>
+
+    <main class="admin-layout admin-protected-content">
+      <nav class="admin-top-nav" aria-label="Admin navigation">
+        <div class="admin-nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="new-content.html" aria-current="page">New Content</a>
+          <a href="messages.html">Messages</a>
+          <a href="cms.html">CMS</a>
+        </div>
+        <div class="admin-nav-account">
+          <span class="admin-user" data-admin-user-email>Signed in</span>
+          <button class="admin-nav-logout" type="button" data-admin-logout>Logout</button>
+        </div>
+      </nav>
+
+      <header class="admin-header">
+        <div>
+          <p class="admin-eyebrow">Content</p>
+          <h1>New / Edit Content</h1>
+          <p class="admin-intro">Open the relevant Decap CMS collection, then create a new entry or edit an existing item.</p>
+        </div>
+      </header>
+
+      <section class="admin-section" aria-labelledby="new-content-title">
+        <div class="admin-section-heading">
+          <h2 id="new-content-title">New Content</h2>
+          <p>Direct new-entry routes are not reliable across every Decap CMS backend, so these links open the collection where you can choose New.</p>
+        </div>
+        <div class="admin-card-grid">
+          <a class="admin-small-card" href="cms.html#/collections/projects">New Project</a>
+          <a class="admin-small-card" href="cms.html#/collections/certificates">New Certificate</a>
+          <a class="admin-small-card" href="cms.html#/collections/notes">New Note</a>
+          <a class="admin-small-card" href="cms.html#/collections/minigames">New Game</a>
+          <a class="admin-small-card" href="cms.html#/collections/illustrations">New Illustration</a>
+        </div>
+      </section>
+
+      <section class="admin-section" aria-labelledby="edit-content-title">
+        <div class="admin-section-heading">
+          <h2 id="edit-content-title">Edit Existing Content</h2>
+          <p>Use these collection links when an existing item needs correction instead of deleting and re-uploading it.</p>
+        </div>
+        <div class="admin-card-grid">
+          <a class="admin-small-card" href="cms.html#/collections/projects">Edit Projects</a>
+          <a class="admin-small-card" href="cms.html#/collections/certificates">Edit Certificates</a>
+          <a class="admin-small-card" href="cms.html#/collections/notes">Edit Notes</a>
+          <a class="admin-small-card" href="cms.html#/collections/minigames">Edit Games</a>
+          <a class="admin-small-card" href="cms.html#/collections/illustrations">Edit Illustrations</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

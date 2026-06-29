@@ -1,0 +1,4 @@
+project_id = "ufcvdlidsdrcdnjswocj"
+
+[functions.submit-message]
+verify_jwt = false

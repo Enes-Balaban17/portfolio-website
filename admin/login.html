@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Portfolio admin login.">
+    <title>Admin Login | Enes Balaban</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
+    <script src="admin-auth.js" defer></script>
+  </head>
+  <body class="admin-page admin-login-page">
+    <main class="admin-login-shell">
+      <section class="admin-login-card" aria-labelledby="admin-login-title">
+        <p class="admin-eyebrow">Protected Area</p>
+        <h1 id="admin-login-title">Admin Login</h1>
+        <p class="admin-intro">Sign in with the Supabase Auth admin account before opening dashboard tools.</p>
+
+        <form class="admin-form" data-admin-login-form novalidate>
+          <div class="admin-field">
+            <label for="admin-email">Email</label>
+            <input id="admin-email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="admin-field">
+            <label for="admin-password">Password</label>
+            <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+
+          <p class="admin-status" role="status" aria-live="polite" data-admin-login-status></p>
+
+          <button class="admin-button" type="submit" data-admin-login-submit>Login</button>
+        </form>
+
+        <p class="admin-footnote">Credentials are managed in Supabase Auth. No password is stored in this website.</p>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Protected Decap CMS editor.">
+    <title>CMS | Enes Balaban</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="config.yml" type="text/yaml" rel="cms-config-url">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
+    <script src="admin-auth.js" defer></script>
+  </head>
+  <body class="admin-page admin-protected admin-cms-page">
+    <div class="admin-auth-loading" role="status" aria-live="polite">Checking admin session...</div>
+
+    <main class="admin-layout admin-protected-content" data-cms-intro>
+      <nav class="admin-top-nav" aria-label="Admin navigation">
+        <div class="admin-nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="new-content.html">New Content</a>
+          <a href="messages.html">Messages</a>
+          <a href="cms.html" aria-current="page">CMS</a>
+        </div>
+        <div class="admin-nav-account">
+          <span class="admin-user" data-admin-user-email>Signed in</span>
+          <button class="admin-nav-logout" type="button" data-admin-logout>Logout</button>
+        </div>
+      </nav>
+
+      <header class="admin-header">
+        <div>
+          <p class="admin-eyebrow">CMS</p>
+          <h1>Content Management</h1>
+          <p class="admin-intro">Supabase Auth has unlocked the admin hub. Decap CMS may still ask for GitHub authentication before content editing.</p>
+        </div>
+      </header>
+    </main>
+
+    <script>
+      window.addEventListener("admin:authenticated", function () {
+        var script = document.createElement("script");
+        script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
+        script.async = true;
+        document.body.appendChild(script);
+      }, { once: true });
+    </script>
+  </body>
+</html>

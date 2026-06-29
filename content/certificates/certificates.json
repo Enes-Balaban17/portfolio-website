@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "title": "Computer Programming",
+      "organization": "Ege University",
+      "type": "Associate Degree",
+      "date_range": "2024 - 2026",
+      "description": "Associate Degree in Computer Programming.",
+      "logo": "assets/images/certificates/ege-university-logo.png",
+      "logo_upload": "",
+      "certificate_action_type": "none",
+      "certificate_url": "",
+      "certificate_pdf": "",
+      "body": ""
+    },
+    {
+      "title": "Artificial Intelligence Module",
+      "organization": "Data Analysis School",
+      "type": "Completed Education",
+      "date_range": "2025 - 2026",
+      "description": "Free online training program carried out under the auspices of the Council of Higher Education, coordinated by Marmara University Population and Social Research Institute, with contributions from METU, ITU, and Bogazici University. The program focuses on combining theoretical knowledge and practical skills in data analysis, statistics, and artificial intelligence.",
+      "logo": "assets/images/certificates/data-analysis-ai-logo.png",
+      "logo_upload": "",
+      "certificate_action_type": "none",
+      "certificate_url": "",
+      "certificate_pdf": "",
+      "body": ""
+    },
+    {
+      "title": "Industry-Oriented Undergraduate Graduation Projects Conference",
+      "organization": "TUSAS LIFT UP",
+      "type": "Certificate of Participation",
+      "date_range": "2024 - 2025",
+      "description": "Certificate of Participation.",
+      "logo": "assets/images/certificates/tusas-lift-up-logo.png",
+      "logo_upload": "",
+      "certificate_action_type": "none",
+      "certificate_url": "",
+      "certificate_pdf": "",
+      "body": ""
+    },
+    {
+      "title": "Test Certificate",
+      "organization": "Test Universty",
+      "type": "Test Degree",
+      "date_range": "2012 - 2015",
+      "description": "its a test",
+      "logo": "",
+      "logo_upload": "assets/uploads/certificates/logo_of_metu.svg.png",
+      "certificate_action_type": "link",
+      "certificate_url": "https://puginarug.com/",
+      "certificate_pdf": "",
+      "body": ""
+    }
+  ]
+}

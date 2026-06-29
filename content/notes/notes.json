@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "title": "Building my personal portfolio website",
+      "slug": "building-my-personal-portfolio-website",
+      "date": "2026-05-25",
+      "tags": [
+        "Progress"
+      ],
+      "summary": "Creating the first static version with HTML, CSS, and JavaScript for GitHub Pages.",
+      "body": "A short progress note for the first static version of the portfolio website."
+    },
+    {
+      "title": "Hello this a test",
+      "slug": "hello-this-is-a-test",
+      "date": "2026-06-26",
+      "tags": [
+        "hi",
+        "mi",
+        "ti",
+        "ci"
+      ],
+      "summary": "Why did you do that",
+      "body": "Whatta fuck"
+    }
+  ]
+}

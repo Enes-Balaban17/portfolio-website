@@ -86,6 +86,7 @@ Sidebar rules:
 - Do not include a separate Skills navigation link.
 - Primary sidebar links use a shared icon column and a shared text column so icon left edges and label start positions align.
 - Keep contact links vertical.
+- Sidebar Email signup links open `mailto:balabanenes111@icloud.com`.
 - Keep the sidebar sticky on desktop.
 - On mobile, move the navigation above the content or use a compact top navigation.
 - Include a short About Me block after the identity row and before primary navigation.
@@ -141,9 +142,10 @@ Hero rules:
 - Use `#ff8ac0` for the mascot circle in dark theme.
 - Action buttons are side by side on desktop and can stack on mobile.
 - About Me action button links to `about.html`.
-- Email Newsletter action button links to the newsletter email signup placeholder.
+- Email Newsletter action button opens the contact/message modal.
 - Use clear spacing between text blocks.
 - Do not include the old Contact block inside the homepage hero. Contact remains in the sidebar and About page.
+- Only the homepage Email Newsletter action button opens the contact/message modal.
 
 ## About Me Page
 
@@ -202,6 +204,15 @@ If you want to say hello, send me an email or connect via the socials.
 - TUSAS LIFT UP - Industry-Oriented Undergraduate Graduation Projects Conference
   Certificate of Participation / 2024 - 2025
 ```
+
+Certificate action rules:
+
+- Certificates are loaded from `content/certificates/certificates.json`.
+- `certificate_action_type: link` uses `certificate_url` for an external verification page.
+- `certificate_action_type: pdf` uses `certificate_pdf` for an uploaded or local PDF.
+- `certificate_action_type: none` renders no action.
+- `View Certificate` opens valid links and PDFs in a new tab.
+- Invalid, empty, and unsafe targets do not render a link.
 
 ## What I'm Doing Right Now
 
@@ -271,6 +282,9 @@ Notes rules:
 - Group notes by year.
 - Each note has a date, title, and optional tag.
 - Notes are shorter and more personal than full blog posts.
+- Show a complete readable date including the year.
+- Note titles link to `note.html?slug=NOTE_SLUG`.
+- The note detail page loads the same JSON source and renders the title, full date, tags, summary, and body as escaped text.
 
 ## Projects Page
 
@@ -287,6 +301,7 @@ Project item structure:
 Link display rules:
 
 - If a project has a live demo, show: Demo / Source
+- Only Source uses the theme-aware GitHub icon. Demo remains a plain text link.
 - If a project does not have a live demo, show only: Source
 - If a project needs more explanation but no demo exists, show: Details / Source
 - If a project is not public yet, show: In Progress or Private

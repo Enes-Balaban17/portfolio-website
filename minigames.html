@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Minigames and experiments by Enes Balaban.">
     <title>Minigames | Enes Balaban</title>
-    <link rel="stylesheet" href="css/style.css?v=20260625-certificate-logo-fix">
-    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=20260629-cms-renderers">
+    <script src="js/main.js?v=20260629-cms-renderers" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -50,8 +50,8 @@
         </nav>
         <nav class="sidebar-section sidebar-nav" aria-label="Contact">
           <h2 class="nav-heading">Contact</h2>
-          <a href="mailto:balabanenes111@icloud.com?subject=Email%20Newsletter%20Signup">Email signup</a>
-          <span class="contact-pending">LinkedIn</span>
+          <a href="mailto:balabanenes111@icloud.com">Email signup</a>
+          <a href="https://www.linkedin.com/in/enes-balaban/" target="_blank" rel="noopener">LinkedIn</a>
         </nav>
       </aside>
       <main class="main-content" id="main-content">
@@ -59,10 +59,12 @@
           <h1>Minigames</h1>
           <p class="page-intro">A home for small games and software experiments.</p>
         </header>
-        <section class="simple-card empty-state" aria-label="Minigames status">
-          <h2>In Progress</h2>
-          <p>No minigames have been published here yet.</p>
-        </section>
+        <div data-content-type="minigames" data-content-source="content/minigames/minigames.json">
+          <section class="simple-card empty-state" aria-label="Minigames status">
+            <h2>In Progress</h2>
+            <p>No minigames have been published here yet.</p>
+          </section>
+        </div>
         <footer class="site-footer">
           <p>&copy; 2026 Enes Balaban</p>
         </footer>
