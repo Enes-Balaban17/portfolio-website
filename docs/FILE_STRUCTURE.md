@@ -17,12 +17,12 @@ Reasoning:
 - The project is currently a personal portfolio with static pages.
 - Notes and Projects can be managed as static HTML pages at first.
 - A static structure is enough for the first release.
-- A framework can be added later after the content and design are stable.
+- The maintained architecture remains static HTML, CSS, and JavaScript.
 
-Future upgrade option:
+Growth strategy:
 
-- If Notes, Projects, Resume, Minigames, and Illustrations grow significantly, migrate to a lightweight SSG such as Astro or Eleventy.
-- Gatsby is not preferred for the first version because it adds unnecessary complexity for this stage.
+- Keep content in repository JSON and improve the existing vanilla JavaScript renderers as collections grow.
+- Treat any future framework or build-system proposal as a separate architectural decision, not an automatic migration path.
 
 ## Final First Version Structure
 
@@ -41,6 +41,18 @@ portfolio-website/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
+├── .env.example
+├── package.json
+├── package-lock.json
+│
+├── .github/
+│   └── workflows/
+│       └── static-validation.yml
+│
+├── scripts/
+│   ├── validate-content.mjs
+│   ├── scan-secrets.mjs
+│   └── check-media.mjs
 │
 ├── assets/
 │   ├── icons/
@@ -126,7 +138,11 @@ portfolio-website/
     ├── SUPABASE_SETUP.md
     ├── SUPABASE_ADMIN_AUTH_SETUP.md
     ├── ADMIN_DASHBOARD_SETUP.md
-    └── DECAP_CMS_SETUP.md
+    ├── DECAP_CMS_SETUP.md
+    ├── LOCAL_DEVELOPMENT.md
+    ├── CMS_CONTENT_MODEL.md
+    ├── SECURITY_REVIEW.md
+    └── DEPLOYMENT_CHECKLIST.md
 ```
 
 ## Page Responsibilities
@@ -209,9 +225,7 @@ Since the first version will not use a framework, the sidebar will be repeated i
 
 This is acceptable for the first version because the website is small.
 
-Future improvement:
-
-- Move repeated layout into a component system if the site migrates to Astro, Eleventy, React, or another SSG/framework.
+The repeated layout is deliberate for the current no-build architecture. Any future component-generation step requires an explicit tooling decision and must preserve GitHub Pages output.
 
 ## CSS Plan
 

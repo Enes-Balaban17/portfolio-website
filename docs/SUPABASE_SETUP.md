@@ -16,10 +16,10 @@ Project URL used by the frontend:
 https://ufcvdlidsdrcdnjswocj.supabase.co
 ```
 
-Frontend-safe publishable key:
+Frontend-safe publishable key format:
 
 ```txt
-sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8
+YOUR_SUPABASE_PUBLISHABLE_KEY
 ```
 
 This publishable key is safe to use in browser JavaScript. It is not a privileged database key.
@@ -143,7 +143,7 @@ Required:
 
 ```txt
 SUPABASE_URL=https://ufcvdlidsdrcdnjswocj.supabase.co
-ALLOWED_PUBLISHABLE_KEYS=sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8
+ALLOWED_PUBLISHABLE_KEYS=YOUR_SUPABASE_PUBLISHABLE_KEY
 IP_HASH_SALT=<generate-a-long-random-secret>
 ```
 
@@ -187,7 +187,7 @@ Example `.env.local`:
 ```txt
 SUPABASE_URL=https://ufcvdlidsdrcdnjswocj.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
-ALLOWED_PUBLISHABLE_KEYS=sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8
+ALLOWED_PUBLISHABLE_KEYS=YOUR_SUPABASE_PUBLISHABLE_KEY
 IP_HASH_SALT=<long-random-local-secret>
 ALLOWED_ORIGINS=http://127.0.0.1:8080,http://localhost:8080
 ```
@@ -210,7 +210,7 @@ By default, `js/main.js` points at the deployed Supabase function. To test again
 <script>
   window.PORTFOLIO_SUPABASE_CONFIG = {
     url: "http://127.0.0.1:54321",
-    publishableKey: "sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8",
+    publishableKey: "YOUR_LOCAL_SUPABASE_PUBLISHABLE_KEY",
     submitEndpoint: "http://127.0.0.1:54321/functions/v1/submit-message"
   };
 </script>
@@ -237,7 +237,7 @@ Set secrets:
 ```powershell
 supabase secrets set SUPABASE_URL=https://ufcvdlidsdrcdnjswocj.supabase.co
 supabase secrets set SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
-supabase secrets set ALLOWED_PUBLISHABLE_KEYS=sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8
+supabase secrets set ALLOWED_PUBLISHABLE_KEYS=YOUR_SUPABASE_PUBLISHABLE_KEY
 supabase secrets set IP_HASH_SALT=<long-random-secret>
 supabase secrets set ALLOWED_ORIGINS=http://127.0.0.1:8080,http://localhost:8080,https://enes-balaban17.github.io
 ```

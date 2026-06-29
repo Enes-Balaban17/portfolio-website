@@ -194,6 +194,7 @@ Content files are already present:
 
 - `content/notes/notes.json`
 - `content/projects/projects.json`
+- `content/certificates/certificates.json`
 - `content/illustrations/illustrations.json`
 - `content/minigames/minigames.json`
 

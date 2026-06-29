@@ -180,68 +180,11 @@ External links must begin with `http://` or `https://`. PDF targets must be an `
 
 ## 7. Local Preview
 
-Local CMS editing needs two local processes.
+The canonical two-process local workflow is documented in `LOCAL_DEVELOPMENT.md`. Start the static server and `npx decap-server`, sign in through `admin/login.html`, and then open `admin/cms.html`.
 
-First terminal, from the repository root:
+Saved CMS edits modify repository files under `content/` and `assets/uploads/`. Review them with Git and run `npm run check`; the local proxy does not commit or push changes.
 
-```bash
-npx decap-server
-```
-
-This starts the Decap local backend/proxy. It lets Decap CMS save changes into local repository files instead of redirecting to Netlify/GitHub OAuth.
-
-Second terminal, from the repository root:
-
-```powershell
-python -m http.server 8080 --bind 127.0.0.1
-```
-
-Open:
-
-```txt
-http://127.0.0.1:8080/admin/cms.html
-```
-
-If the custom admin auth gate is active, sign in through:
-
-```txt
-http://127.0.0.1:8080/admin/login.html
-```
-
-Then open:
-
-```txt
-http://127.0.0.1:8080/admin/cms.html
-```
-
-Saved CMS edits modify local repository files under `content/` and `assets/uploads/`. After editing locally, commit and push the changed files with Git.
-
-Public site preview:
-
-```txt
-http://127.0.0.1:8080/
-```
-
-The JSON content pages are:
-
-```txt
-http://127.0.0.1:8080/notes.html
-http://127.0.0.1:8080/projects.html
-http://127.0.0.1:8080/illustrations.html
-http://127.0.0.1:8080/minigames.html
-```
-
-Notes open through a static detail route such as:
-
-```txt
-http://127.0.0.1:8080/note.html?slug=building-my-personal-portfolio-website
-```
-
-The `slug` field must be unique within `notes.json`. Use lowercase words separated by hyphens. The public renderer escapes note body content and preserves paragraphs and line breaks without injecting raw CMS HTML.
-
-The About page loads certificates from `content/certificates/certificates.json`. Its saved HTML cards remain only as a resilient fallback when the JSON file cannot be loaded.
-
-Without `npx decap-server`, the public pages still load JSON normally, but the CMS cannot save local edits through the local backend.
+Collection fields, URL rules, media behavior, and note slug requirements are documented in `CMS_CONTENT_MODEL.md`.
 
 ## 8. Deployment
 

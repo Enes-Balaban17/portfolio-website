@@ -1,4 +1,17 @@
 {
+  "name": "enes-balaban-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static personal portfolio with repository-managed content and Supabase-backed contact features.",
+  "scripts": {
+    "validate:content": "node scripts/validate-content.mjs",
+    "scan:secrets": "node scripts/scan-secrets.mjs",
+    "check:media": "node scripts/check-media.mjs",
+    "check": "npm run validate:content && npm run scan:secrets && npm run check:media"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2"

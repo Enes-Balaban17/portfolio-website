@@ -23,7 +23,7 @@ The admin frontend uses only:
 
 ```txt
 https://ufcvdlidsdrcdnjswocj.supabase.co
-sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8
+YOUR_SUPABASE_PUBLISHABLE_KEY
 ```
 
 The publishable key is safe for browser JavaScript.
@@ -37,7 +37,7 @@ SUPABASE_SERVICE_ROLE_KEY
 SUPABASE_SECRET_KEY
 ```
 
-## 3. Allowed Admin Email Placeholder
+## 3. Allowed Admin Email UI Guard
 
 The shared admin guard in `admin/admin-auth.js` supports:
 
