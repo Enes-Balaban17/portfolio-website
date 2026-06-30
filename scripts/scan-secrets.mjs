@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { basename, dirname, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -14,7 +14,13 @@ const secretPatterns = [
   { name: "private key block", pattern: /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/g },
   { name: "Supabase secret key", pattern: /sb_secret_[A-Za-z0-9_-]{16,}/g },
   { name: "GitHub access token", pattern: /gh[pousr]_[A-Za-z0-9]{20,}/g },
-  { name: "AWS access key", pattern: /AKIA[0-9A-Z]{16}/g }
+  { name: "GitLab access token", pattern: /glpat-[A-Za-z0-9_-]{20,}/g },
+  { name: "Slack access token", pattern: /xox[baprs]-[A-Za-z0-9-]{20,}/g },
+  { name: "Google API key", pattern: /AIza[0-9A-Za-z_-]{35}/g },
+  { name: "Stripe live secret", pattern: /sk_live_[A-Za-z0-9]{20,}/g },
+  { name: "npm access token", pattern: /npm_[A-Za-z0-9]{30,}/g },
+  { name: "AWS access key", pattern: /AKIA[0-9A-Z]{16}/g },
+  { name: "credential-bearing URL", pattern: /(?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?):\/\/[^\s/:]+:[^\s@]+@/gi }
 ];
 
 function repositoryFiles() {
@@ -46,7 +52,7 @@ function isPlaceholder(value) {
 }
 
 function scanAssignments(relativePath, text) {
-  const pattern = /\b(SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEY|DATABASE_URL|DB_PASSWORD|PRIVATE_TOKEN|API_TOKEN)\s*=\s*([^\s#]+)/gi;
+  const pattern = /\b(SUPABASE_SERVICE_ROLE_KEY|SUPABASE_SECRET_KEY|DATABASE_URL|DATABASE_PASSWORD|DB_PASSWORD|PRIVATE_TOKEN|API_TOKEN|ACCESS_TOKEN|GITHUB_TOKEN|JWT_SECRET)\s*=\s*([^\s#]+)/gi;
   for (const match of text.matchAll(pattern)) {
     const value = match[2].replace(/^['"]|['"]$/g, "");
     if (!isPlaceholder(value)) {
@@ -72,7 +78,10 @@ function scanServiceRoleJwt(relativePath, text) {
 for (const relativePath of repositoryFiles()) {
   if (!isTextCandidate(relativePath)) continue;
 
-  const buffer = readFileSync(resolve(repositoryRoot, relativePath));
+  const absolutePath = resolve(repositoryRoot, relativePath);
+  if (!existsSync(absolutePath)) continue;
+
+  const buffer = readFileSync(absolutePath);
   if (buffer.length > 2_000_000 || buffer.includes(0)) continue;
   const text = buffer.toString("utf8");
 

@@ -25,8 +25,8 @@ collections:
               - { label: "Year", name: "year", widget: "number", value_type: "int" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Technologies", name: "technologies", widget: "list", required: false }
-              - { label: "Demo URL", name: "demo_url", widget: "string", required: false }
-              - { label: "Source URL", name: "source_url", widget: "string", required: false }
+              - { label: "Demo URL", name: "demo_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - { label: "Source URL", name: "source_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
               - { label: "Status", name: "status", widget: "select", options: ["In Progress", "Published", "Private", "Archived"], default: "In Progress" }
               - { label: "Body", name: "body", widget: "markdown", required: false }
 
@@ -48,7 +48,7 @@ collections:
               - { label: "Type", name: "type", widget: "string" }
               - { label: "Date Range", name: "date_range", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
-              - { label: "Built-in Logo Path", name: "logo", widget: "string", required: false, hint: "Use for existing repository logos, for example: assets/images/certificates/example-logo.png" }
+              - { label: "Built-in Logo Path", name: "logo", widget: "string", required: false, hint: "Use an existing repository image, for example: assets/images/certificates/ege-university-logo.png" }
               - label: "Logo Upload"
                 name: "logo_upload"
                 widget: "image"
@@ -70,7 +70,7 @@ collections:
                   - { label: "None", value: "none" }
                   - { label: "External Link", value: "link" }
                   - { label: "PDF File", value: "pdf" }
-              - { label: "Certificate URL", name: "certificate_url", widget: "string", required: false, hint: "Used only when action type is External Link. Enter an http:// or https:// URL." }
+              - { label: "Certificate URL", name: "certificate_url", widget: "string", required: false, hint: "Used only when action type is External Link.", pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
               - label: "Certificate PDF"
                 name: "certificate_pdf"
                 widget: "file"
@@ -100,7 +100,7 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Slug", name: "slug", widget: "string", hint: "Lowercase URL identifier, for example: building-my-portfolio" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "Lowercase URL identifier, for example: building-my-portfolio", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Use lowercase words separated by hyphens."] }
               - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
               - { label: "Tags", name: "tags", widget: "list", required: false }
               - { label: "Summary", name: "summary", widget: "text" }
@@ -142,8 +142,8 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Year", name: "year", widget: "number", value_type: "int" }
               - { label: "Description", name: "description", widget: "text" }
-              - { label: "Play URL", name: "play_url", widget: "string", required: false }
-              - { label: "Source URL", name: "source_url", widget: "string", required: false }
+              - { label: "Play URL", name: "play_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - { label: "Source URL", name: "source_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
               - { label: "Technologies", name: "technologies", widget: "list", required: false }
               - { label: "Status", name: "status", widget: "select", options: ["Prototype", "Playable", "In Progress", "Archived"], default: "Prototype" }
               - { label: "Body", name: "body", widget: "markdown", required: false }

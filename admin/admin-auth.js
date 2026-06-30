@@ -1,36 +1,36 @@
 (function () {
   "use strict";
 
-  var defaultConfig = {
+  var defaultAdminConfig = {
     supabaseUrl: "https://ufcvdlidsdrcdnjswocj.supabase.co",
     publishableKey: "sb_publishable_2qSMGPoQ9199wxowxnywDQ_ez2jsaj8",
     allowedAdminEmails: ["balabanenes111@icloud.com"],
     messagesTable: "contact_messages"
   };
-  var config = Object.assign({}, defaultConfig, window.PORTFOLIO_ADMIN_CONFIG || {});
-  var client = null;
+  var adminConfig = Object.assign({}, defaultAdminConfig, window.PORTFOLIO_ADMIN_CONFIG || {});
+  var supabaseClient = null;
 
   function getClient() {
-    if (client) {
-      return client;
+    if (supabaseClient) {
+      return supabaseClient;
     }
 
     if (!window.supabase || typeof window.supabase.createClient !== "function") {
       throw new Error("Supabase client library did not load.");
     }
 
-    client = window.supabase.createClient(config.supabaseUrl, config.publishableKey, {
+    supabaseClient = window.supabase.createClient(adminConfig.supabaseUrl, adminConfig.publishableKey, {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true
       }
     });
-    return client;
+    return supabaseClient;
   }
 
-  function normalizedAllowedEmails() {
-    return (config.allowedAdminEmails || [])
+  function allowedAdminEmails() {
+    return (adminConfig.allowedAdminEmails || [])
       .map(function (email) {
         return String(email || "").trim().toLowerCase();
       })
@@ -38,7 +38,7 @@
   }
 
   function isAllowedAdminEmail(email) {
-    var allowed = normalizedAllowedEmails();
+    var allowed = allowedAdminEmails();
     if (!allowed.length) {
       return true;
     }
@@ -64,6 +64,7 @@
         return target.href;
       }
     } catch (error) {
+      console.warn("Ignored invalid admin redirect URL.", error);
       return "index.html";
     }
 
@@ -90,7 +91,7 @@
     window.dispatchEvent(new CustomEvent("admin:authenticated", {
       detail: {
         client: getClient(),
-        config: config,
+        config: adminConfig,
         session: session
       }
     }));
@@ -104,8 +105,10 @@
     window.location.replace(loginUrl());
   }
 
-  function handleDeniedSession(session) {
-    getClient().auth.signOut().finally(function () {
+  function handleDeniedSession() {
+    getClient().auth.signOut().catch(function (error) {
+      console.error("Disallowed admin session could not be cleared.", error);
+    }).finally(function () {
       window.location.replace("login.html?error=not_allowed");
     });
     return null;
@@ -113,29 +116,30 @@
 
   function requireAuth() {
     return getClient().auth.getSession()
-      .then(function (result) {
-        if (result.error) {
-          throw result.error;
+      .then(function (sessionResponse) {
+        if (sessionResponse.error) {
+          throw sessionResponse.error;
         }
 
-        var session = result.data.session;
-        if (!session) {
+        var adminSession = sessionResponse.data.session;
+        if (!adminSession) {
           redirectToLogin();
           return null;
         }
 
-        if (!isAllowedAdminEmail(session.user && session.user.email)) {
-          return handleDeniedSession(session);
+        if (!isAllowedAdminEmail(adminSession.user && adminSession.user.email)) {
+          return handleDeniedSession();
         }
 
-        revealProtectedContent(session);
+        revealProtectedContent(adminSession);
         return {
           client: getClient(),
-          config: config,
-          session: session
+          config: adminConfig,
+          session: adminSession
         };
       })
-      .catch(function () {
+      .catch(function (error) {
+        console.error("Admin session verification failed.", error);
         redirectToLogin();
         return null;
       });
@@ -145,7 +149,9 @@
     document.querySelectorAll("[data-admin-logout]").forEach(function (button) {
       button.addEventListener("click", function () {
         button.disabled = true;
-        getClient().auth.signOut().finally(function () {
+        getClient().auth.signOut().catch(function (error) {
+          console.error("Admin logout failed.", error);
+        }).finally(function () {
           window.location.replace("login.html");
         });
       });
@@ -166,11 +172,13 @@
       setStatus(status, "This account is signed in, but it is not configured as an allowed admin.", "error");
     }
 
-    getClient().auth.getSession().then(function (result) {
-      var session = result.data && result.data.session;
-      if (session && isAllowedAdminEmail(session.user && session.user.email)) {
+    getClient().auth.getSession().then(function (sessionResponse) {
+      var adminSession = sessionResponse.data && sessionResponse.data.session;
+      if (adminSession && isAllowedAdminEmail(adminSession.user && adminSession.user.email)) {
         window.location.replace(dashboardUrl());
       }
+    }).catch(function (error) {
+      console.error("Existing admin session check failed.", error);
     });
 
     form.addEventListener("submit", function (event) {
@@ -191,13 +199,13 @@
       getClient().auth.signInWithPassword({
         email: email,
         password: password
-      }).then(function (result) {
-        if (result.error) {
-          throw result.error;
+      }).then(function (loginResponse) {
+        if (loginResponse.error) {
+          throw loginResponse.error;
         }
 
-        if (!isAllowedAdminEmail(result.data.user && result.data.user.email)) {
-          return handleDeniedSession(result.data.session);
+        if (!isAllowedAdminEmail(loginResponse.data.user && loginResponse.data.user.email)) {
+          return handleDeniedSession();
         }
 
         setStatus(status, "Login successful. Opening dashboard...", "success");
@@ -213,7 +221,7 @@
   }
 
   window.AdminAuth = {
-    config: config,
+    config: adminConfig,
     getClient: getClient,
     isAllowedAdminEmail: isAllowedAdminEmail,
     requireAuth: requireAuth

@@ -124,8 +124,10 @@ supabase/config.toml
 
 The function:
 
-- handles CORS
+- rejects browser origins that are not listed in `ALLOWED_ORIGINS`
+- accepts JSON request bodies up to 16 KiB
 - validates payload shape
+- enforces field-length limits and the 2000-character message limit
 - checks honeypot field
 - checks form timestamp timing
 - rejects obvious gibberish and repeated text
@@ -145,6 +147,7 @@ Required:
 SUPABASE_URL=https://ufcvdlidsdrcdnjswocj.supabase.co
 ALLOWED_PUBLISHABLE_KEYS=YOUR_SUPABASE_PUBLISHABLE_KEY
 IP_HASH_SALT=<generate-a-long-random-secret>
+ALLOWED_ORIGINS=http://127.0.0.1:8080,http://localhost:8080,https://YOUR_PRODUCTION_ORIGIN
 ```
 
 At least one privileged database key must be available to the function:
@@ -166,11 +169,7 @@ SUPABASE_SECRET_KEYS
 SUPABASE_PUBLISHABLE_KEYS
 ```
 
-Optional:
-
-```txt
-ALLOWED_ORIGINS=http://127.0.0.1:8080,http://localhost:8080,https://enes-balaban17.github.io
-```
+`ALLOWED_ORIGINS` is required. The function fails closed when it is missing and rejects browser requests whose `Origin` is not listed. CORS is not authentication and does not replace server-side validation or rate limiting.
 
 ## Local Testing
 
@@ -254,6 +253,7 @@ supabase functions deploy submit-message
 - Enable RLS and ensure public clients cannot select message rows.
 - Confirm the Edge Function can insert using a server-side privileged key.
 - Generate a real `IP_HASH_SALT` and keep it secret.
+- Confirm `ALLOWED_ORIGINS` includes the exact production origin and no obsolete origins.
 - Tune `RATE_LIMIT_WINDOW_MINUTES` and `RATE_LIMIT_MAX_MESSAGES` in the Edge Function if needed.
 - Add Turnstile or another server-verified challenge if spam becomes an issue.
 - Create the Supabase Auth admin user and apply admin RLS policies from `docs/SUPABASE_ADMIN_AUTH_SETUP.md`.

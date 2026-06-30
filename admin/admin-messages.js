@@ -1,13 +1,14 @@
 (function () {
   "use strict";
 
-  var state = {
+  var messageViewState = {
     activeFilter: "unread",
     client: null,
     config: null,
     messages: [],
     selectedId: null
   };
+  var allowedMessageStatuses = ["read", "archived", "spam", "deleted"];
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -56,85 +57,79 @@
   }
 
   function selectedMessage() {
-    return state.messages.find(function (message) {
-      return message.id === state.selectedId;
-    }) || state.messages[0] || null;
+    return messageViewState.messages.find(function (message) {
+      return message.id === messageViewState.selectedId;
+    }) || messageViewState.messages[0] || null;
   }
 
   function filteredMessages() {
-    return state.messages.filter(function (message) {
+    return messageViewState.messages.filter(function (message) {
       var status = messageStatus(message);
 
       if (status === "deleted") {
         return false;
       }
 
-      if (state.activeFilter === "all") {
+      if (messageViewState.activeFilter === "all") {
         return true;
       }
 
-      return status === state.activeFilter;
+      return status === messageViewState.activeFilter;
+    });
+  }
+
+  function messageRowMarkup(message) {
+    var isSelected = message.id === messageViewState.selectedId;
+    var preview = (message.message || "").slice(0, 140);
+
+    return [
+      '<button class="admin-message-row" type="button" data-message-id="' + escapeHtml(message.id) + '" aria-pressed="' + String(isSelected) + '">',
+      '  <span class="admin-message-row-top">',
+      "    <strong>" + escapeHtml(message.name || "Unknown sender") + "</strong>",
+      '    <span class="admin-pill">' + escapeHtml(messageStatus(message)) + "</span>",
+      "  </span>",
+      '  <span class="admin-message-row-meta">' + escapeHtml(message.company || message.contact_email || "No company") + "</span>",
+      '  <span class="admin-message-row-preview">' + escapeHtml(preview) + "</span>",
+      '  <span class="admin-message-row-date">' + escapeHtml(formatDate(message.created_at)) + "</span>",
+      "</button>"
+    ].join("");
+  }
+
+  function bindMessageSelection(messageListElement) {
+    messageListElement.querySelectorAll("[data-message-id]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        messageViewState.selectedId = button.getAttribute("data-message-id");
+        renderList();
+      });
     });
   }
 
   function renderList() {
-    var list = document.querySelector("[data-messages-list]");
-    if (!list) {
+    var messageListElement = document.querySelector("[data-messages-list]");
+    if (!messageListElement) {
       return;
     }
 
-    var visible = filteredMessages();
+    var visibleMessages = filteredMessages();
 
-    if (!visible.length) {
-      list.innerHTML = '<div class="admin-empty-card">No messages match this filter.</div>';
+    if (!visibleMessages.length) {
+      messageListElement.innerHTML = '<div class="admin-empty-card">No messages match this filter.</div>';
       renderDetail(null);
       return;
     }
 
-    list.innerHTML = visible.map(function (message) {
-      var isSelected = message.id === state.selectedId;
-      var preview = (message.message || "").slice(0, 140);
+    messageListElement.innerHTML = visibleMessages.map(messageRowMarkup).join("");
+    bindMessageSelection(messageListElement);
 
-      return [
-        '<button class="admin-message-row" type="button" data-message-id="' + escapeHtml(message.id) + '" aria-pressed="' + String(isSelected) + '">',
-        '  <span class="admin-message-row-top">',
-        "    <strong>" + escapeHtml(message.name || "Unknown sender") + "</strong>",
-        '    <span class="admin-pill">' + escapeHtml(messageStatus(message)) + "</span>",
-        "  </span>",
-        '  <span class="admin-message-row-meta">' + escapeHtml(message.company || message.contact_email || "No company") + "</span>",
-        '  <span class="admin-message-row-preview">' + escapeHtml(preview) + "</span>",
-        '  <span class="admin-message-row-date">' + escapeHtml(formatDate(message.created_at)) + "</span>",
-        "</button>"
-      ].join("");
-    }).join("");
-
-    list.querySelectorAll("[data-message-id]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        state.selectedId = button.getAttribute("data-message-id");
-        renderList();
-        renderDetail(selectedMessage());
-      });
-    });
-
-    if (!state.selectedId || !visible.some(function (message) { return message.id === state.selectedId; })) {
-      state.selectedId = visible[0].id;
+    if (!messageViewState.selectedId || !visibleMessages.some(function (message) { return message.id === messageViewState.selectedId; })) {
+      messageViewState.selectedId = visibleMessages[0].id;
     }
 
     renderDetail(selectedMessage());
   }
 
-  function renderDetail(message) {
-    var detail = document.querySelector("[data-message-detail]");
-    if (!detail) {
-      return;
-    }
-
-    if (!message) {
-      detail.innerHTML = "<p>Select a message to view details.</p>";
-      return;
-    }
-
-    detail.innerHTML = [
+  function messageDetailMarkup(message) {
+    return [
       '<div class="admin-message-detail-header">',
       "  <div>",
       "    <h2>" + escapeHtml(message.name || "Unknown sender") + "</h2>",
@@ -160,8 +155,22 @@
       '  <button class="admin-button admin-button-danger" type="button" data-message-action="deleted">Delete</button>',
       "</div>"
     ].join("");
+  }
 
-    detail.querySelectorAll("[data-message-action]").forEach(function (button) {
+  function renderDetail(message) {
+    var messageDetailElement = document.querySelector("[data-message-detail]");
+    if (!messageDetailElement) {
+      return;
+    }
+
+    if (!message) {
+      messageDetailElement.innerHTML = "<p>Select a message to view details.</p>";
+      return;
+    }
+
+    messageDetailElement.innerHTML = messageDetailMarkup(message);
+
+    messageDetailElement.querySelectorAll("[data-message-action]").forEach(function (button) {
       button.addEventListener("click", function () {
         var nextStatus = button.getAttribute("data-message-action");
         updateMessageStatus(message.id, nextStatus);
@@ -170,15 +179,15 @@
   }
 
   function buildQuery() {
-    var table = state.config.messagesTable || "contact_messages";
-    var query = state.client
+    var table = messageViewState.config.messagesTable || "contact_messages";
+    var query = messageViewState.client
       .from(table)
       .select("id,name,company,contact_email,phone_country_code,phone_number,message,status,spam_score,spam_reason,user_agent,created_at,read_at")
       .neq("status", "deleted")
       .order("created_at", { ascending: false });
 
-    if (state.activeFilter !== "all") {
-      query = query.eq("status", state.activeFilter);
+    if (messageViewState.activeFilter !== "all") {
+      query = query.eq("status", messageViewState.activeFilter);
     }
 
     return query;
@@ -187,23 +196,29 @@
   function loadMessages() {
     setStatus("Loading messages...", "loading");
 
-    buildQuery().then(function (result) {
-      if (result.error) {
-        throw result.error;
+    buildQuery().then(function (queryResponse) {
+      if (queryResponse.error) {
+        throw queryResponse.error;
       }
 
-      state.messages = result.data || [];
-      state.selectedId = state.messages[0] ? state.messages[0].id : null;
-      setStatus(state.messages.length ? "" : "No messages found for this filter.", state.messages.length ? "" : "empty");
+      messageViewState.messages = queryResponse.data || [];
+      messageViewState.selectedId = messageViewState.messages[0] ? messageViewState.messages[0].id : null;
+      setStatus(messageViewState.messages.length ? "" : "No messages found for this filter.", messageViewState.messages.length ? "" : "empty");
       renderList();
     }).catch(function (error) {
-      state.messages = [];
+      console.error("Admin message query failed.", error);
+      messageViewState.messages = [];
       setStatus((error && error.message ? error.message : "Could not load messages.") + " Check Supabase RLS/admin setup.", "error");
       renderList();
     });
   }
 
   function updateMessageStatus(id, nextStatus) {
+    if (allowedMessageStatuses.indexOf(nextStatus) === -1) {
+      setStatus("Unsupported message status.", "error");
+      return;
+    }
+
     var updates = {
       status: nextStatus
     };
@@ -218,37 +233,38 @@
 
     setStatus("Updating message...", "loading");
 
-    state.client
-      .from(state.config.messagesTable || "contact_messages")
+    messageViewState.client
+      .from(messageViewState.config.messagesTable || "contact_messages")
       .update(updates)
       .eq("id", id)
       .select("id,name,company,contact_email,phone_country_code,phone_number,message,status,spam_score,spam_reason,user_agent,created_at,read_at")
       .single()
-      .then(function (result) {
-        if (result.error) {
-          throw result.error;
+      .then(function (updateResponse) {
+        if (updateResponse.error) {
+          throw updateResponse.error;
         }
 
-        if (!result.data) {
+        if (!updateResponse.data) {
           throw new Error("No row was updated. Check SELECT and UPDATE RLS policies.");
         }
 
-        state.messages = state.messages.map(function (message) {
-          return message.id === id ? result.data : message;
+        messageViewState.messages = messageViewState.messages.map(function (message) {
+          return message.id === id ? updateResponse.data : message;
         }).filter(function (message) {
           return message.status !== "deleted";
         });
 
         if (nextStatus === "deleted") {
-          state.selectedId = state.messages[0] ? state.messages[0].id : null;
+          messageViewState.selectedId = messageViewState.messages[0] ? messageViewState.messages[0].id : null;
         } else {
-          state.selectedId = id;
+          messageViewState.selectedId = id;
         }
 
         setStatus("Message updated.", "success");
         renderList();
       })
       .catch(function (error) {
+        console.error("Admin message status update failed.", error);
         setStatus((error && error.message ? error.message : "Could not update message.") + " Check Supabase RLS/admin setup.", "error");
       });
   }
@@ -256,7 +272,7 @@
   function initFilters() {
     document.querySelectorAll("[data-message-filter]").forEach(function (button) {
       button.addEventListener("click", function () {
-        state.activeFilter = button.getAttribute("data-message-filter");
+        messageViewState.activeFilter = button.getAttribute("data-message-filter");
         document.querySelectorAll("[data-message-filter]").forEach(function (item) {
           item.setAttribute("aria-pressed", String(item === button));
         });
@@ -271,8 +287,8 @@
   }
 
   window.addEventListener("admin:authenticated", function (event) {
-    state.client = event.detail.client;
-    state.config = event.detail.config;
+    messageViewState.client = event.detail.client;
+    messageViewState.config = event.detail.config;
     initFilters();
     loadMessages();
   });

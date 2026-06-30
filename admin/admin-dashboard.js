@@ -5,19 +5,19 @@
   var locationInitialized = false;
   var networkInitialized = false;
 
-  function qs(selector) {
+  function findElement(selector) {
     return document.querySelector(selector);
   }
 
   function setText(selector, value) {
-    var element = qs(selector);
+    var element = findElement(selector);
     if (element) {
       element.textContent = value;
     }
   }
 
   function setHidden(selector, hidden) {
-    var element = qs(selector);
+    var element = findElement(selector);
     if (element) {
       element.hidden = hidden;
     }
@@ -89,7 +89,7 @@
   }
 
   function initNetworkInfo() {
-    var button = qs("[data-network-refresh]");
+    var button = findElement("[data-network-refresh]");
     var connection = connectionApi();
 
     if (networkInitialized) {
@@ -127,12 +127,20 @@
     try {
       return JSON.parse(value);
     } catch (error) {
+      console.warn("Ignored invalid cached admin location data.", error);
       return null;
     }
   }
 
   function readCachedLocation() {
-    var cached = safeJsonParse(window.localStorage.getItem(LOCATION_CACHE_KEY));
+    var cached;
+
+    try {
+      cached = safeJsonParse(window.localStorage.getItem(LOCATION_CACHE_KEY));
+    } catch (error) {
+      console.warn("Admin location cache could not be read.", error);
+      return null;
+    }
 
     if (!cached || typeof cached !== "object") {
       return null;
@@ -145,20 +153,28 @@
     return cached;
   }
 
-  function cacheLocation(result) {
-    window.localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify(result));
+  function cacheLocation(locationDetails) {
+    try {
+      window.localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify(locationDetails));
+    } catch (error) {
+      console.warn("Admin location cache could not be saved.", error);
+    }
   }
 
   function clearCachedLocation() {
-    window.localStorage.removeItem(LOCATION_CACHE_KEY);
+    try {
+      window.localStorage.removeItem(LOCATION_CACHE_KEY);
+    } catch (error) {
+      console.warn("Admin location cache could not be cleared.", error);
+    }
   }
 
-  function renderLocationInfo(result, statusText) {
-    setText("[data-location-status]", statusText || result.status || "Location enabled");
-    setText("[data-location-city]", result.city || "Not available");
-    setText("[data-location-region]", result.region || "Not available");
-    setText("[data-location-country]", result.country || "Not available");
-    setText("[data-location-checked]", result.checkedAtLabel || checkedAtText(result.checkedAt ? new Date(result.checkedAt) : new Date()));
+  function renderLocationInfo(locationDetails, statusText) {
+    setText("[data-location-status]", statusText || locationDetails.status || "Location enabled");
+    setText("[data-location-city]", locationDetails.city || "Not available");
+    setText("[data-location-region]", locationDetails.region || "Not available");
+    setText("[data-location-country]", locationDetails.country || "Not available");
+    setText("[data-location-checked]", locationDetails.checkedAtLabel || checkedAtText(locationDetails.checkedAt ? new Date(locationDetails.checkedAt) : new Date()));
     setHidden("[data-location-clear]", false);
   }
 
@@ -230,17 +246,17 @@
       headers: {
         "Accept": "application/json"
       }
-    }).then(function (response) {
-      if (!response.ok) {
+    }).then(function (geocodeResponse) {
+      if (!geocodeResponse.ok) {
         throw new Error("City lookup failed");
       }
 
-      return response.json();
+      return geocodeResponse.json();
     }).then(parseLocationPayload);
   }
 
   function requestLocation() {
-    var button = qs("[data-location-request]");
+    var button = findElement("[data-location-request]");
 
     if (!navigator.geolocation) {
       renderLocationEmpty("Geolocation is not supported by this browser");
@@ -258,14 +274,15 @@
       setText("[data-location-status]", "Looking up city...");
 
       reverseGeocodeLocation(position.coords.latitude, position.coords.longitude)
-        .then(function (result) {
-          cacheLocation(result);
-          renderLocationInfo(result, "Location enabled");
+        .then(function (locationDetails) {
+          cacheLocation(locationDetails);
+          renderLocationInfo(locationDetails, "Location enabled");
           if (button) {
             button.textContent = "Refresh location";
           }
         })
-        .catch(function () {
+        .catch(function (error) {
+          console.error("Admin city lookup failed.", error);
           renderLocationEmpty("City lookup failed");
           if (button) {
             button.textContent = "Use my location";
@@ -290,8 +307,8 @@
   }
 
   function initLocationInfo() {
-    var requestButton = qs("[data-location-request]");
-    var clearButton = qs("[data-location-clear]");
+    var requestButton = findElement("[data-location-request]");
+    var clearButton = findElement("[data-location-clear]");
     var cached = readCachedLocation();
 
     if (locationInitialized) {

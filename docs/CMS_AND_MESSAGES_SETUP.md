@@ -141,7 +141,7 @@ Production admin access needs real authentication. Recommended options:
 - Netlify Identity plus a serverless function that reads messages securely
 - Cloudflare Access in front of the admin route
 
-For Supabase, create policies so public users can insert messages but cannot select/read them. Only authenticated admin users should be able to read messages.
+Do not grant public browser clients direct INSERT or SELECT access to messages. Public submissions go through the `submit-message` Edge Function, which validates and rate-limits the request before using its server-side privileged key. Only authenticated users authorized through the `admin_users` RLS checks should be able to read or update messages.
 
 ## 7. CMS Setup
 
