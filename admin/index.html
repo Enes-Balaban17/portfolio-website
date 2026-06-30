@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Protected portfolio admin dashboard.">
+    <title>Admin Dashboard | Enes Balaban</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
+    <script src="admin-auth.js" defer></script>
+    <script src="admin-dashboard.js" defer></script>
+  </head>
+  <body class="admin-page admin-protected">
+    <div class="admin-auth-loading" role="status" aria-live="polite">Checking admin session...</div>
+
+    <main class="admin-layout admin-protected-content">
+      <nav class="admin-top-nav" aria-label="Admin navigation">
+        <div class="admin-nav-links">
+          <a href="index.html" aria-current="page">Dashboard</a>
+          <a href="new-content.html">New Content</a>
+          <a href="messages.html">Messages</a>
+          <a href="cms.html">CMS</a>
+        </div>
+        <div class="admin-nav-account">
+          <span class="admin-user" data-admin-user-email>Signed in</span>
+          <button class="admin-nav-logout" type="button" data-admin-logout>Logout</button>
+        </div>
+      </nav>
+
+      <header class="admin-header">
+        <div>
+          <p class="admin-eyebrow">Portfolio Admin</p>
+          <h1>Welcome Boss!</h1>
+          <p class="admin-intro">Manage portfolio content and read private contact messages from one protected dashboard.</p>
+        </div>
+      </header>
+
+      <section class="admin-dashboard-grid" aria-label="Admin shortcuts">
+        <a class="admin-action-card" href="new-content.html">
+          <span class="admin-card-kicker">CMS</span>
+          <span class="admin-card-title">New Content</span>
+          <span class="admin-card-copy">Create or edit notes, projects, certificates, games, and illustrations.</span>
+        </a>
+
+        <a class="admin-action-card" href="messages.html">
+          <span class="admin-card-kicker">Inbox</span>
+          <span class="admin-card-title">Read the Messages</span>
+          <span class="admin-card-copy">Review unread contact messages, archive old ones, and mark spam.</span>
+        </a>
+      </section>
+
+      <section class="admin-info-grid" aria-label="Admin status widgets">
+        <article class="admin-info-card">
+          <h2>Network Info</h2>
+          <dl>
+            <div>
+              <dt>Status</dt>
+              <dd data-network-status>Unknown</dd>
+            </div>
+            <div>
+              <dt>Exact WiFi/LAN type</dt>
+              <dd data-network-exact-type>Not exposed by this browser</dd>
+            </div>
+            <div>
+              <dt>Effective type</dt>
+              <dd data-network-effective-type>Not available</dd>
+            </div>
+            <div>
+              <dt>Download estimate</dt>
+              <dd data-network-download>Not available</dd>
+            </div>
+            <div>
+              <dt>RTT estimate</dt>
+              <dd data-network-rtt>Not available</dd>
+            </div>
+            <div>
+              <dt>Save-Data</dt>
+              <dd data-network-save-data>Not available</dd>
+            </div>
+            <div>
+              <dt>Upload estimate</dt>
+              <dd data-network-upload>Not available</dd>
+            </div>
+            <div>
+              <dt>Last checked</dt>
+              <dd data-network-checked>Not checked</dd>
+            </div>
+          </dl>
+          <button class="admin-button admin-button-secondary admin-inline-button" type="button" data-network-refresh>Refresh network</button>
+          <p class="admin-info-note">Browser network APIs are limited. Exact WiFi/LAN type is shown only when the browser exposes it.</p>
+        </article>
+
+        <article class="admin-info-card">
+          <h2>Location Info</h2>
+          <dl>
+            <div>
+              <dt>Status</dt>
+              <dd data-location-status>Location not enabled</dd>
+            </div>
+            <div>
+              <dt>City</dt>
+              <dd data-location-city>Not available</dd>
+            </div>
+            <div>
+              <dt>Region</dt>
+              <dd data-location-region>Not available</dd>
+            </div>
+            <div>
+              <dt>Country</dt>
+              <dd data-location-country>Not available</dd>
+            </div>
+            <div>
+              <dt>Last checked</dt>
+              <dd data-location-checked>Not checked</dd>
+            </div>
+          </dl>
+          <div class="admin-widget-actions">
+            <button class="admin-button admin-button-secondary admin-inline-button" type="button" data-location-request>Use my location</button>
+            <button class="admin-button admin-button-secondary admin-inline-button" type="button" data-location-clear hidden>Clear location</button>
+          </div>
+          <p class="admin-info-note" data-location-note>Weather and temperature are hidden until a real weather service is configured.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

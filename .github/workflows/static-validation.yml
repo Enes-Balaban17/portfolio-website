@@ -1,0 +1,31 @@
+name: Static validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate CMS content
+        run: npm run validate:content
+
+      - name: Scan tracked content for common secrets
+        run: npm run scan:secrets
+
+      - name: Check media and local references
+        run: npm run check:media
