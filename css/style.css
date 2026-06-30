@@ -541,6 +541,10 @@ textarea:focus-visible {
   max-width: 380px;
   height: auto;
   object-fit: contain;
+  transform-origin: 52% 58%;
+  transition:
+    transform var(--duration-medium) var(--ease-out-soft),
+    filter var(--duration-medium) var(--ease-standard);
 }
 
 .link-stack {
@@ -994,6 +998,10 @@ textarea:focus-visible {
 .notes-list .archive-item {
   padding: 1.4rem 0 1.5rem;
   border-bottom: 1px solid var(--border);
+}
+
+.notes-list .archive-item:last-child {
+  border-bottom: 0;
 }
 
 .notes-list .archive-date {
@@ -1627,6 +1635,13 @@ textarea:focus-visible {
 
   .illustration-card:hover .illustration-media img {
     transform: scale(1.012);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-mascot-frame:hover img {
+    filter: drop-shadow(0 12px 16px rgb(0 0 0 / 0.2));
+    transform: translate3d(0, -6px, 0) rotate(-2deg) scale(1.03);
   }
 }
 
