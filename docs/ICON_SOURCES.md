@@ -1,6 +1,6 @@
 # Icon Sources Report
 
-This document records the current status of the local icons used in the portfolio website.
+This document records the current status of the icons used in the portfolio website.
 
 ## Icon Folder
 
@@ -12,7 +12,7 @@ assets/icons/
 
 ## Skill Icons Added to This Repository
 
-Current local icon files:
+Current local skill icon files:
 
 - `assembly.svg`
 - `c.svg`
@@ -30,27 +30,53 @@ Current local icon files:
 - `sql.svg`
 - `oracle-db.svg`
 
-## Interface and Content Icons Added to This Repository
+## Theme Toggle Icons
 
-Current local interface/content icon files:
+Current local theme icon files:
 
-- `aboutme-icon.svg`
-- `aboutme_icon.png`
-- `email-newsletter.svg`
-- `filesection_icon.png`
-- `folder-open.svg`
+- `theme-sun.svg`
+- `theme-moon.svg`
+
+Theme icon rules:
+
+- Use the SVG files as inline icons or image icons inside the theme toggle button.
+- Icons should inherit the current text color when possible.
+- The icon should remain visible without showing a permanent square button frame.
+- The square hover/focus frame should appear only on hover or keyboard focus.
+
+## Homepage UI Icons
+
+Current local homepage UI icon files:
+
+- `aboutme-icon.svg` for the About Me action button
+- `mailnewsletter-icon.svg` for the Email Newsletter action button
+- `notebook.svg` for the Notes preview heading
+- `projects.svg` for the Projects preview heading
+
+Homepage UI icon rules:
+
+- Use these icons near text labels, not as standalone oversized graphics.
+- Icons should be 20px - 24px in buttons/headings unless the design requires a larger preview size.
+- Keep icon spacing compact and aligned with the text baseline.
+- Keep button icons visually balanced with the surrounding text.
+- Keep all homepage icons visually consistent across dark and light themes.
+- The About Me action button must use `aboutme-icon.svg`.
+- The Email Newsletter action button must use `mailnewsletter-icon.svg`.
+
+## Project Button GitHub Icons
+
+Current local GitHub button icon files:
+
 - `github-dark-theme.svg`
 - `github-light-theme.svg`
-- `mailnewsletter-icon.svg`
-- `notebook.svg`
-- `projects.svg`
-- `theme-moon.svg`
-- `theme-sun.svg`
 
-Current local image files used by the layout:
+Project button GitHub icon rules:
 
-- `assets/images/gba-icon.png`
-- `assets/images/enescot.png`
+- Use `github-dark-theme.svg` in dark theme next to project/source buttons.
+- Use `github-light-theme.svg` in light theme next to project/source buttons.
+- These icons are for project/source buttons, especially buttons that link to GitHub source code.
+- Keep the icon size around 20px - 24px.
+- Do not use these icons for non-GitHub links.
 
 ## Current Decision
 
@@ -83,9 +109,8 @@ During the implementation phase, icons can be replaced or improved while keeping
 ## Implementation Notes
 
 - Prefer local files over remote image links.
-- Keep icon sizes visually consistent.
-- Sidebar navigation icons must share the same 28px icon box and 24px rendered icon size.
-- If a sidebar icon has internal whitespace, scale it visually with `transform` inside the fixed icon box instead of moving it with margins.
+- Keep icon sizes visually consistent across the Skills grid.
 - Use the same card dimensions for all skill cards.
 - Icons should adapt well to both dark and light themes.
 - If an icon has poor contrast in one theme, replace it with a cleaner SVG.
+- Keep file names stable so existing HTML references do not break.

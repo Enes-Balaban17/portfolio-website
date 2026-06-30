@@ -85,8 +85,8 @@ portfolio-website/
 │   │   └── typescript.svg
 │   │
 │   ├── images/
+│   │   ├── gba-icon.png or gba-icon.svg
 │   │   ├── enescot.png
-│   │   ├── gba-icon.png
 │   │   └── profile/optional
 │   │
 │   ├── cv/
@@ -149,17 +149,15 @@ portfolio-website/
 
 ### `index.html`
 
-Home page with the left sidebar and main hero/about intro.
+Home page with the left sidebar, main hero/about intro, and hero mascot.
 
 Includes:
 
 - Sidebar
+- Sidebar short About Me block
 - About Me / Hero intro
-- Hero mascot with CSS accent circle
-- About Me and Email Newsletter action buttons
-- Skills grid section
-- Notes preview section
-- Projects preview section
+- Hero mascot image from `assets/images/enescot.png`
+- Vertical links to Notes, Projects, About Me
 - Contact block in sidebar
 - Homepage Email Newsletter opens the contact/message modal; sidebar Email signup remains a mailto link
 
@@ -245,6 +243,7 @@ Main CSS sections:
 - Links/buttons
 - Cards
 - Skills grid
+- Hero mascot
 - Archive lists
 - Theme styles
 - Responsive styles

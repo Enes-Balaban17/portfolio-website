@@ -67,9 +67,12 @@ Desktop sidebar structure:
 ```txt
 [Small Game Boy Advance icon] Enes Balaban [Theme Toggle]
 
-[Folder icon] About Me
-[Notepad icon] Notes
-[Theme-aware GitHub icon] Projects
+About Me
+I'm Enes, a software developer and Computer Programming graduate. This is my personal website.
+
+Notes
+Projects
+Skills
 
 Contact
 Email signup
@@ -81,6 +84,7 @@ Sidebar rules:
 - Use a left sidebar on desktop.
 - Place the Game Boy Advance icon immediately to the left of the name.
 - Place the theme toggle immediately to the right of the name.
+- Add a short About Me block near the top of the sidebar.
 - Keep navigation links vertical.
 - Primary sidebar navigation has only About Me, Notes, and Projects.
 - Do not include a separate Skills navigation link.
@@ -89,15 +93,7 @@ Sidebar rules:
 - Sidebar Email signup links open `mailto:balabanenes111@icloud.com`.
 - Keep the sidebar sticky on desktop.
 - On mobile, move the navigation above the content or use a compact top navigation.
-- Include a short About Me block after the identity row and before primary navigation.
-
-Sidebar About Me block:
-
-```txt
-About Me
-
-I'm Enes, a software developer and Computer Programming graduate. This is my digital base. 🚀
-```
+- Sidebar spacing, margin, link padding, and border behavior must follow `docs/DESIGN_SYSTEM.md`.
 
 ## Home / Hero
 
@@ -110,42 +106,77 @@ I'm a Software Developer and graduate from Ege University Computer Programming.
 
 I'm interested in unmanned aerial systems, artificial intelligence, and embedded systems, and I create content around these fields.
 
-[About Me icon] About Me
-[Email newsletter icon] Email Newsletter
-
-------------------------------------------------------------
+[Open Folder Icon] About Me     [Email Newsletter Icon] Email Newsletter
 
 Skills
 
-[Skill grid]
+[Skills grid preview or Skills section]
 
-------------------------------------------------------------
+[Notebook Icon] Notes
+Notes preview
 
-[Notebook icon] Notes
+[Projects Icon] Projects
+Projects preview
+```
 
-[Recent notes preview]
+Hero action buttons:
 
-------------------------------------------------------------
-
-[Projects icon] Projects
-
-[Selected projects preview]
+```txt
+[folder-open.svg] About Me
+[email-newsletter.svg] Email Newsletter
 ```
 
 Hero rules:
 
-- Use a two-column hero layout on desktop.
-- Keep hero copy on the left and the mascot visual on the right.
-- Use `assets/images/enescot.png` for the hero mascot.
-- Place a themed accent circle behind the mascot with CSS only, not baked into the PNG.
-- Use `#d33682` for the mascot circle in light theme.
-- Use `#ff8ac0` for the mascot circle in dark theme.
-- Action buttons are side by side on desktop and can stack on mobile.
-- About Me action button links to `about.html`.
-- Email Newsletter action button opens the contact/message modal.
-- Use clear spacing between text blocks.
-- Do not include the old Contact block inside the homepage hero. Contact remains in the sidebar and About page.
-- Only the homepage Email Newsletter action button opens the contact/message modal.
+- Use the new home paragraph exactly as written above.
+- The About Me and Email Newsletter buttons should be side by side on desktop.
+- The About Me button must use `assets/icons/folder-open.svg`.
+- The Email Newsletter button must use `assets/icons/email-newsletter.svg`.
+- The action buttons should remain compact, readable, and visually aligned.
+- Add the mascot image to the right side of the hero text on desktop.
+- The mascot must be positioned like a right-side hero illustration, aligned around the heading and intro text area.
+- On small screens, stack the mascot below the hero text or hide it if it hurts readability.
+- Use hero mascot sizing and positioning rules from `docs/DESIGN_SYSTEM.md`.
+
+Hero mascot:
+
+```txt
+assets/images/enescot.png
+```
+
+## Home Page Sections After Hero
+
+The home page should continue with these sections after the hero area:
+
+```txt
+Skills
+
+[Skills preview/section using the same order and icon rules from SKILLS_PLAN]
+
+[Notebook Icon] Notes
+Notes preview
+
+[Projects Icon] Projects
+Projects preview
+```
+
+Home Skills section rules:
+
+- The homepage can show the full Skills grid or a compact preview of it.
+- Skill order and icon rules must come from `docs/SKILLS_PLAN.md` and `docs/ICON_SOURCES.md`.
+- Visual card styling must come from `docs/DESIGN_SYSTEM.md`.
+
+Home Notes preview rules:
+
+- Heading must use `assets/icons/notebook.svg`.
+- Show a short preview/list of recent notes or placeholder note entries.
+- The full notes archive remains on `notes.html`.
+
+Home Projects preview rules:
+
+- Heading must use `assets/icons/projects.svg`.
+- Show a short preview/list of selected projects or placeholder project entries.
+- The full projects archive remains on `projects.html`.
 
 ## About Me Page
 

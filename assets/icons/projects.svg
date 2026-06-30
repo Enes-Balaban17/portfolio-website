@@ -1,8 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <symbol id="projects" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3.5" y="4" width="17" height="16" rx="1.8"/>
-    <path d="M3.5 8.5h17M7 6.25h.1M9.75 6.25h.1"/>
-    <path d="m8 12.25-2 1.75 2 1.75M16 12.25 18 14l-2 1.75M13.5 11.5l-3 5"/>
-  </symbol>
-  <use href="#projects"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-label="Projects icon">
+  <title>Projects</title>
+  <rect x="4" y="4.5" width="7" height="7" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <rect x="13" y="4.5" width="7" height="7" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <rect x="4" y="13.5" width="7" height="7" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M14 17h5M16.5 14.5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
 </svg>

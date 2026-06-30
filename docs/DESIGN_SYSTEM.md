@@ -6,7 +6,18 @@ This document defines the final visual rules for the first implementation phase.
 
 The site will use a minimal developer-portfolio layout with a fixed left sidebar on desktop and a compact top navigation on smaller screens.
 
-The design should be text-first, warm in light mode, dark gray in dark mode, and easy to read.
+The design should be text-first, warm in light mode, dark gray in dark mode, and comfortable to read.
+
+## Reference Match Requirements
+
+The implementation must closely follow the reference layout proportions:
+
+- Sidebar must feel aligned to the far-left edge with the same compact inner spacing.
+- Sidebar content should not float too far from the left edge.
+- Main content should start after the 260px sidebar with comfortable but not excessive left spacing.
+- The home hero must support a mascot image positioned to the right of the main hero text on desktop.
+- The mascot should visually occupy the same general area as the reference hero illustration: right side of the hero block, aligned around the top/middle of the hero heading and intro text.
+- The hero text and mascot must become a single-column layout on smaller screens.
 
 ## Layout Values
 
@@ -32,7 +43,7 @@ border radius: 6px
 - increase heading sizes
 
 800px and above:
-- larger hero/page heading around 3rem
+- use larger hero/page headings around 3rem
 
 1020px and above:
 - show left sidebar
@@ -87,6 +98,16 @@ padding-bottom: 1.5rem
 border-bottom: 1px solid border color
 ```
 
+Sidebar short About Me block:
+
+```txt
+heading: About Me
+text: I'm Enes, a software developer and Computer Programming graduate. This is my personal website.
+font size: 14px - 15px
+line height: 1.6
+muted/emphasized mixed text styling is allowed
+```
+
 Sidebar navigation styling:
 
 ```txt
@@ -100,42 +121,90 @@ border radius: 6px
 active link uses highlighted background and accent text
 ```
 
-Primary sidebar navigation link structure:
+## Home Hero Mascot
+
+Use this asset for the home page hero mascot:
 
 ```txt
-[28px icon box] [text label]
+assets/images/enescot.png
 ```
 
-Primary sidebar navigation icon rules:
+Mascot placement rules:
 
 ```txt
-display each primary nav link as a grid
-grid-template-columns: 28px 1fr
-column gap: 2.5px
-icon box: 28px by 28px
-visible icon image/SVG: 24px by 24px
-center icon inside the icon box
-text label line-height: 1.2
-do not set different icon sizes per sidebar link
-do not use per-icon margin-left or manual offsets
-use transform scaling inside the fixed icon box when an icon has internal whitespace
+desktop: right side of hero intro
+max width: 360px - 420px
+image should not push text too far down
+align around heading/top intro area
+use object-fit: contain
+keep transparent background
+hide or stack below text on small screens if needed
 ```
 
-Primary sidebar navigation icons:
+Recommended structure:
 
 ```txt
-About Me: assets/icons/filesection_icon.png
-Notes: assets/icons/aboutme_icon.png
-Projects: assets/icons/github-dark-theme.svg and assets/icons/github-light-theme.svg
+hero section
+- hero text column
+- mascot image column
 ```
 
-Projects icon switches between dark-theme and light-theme GitHub assets based on the active theme.
+## Hero Mascot Circle
 
-About Me and Notes icons may use shared modifier classes for visual tuning inside the fixed icon box:
+The mascot circle must be a compact decorative circle behind only the front/center part of the mascot. It must not become a large background disk behind the whole image.
+
+Correct visual direction:
 
 ```txt
-About Me icon scale: 1.60
-Notes icon visual transform: translateX(7.5px) scale(2)
+The mascot extends outside the circle.
+The circle sits behind the front/center body and circuit board area.
+The circle should not cover the full tail, full spikes, or full body width.
+The circle should feel like a small accent shape, not a giant backdrop.
+```
+
+Theme colors:
+
+```txt
+dark theme circle: #ff8ac0
+light theme circle: #d33682
+```
+
+Circle sizing and positioning:
+
+```txt
+circle diameter: 58% - 64% of mascot frame width
+circle max size: 260px - 300px
+circle min size: 210px
+position: absolute
+left: 43% - 46% of mascot frame
+top: 50% - 53% of mascot frame
+transform: translate(-50%, -50%)
+z-index: 0
+mascot image z-index: 1
+```
+
+Implementation notes:
+
+```txt
+Use a CSS pseudo-element on the mascot frame.
+Do not edit the mascot PNG.
+Do not bake the circle into the image.
+Use overflow: visible so the mascot can extend beyond the circle.
+The tail and outer spikes should visibly extend beyond the circle.
+```
+
+Recommended CSS variable:
+
+```txt
+--color-mascot-circle
+```
+
+Recommended structure:
+
+```txt
+hero-visual
+- hero-mascot-frame
+  - img mascot
 ```
 
 ## Color Palette
@@ -239,6 +308,12 @@ dark card border: gray-7
 
 ## Typography
 
+Import these fonts in CSS:
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
+```
+
 Body font:
 
 ```txt
@@ -274,6 +349,18 @@ h2: 2.3rem
 h3: 1.9rem
 h4: 1.5rem
 hero/page h1: about 3rem
+```
+
+Typography rules:
+
+```txt
+body line-height: 1.6
+body font weight: 400
+main h1 font weight: 700
+main h2/h3 font weight: 600
+sidebar site name weight: 500
+button/link emphasis weight: 500 - 600
+use font smoothing for cleaner rendering
 ```
 
 ## Cards
@@ -326,32 +413,42 @@ active sidebar link is visually clear
 hover state changes color or background subtly
 ```
 
-Hero action button icons:
+## Theme Toggle Button
+
+Use these local icon assets:
 
 ```txt
-About Me button: assets/icons/filesection_icon.png
-Email Newsletter button: assets/icons/mailnewsletter-icon.svg
-button min-height: 44px
-button padding: 0.55rem 0.9rem
-button border: 2px solid accent color
-button border radius: 6px
-icon box: 24px by 24px
-icon image/SVG: 24px by 24px
-About Me icon image scale: 1.35 inside fixed icon box
-icons appear before button text
-icon and text gap: 0.55rem
+assets/icons/theme-sun.svg
+assets/icons/theme-moon.svg
 ```
 
-Theme toggle rules:
+Theme toggle visual rules:
 
 ```txt
 icon-only button
-default background transparent
-default border transparent
-hover/focus shows subtle background and border
-use assets/icons/theme-sun.svg and assets/icons/theme-moon.svg
-only one theme icon is visible at a time
+24px icon size
+button visual area: 34px - 36px square
+transparent background by default
+no visible square border by default
+no visible frame by default
+border radius: 6px
+color follows current theme text color
+subtle square background/border appears only on hover and keyboard focus
+hover background: navbar/input hover background color
+focus outline must remain accessible
+transition: 0.12s ease
 ```
+
+Behavior rules:
+
+```txt
+when current theme is dark: show moon icon or use moon as active state indicator
+when current theme is light: show sun icon or use sun as active state indicator
+save selected theme to localStorage
+update aria-label between light/dark theme states
+```
+
+Do not use a permanently boxed button. The icon should look clean and modern on the sidebar identity row; the square frame appears only when the mouse hovers over it or when the button receives keyboard focus.
 
 ## Archive Lists
 
@@ -375,6 +472,7 @@ compact top navigation shown
 navigation remains readable and easy to tap
 skills grid becomes one column
 main content uses comfortable side padding
+hero mascot stacks below hero text or is hidden if it hurts readability
 ```
 
 ## Implementation Priority
@@ -382,8 +480,13 @@ main content uses comfortable side padding
 1. CSS variables
 2. Base typography
 3. Sidebar layout
-4. Main content layout
-5. Cards and skill grid
-6. Archive list styling
-7. Theme toggle styling
-8. Responsive styling
+4. Sidebar short About Me block
+5. Main content layout
+6. Home hero mascot placement
+7. Hero mascot circle placement
+8. Cards and skill grid
+9. Archive list styling
+10. Theme toggle styling
+11. Responsive styling
+
+Implementation notes should stay practical and easy to follow during coding.
