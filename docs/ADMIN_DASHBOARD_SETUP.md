@@ -138,7 +138,7 @@ to:
 admin/cms.html
 ```
 
-The CMS wrapper is protected by Supabase Auth first. Decap CMS may still require its own GitHub authentication after the Supabase-protected admin hub opens.
+The CMS wrapper is protected by Supabase Auth first. Production content editing then uses the invited Netlify Identity account with Git Gateway. GitHub and Supabase passwords are not entered directly into Decap CMS.
 
 This creates two layers:
 

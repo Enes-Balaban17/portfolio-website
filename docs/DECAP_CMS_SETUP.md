@@ -60,6 +60,8 @@ For local development, Decap CMS uses `local_backend: true` with the Decap local
 
 For production, Decap CMS still needs a real authentication setup. The recommended production path is Netlify Identity + Git Gateway. Sign in with the email and password from the Netlify Identity invitation. A GitHub account email/password and the Supabase admin credentials do not authenticate Decap CMS. If the site is hosted only on GitHub Pages, Decap CMS needs an external OAuth proxy for GitHub login.
 
+On `admin/cms.html`, the Netlify Identity widget loads before the custom CMS login controller. The `Open Netlify Identity login` button initializes and opens that widget directly. A successful Identity login reloads the protected CMS wrapper so Decap can use the stored Git Gateway session.
+
 Do not claim production CMS login works until that auth setup is configured.
 
 The CMS wrapper displays a readable connection status before Decap loads. If an external CMS or Identity script fails, it replaces short or opaque failures with a clear configuration/network error instead of exposing an unhelpful one-character message.

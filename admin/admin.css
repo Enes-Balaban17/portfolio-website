@@ -19,7 +19,11 @@
   --duration-medium: 220ms;
 }
 
-* {
+.admin-auth-loading,
+.admin-login-shell,
+.admin-login-shell *,
+.admin-protected-content,
+.admin-protected-content * {
   box-sizing: border-box;
 }
 
@@ -41,26 +45,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+.admin-login-shell a,
+.admin-protected-content a {
   color: inherit;
 }
 
-button,
-input {
+.admin-login-shell button,
+.admin-login-shell input,
+.admin-protected-content button,
+.admin-protected-content input {
   color: inherit;
   font: inherit;
 }
 
-a:focus:not(:focus-visible),
-button:focus:not(:focus-visible),
-input:focus:not(:focus-visible) {
+.admin-login-shell a:focus:not(:focus-visible),
+.admin-login-shell button:focus:not(:focus-visible),
+.admin-login-shell input:focus:not(:focus-visible),
+.admin-protected-content a:focus:not(:focus-visible),
+.admin-protected-content button:focus:not(:focus-visible),
+.admin-protected-content input:focus:not(:focus-visible) {
   outline: none;
   box-shadow: none;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
+.admin-login-shell a:focus-visible,
+.admin-login-shell button:focus-visible,
+.admin-login-shell input:focus-visible,
+.admin-protected-content a:focus-visible,
+.admin-protected-content button:focus-visible,
+.admin-protected-content input:focus-visible {
   outline: 2px solid var(--admin-accent);
   outline-offset: 3px;
 }
