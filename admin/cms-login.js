@@ -54,8 +54,14 @@
     }
 
     try {
-      window.netlifyIdentity.init();
-      identityReady = true;
+      identityReady = window.NetlifyIdentityFlow
+        ? window.NetlifyIdentityFlow.initialize()
+        : false;
+
+      if (!identityReady) {
+        setStatus("Netlify Identity widget did not load.", "error");
+        return;
+      }
 
       window.netlifyIdentity.on("login", function () {
         window.netlifyIdentity.close();
