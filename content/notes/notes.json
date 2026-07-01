@@ -11,21 +11,6 @@
       ],
       "summary": "Creating the first static version with HTML, CSS, and JavaScript for GitHub Pages.",
       "body": "A short progress note for the first static version of the portfolio website."
-    },
-    {
-      "title": "Hello this a test",
-      "slug": "hello-this-is-a-test",
-      "date": "2026-06-26",
-      "featured": true,
-      "featured_order": 2,
-      "tags": [
-        "hi",
-        "mi",
-        "ti",
-        "ci"
-      ],
-      "summary": "Why did you do that",
-      "body": "Whatta fuck"
     }
   ]
 }
