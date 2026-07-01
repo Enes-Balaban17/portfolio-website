@@ -31,7 +31,8 @@
         "AvaloniaUI",
         "MVVM",
         "NuGet"
-      ]
+      ],
+      "source_url": "https://github.com/Enes-Balaban17/bellequation-taskmanager-app"
     },
     {
       "featured": true,
