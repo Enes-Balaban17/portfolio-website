@@ -34,6 +34,22 @@
         "MVVM",
         "NuGet"
       ]
+    },
+    {
+      "featured": true,
+      "featured_order": 3,
+      "status": "In Progress",
+      "title": "CloneBlast!",
+      "year": 2026,
+      "description": "CloneBlast is a Star Wars-inspired browser arcade game with pixel-style visuals, fast action, animated assets, and multiple game modes.\n",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "Vite",
+        "JavaScript",
+        "Sprite"
+      ],
+      "source_url": "https://github.com/Enes-Balaban17/CloneBlast-Web-Based-Game"
     }
   ]
 }
