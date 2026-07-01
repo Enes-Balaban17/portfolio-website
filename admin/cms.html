@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="admin.css?v=20260701-cms-login">
     <link href="config.yml" type="text/yaml" rel="cms-config-url">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="admin-auth.js" defer></script>
+    <script src="cms-login.js?v=20260701-identity-fix" defer></script>
   </head>
   <body class="admin-page admin-protected admin-cms-page">
     <div class="admin-auth-loading" role="status" aria-live="polite">Checking admin session...</div>
@@ -46,85 +48,9 @@
         <p>On the deployed site, use the email and password from your Netlify Identity invitation. Your GitHub password and Supabase admin credentials do not authenticate Decap CMS.</p>
         <p class="admin-status" data-cms-status data-state="loading" role="status" aria-live="polite">Preparing Decap CMS...</p>
         <div class="admin-widget-actions">
-          <button class="admin-button admin-button-secondary" type="button" data-cms-identity-open hidden>Open Netlify Identity login</button>
+          <button class="admin-button admin-button-secondary" id="open-netlify-identity-login" type="button">Open Netlify Identity login</button>
         </div>
       </section>
     </main>
-
-    <script>
-      (function () {
-        var status = document.querySelector("[data-cms-status]");
-        var identityButton = document.querySelector("[data-cms-identity-open]");
-        var localHosts = ["127.0.0.1", "localhost", "::1"];
-        var isLocal = localHosts.indexOf(window.location.hostname) !== -1;
-        var fallbackError = "Decap CMS could not start. Verify Netlify Identity and Git Gateway, then sign in with the invited Identity account.";
-
-        function setStatus(message, state) {
-          var readableMessage = typeof message === "string" && message.trim().length > 3
-            ? message.trim()
-            : fallbackError;
-
-          status.textContent = readableMessage;
-          status.dataset.state = state || "loading";
-        }
-
-        function loadScript(source) {
-          return new Promise(function (resolve, reject) {
-            var script = document.createElement("script");
-            script.src = source;
-            script.async = true;
-            script.addEventListener("load", resolve, { once: true });
-            script.addEventListener("error", function () {
-              reject(new Error("The required CMS service could not be loaded."));
-            }, { once: true });
-            document.body.appendChild(script);
-          });
-        }
-
-        function openIdentityLogin() {
-          if (!window.netlifyIdentity) {
-            setStatus("Netlify Identity is unavailable. Confirm that Identity is enabled for this Netlify site.", "error");
-            return;
-          }
-
-          window.netlifyIdentity.open("login");
-        }
-
-        identityButton.addEventListener("click", openIdentityLogin);
-
-        window.addEventListener("unhandledrejection", function (event) {
-          var reason = event.reason && event.reason.message ? event.reason.message : "";
-          setStatus(reason, "error");
-        });
-
-        window.addEventListener("error", function (event) {
-          if (event.target && event.target.tagName === "SCRIPT") {
-            setStatus("A required CMS script failed to load. Check the network connection and Netlify configuration.", "error");
-          }
-        }, true);
-
-        window.addEventListener("admin:authenticated", async function () {
-          try {
-            if (isLocal) {
-              setStatus("Connecting to the local Decap proxy. Keep npx decap-server running in a separate terminal.", "loading");
-            } else {
-              setStatus("Loading Netlify Identity and Decap CMS...", "loading");
-              await loadScript("https://identity.netlify.com/v1/netlify-identity-widget.js");
-              identityButton.hidden = false;
-            }
-
-            await loadScript("https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js");
-            setStatus(
-              isLocal
-                ? "Decap CMS loaded through the local proxy."
-                : "Decap CMS loaded. Sign in with the email and password from your Netlify Identity invitation.",
-              "success"
-            );
-          } catch (error) {
-            setStatus(error && error.message ? error.message : fallbackError, "error");
-          }
-        }, { once: true });
-      }());
-    </script>
   </body>
 </html>
