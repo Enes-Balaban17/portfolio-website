@@ -4,6 +4,8 @@
       "title": "Building my personal portfolio website",
       "slug": "building-my-personal-portfolio-website",
       "date": "2026-05-25",
+      "featured": true,
+      "featured_order": 1,
       "tags": [
         "Progress"
       ],
@@ -14,6 +16,8 @@
       "title": "Hello this a test",
       "slug": "hello-this-is-a-test",
       "date": "2026-06-26",
+      "featured": false,
+      "featured_order": 0,
       "tags": [
         "hi",
         "mi",

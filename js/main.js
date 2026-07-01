@@ -37,9 +37,25 @@
       : "light";
   }
 
+  function updatePageFaviconForTheme(theme) {
+    var favicon = document.querySelector("[data-theme-favicon]");
+    if (!favicon) {
+      return;
+    }
+
+    var nextHref = theme === "dark"
+      ? favicon.getAttribute("data-dark-href")
+      : favicon.getAttribute("data-light-href");
+
+    if (nextHref && favicon.getAttribute("href") !== nextHref) {
+      favicon.setAttribute("href", nextHref);
+    }
+  }
+
   function applyTheme(theme, saveTheme) {
     var nextLabel = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
     root.setAttribute("data-theme", theme);
+    updatePageFaviconForTheme(theme);
 
     toggles.forEach(function (toggle) {
       toggle.setAttribute("aria-label", nextLabel);
@@ -320,6 +336,33 @@
     return links.filter(Boolean).join("");
   }
 
+  function selectFeaturedEntries(contentEntries, contentType) {
+    return contentEntries.filter(function (contentEntry) {
+      return contentEntry.featured === true;
+    }).sort(function (leftEntry, rightEntry) {
+      var orderDifference = (Number(leftEntry.featured_order) || 0) - (Number(rightEntry.featured_order) || 0);
+      if (orderDifference) {
+        return orderDifference;
+      }
+
+      var leftFallback = contentType === "notes"
+        ? Date.parse(leftEntry.date || "") || 0
+        : Number(leftEntry.year) || 0;
+      var rightFallback = contentType === "notes"
+        ? Date.parse(rightEntry.date || "") || 0
+        : Number(rightEntry.year) || 0;
+      if (leftFallback !== rightFallback) {
+        return rightFallback - leftFallback;
+      }
+
+      return String(leftEntry.title || "").localeCompare(String(rightEntry.title || ""));
+    }).slice(0, 3);
+  }
+
+  function renderFeaturedEmpty(container, contentType) {
+    container.innerHTML = '<p class="home-preview-empty" role="status">No featured ' + escapeHtml(contentType) + " yet.</p>";
+  }
+
   function renderTextBlocks(value) {
     var text = String(value || "").trim();
     if (!text) {
@@ -349,6 +392,30 @@
     }).join("");
 
     container.innerHTML = '<div class="archive-items notes-list">' + renderedNoteRows + "</div>";
+  }
+
+  function renderFeaturedNotes(container, noteEntries) {
+    var featuredNotes = selectFeaturedEntries(noteEntries, "notes");
+    if (!featuredNotes.length) {
+      renderFeaturedEmpty(container, "notes");
+      return;
+    }
+
+    container.innerHTML = featuredNotes.map(function (noteEntry) {
+      var tags = renderLabels(noteEntry.tags, "tag");
+      var slug = noteEntry.slug || noteEntry.id || slugify(noteEntry.title);
+      var detailUrl = "note.html?slug=" + encodeURIComponent(slug);
+
+      return [
+        '<article class="archive-item">',
+        '  <time class="archive-date" datetime="' + escapeHtml(noteEntry.date || "") + '">' + escapeHtml(readableDate(noteEntry.date, false)) + "</time>",
+        '  <div class="archive-body">',
+        '    <h3><a href="' + escapeHtml(detailUrl) + '">' + escapeHtml(noteEntry.title) + "</a>" + (tags ? " " + tags : "") + "</h3>",
+        "    <p>" + escapeHtml(noteEntry.summary || noteEntry.body || "") + "</p>",
+        "  </div>",
+        "</article>"
+      ].join("");
+    }).join("");
   }
 
   function renderProjects(container, portfolioProjects) {
@@ -381,6 +448,34 @@
         '  <h2 id="' + escapeHtml(headingId) + '">' + escapeHtml(projectYearGroup.year) + "</h2>",
         '  <div class="archive-items">' + renderedProjects + "</div>",
         "</section>"
+      ].join("");
+    }).join("");
+  }
+
+  function renderFeaturedProjects(container, projectEntries) {
+    var featuredProjects = selectFeaturedEntries(projectEntries, "projects");
+    if (!featuredProjects.length) {
+      renderFeaturedEmpty(container, "projects");
+      return;
+    }
+
+    container.innerHTML = featuredProjects.map(function (projectEntry) {
+      var technologies = listText(projectEntry.technologies);
+      var links = renderActionLinks([
+        renderTextLink(projectEntry.demo_url, "Demo"),
+        renderSourceLink(projectEntry.source_url, "Source")
+      ]);
+
+      return [
+        '<article class="archive-item">',
+        '  <time class="archive-date" datetime="' + escapeHtml(projectEntry.year || "") + '">' + escapeHtml(projectEntry.year || "") + "</time>",
+        '  <div class="archive-body">',
+        '    <h3><a href="projects.html">' + escapeHtml(projectEntry.title) + "</a>" + (projectEntry.status ? ' <span class="status">' + escapeHtml(projectEntry.status) + "</span>" : "") + "</h3>",
+        "    <p>" + escapeHtml(projectEntry.description || projectEntry.body || "") + "</p>",
+        technologies ? '    <p class="meta">' + escapeHtml(technologies) + "</p>" : "",
+        links ? '    <div class="archive-links">' + links + "</div>" : "",
+        "  </div>",
+        "</article>"
       ].join("");
     }).join("");
   }
@@ -520,11 +615,21 @@
 
   function renderJsonContent(container, type, contentEntries) {
     if (!contentEntries.length) {
-      renderEmpty(container, type);
+      if (type === "featured-notes") {
+        renderFeaturedEmpty(container, "notes");
+      } else if (type === "featured-projects") {
+        renderFeaturedEmpty(container, "projects");
+      } else {
+        renderEmpty(container, type);
+      }
       return;
     }
 
-    if (type === "notes") {
+    if (type === "featured-notes") {
+      renderFeaturedNotes(container, contentEntries);
+    } else if (type === "featured-projects") {
+      renderFeaturedProjects(container, contentEntries);
+    } else if (type === "notes") {
       renderNotes(container, contentEntries);
     } else if (type === "projects") {
       renderProjects(container, contentEntries);

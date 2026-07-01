@@ -6,8 +6,8 @@
     <meta name="description" content="Enes Balaban's personal portfolio website.">
     <title>Enes Balaban | Software Developer</title>
     <link rel="icon" type="image/png" href="assets/icons/favicons/gbaicon.png">
-    <link rel="stylesheet" href="css/style.css?v=20260630-visual-polish">
-    <script src="js/main.js?v=20260630-visual-polish" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=20260701-featured-cms">
+    <script src="js/main.js?v=20260701-featured-cms" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -72,7 +72,7 @@
               </a>
               <a class="hero-action-button" href="#contact-message" data-message-modal-open>
                 <span class="hero-action-icon" aria-hidden="true">
-                  <img src="assets/icons/mailnewsletter-icon.svg?v=2" alt="">
+                  <img src="assets/icons/send-message.svg" alt="">
                 </span>
                 <span>Send Message</span>
               </a>
@@ -115,14 +115,8 @@
               </h2>
               <a class="home-section-link" href="notes.html">View all notes</a>
             </div>
-            <div class="home-preview-list">
-              <article class="archive-item">
-                <time class="archive-date" datetime="2026-05-25">May 25</time>
-                <div class="archive-body">
-                  <h3><a href="notes.html">Building my personal portfolio website</a> <span class="tag">Progress</span></h3>
-                  <p>Creating the first static version with HTML, CSS, and JavaScript for GitHub Pages.</p>
-                </div>
-              </article>
+            <div class="home-preview-list" data-content-source="content/notes/notes.json" data-content-type="featured-notes" aria-live="polite">
+              <p class="home-preview-empty">Loading featured notes...</p>
             </div>
           </section>
           <section class="content-section home-section" aria-labelledby="home-projects-title">
@@ -133,24 +127,8 @@
               </h2>
               <a class="home-section-link" href="projects.html">View all projects</a>
             </div>
-            <div class="home-preview-list">
-              <article class="archive-item">
-                <time class="archive-date" datetime="2026">2026</time>
-                <div class="archive-body">
-                  <h3><a href="projects.html">Personal Portfolio Website</a> <span class="status">In Progress</span></h3>
-                  <p>A minimal personal website for projects, notes, skills, and development progress.</p>
-                  <p class="meta">HTML / CSS / JavaScript / GitHub Pages</p>
-                  <div class="archive-links">
-                    <a class="source-link" href="https://github.com/Enes-Balaban17/portfolio-website">
-                      <span class="source-icon source-icon-github" aria-hidden="true">
-                        <img class="github-icon github-icon-dark" src="assets/icons/github-dark-theme.svg" alt="">
-                        <img class="github-icon github-icon-light" src="assets/icons/github-light-theme.svg" alt="">
-                      </span>
-                      <span>Source</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
+            <div class="home-preview-list" data-content-source="content/projects/projects.json" data-content-type="featured-projects" aria-live="polite">
+              <p class="home-preview-empty">Loading featured projects...</p>
             </div>
           </section>
         </div>

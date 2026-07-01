@@ -3,6 +3,8 @@
     {
       "title": "Personal Portfolio Website",
       "year": 2026,
+      "featured": true,
+      "featured_order": 1,
       "description": "A minimal personal website for projects, notes, skills, and development progress.",
       "technologies": [
         "HTML",
@@ -19,6 +21,8 @@
       "status": "In Progress",
       "title": "Test Project",
       "year": 2019,
+      "featured": false,
+      "featured_order": 0,
       "description": "Test Project",
       "technologies": [
         "TestTech"

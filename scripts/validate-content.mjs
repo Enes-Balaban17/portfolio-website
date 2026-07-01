@@ -96,6 +96,23 @@ function validateNotes(definition, items) {
   });
 }
 
+function validateFeaturedItems(definition, items) {
+  const featuredItems = items.filter((item) => item && item.featured === true);
+
+  items.forEach((item, index) => {
+    if (item.featured != null && typeof item.featured !== "boolean") {
+      addError(definition.path, index, "featured must be a boolean.");
+    }
+    if (item.featured_order != null && !Number.isInteger(item.featured_order)) {
+      addError(definition.path, index, "featured_order must be an integer.");
+    }
+  });
+
+  if (featuredItems.length > 3) {
+    validationErrors.push(`${definition.path}: at most 3 items may be featured; found ${featuredItems.length}.`);
+  }
+}
+
 function validateLinkedContent(definition, items) {
   const urlFields = definition.name === "projects"
     ? ["demo_url", "source_url"]
@@ -156,6 +173,7 @@ for (const definition of contentDefinitions) {
   items.forEach((item, index) => validateRequiredFields(definition, item, index));
 
   if (definition.name === "notes") validateNotes(definition, items);
+  if (definition.name === "notes" || definition.name === "projects") validateFeaturedItems(definition, items);
   if (definition.name === "projects" || definition.name === "minigames") validateLinkedContent(definition, items);
   if (definition.name === "certificates") validateCertificates(definition, items);
   if (definition.name === "illustrations") validateIllustrations(definition, items);

@@ -23,6 +23,8 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Year", name: "year", widget: "number", value_type: "int" }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false, required: false }
+              - { label: "Featured Order", name: "featured_order", widget: "number", value_type: "int", default: 0, required: false, hint: "Lower numbers appear first on the homepage. At most three projects may be featured." }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Technologies", name: "technologies", widget: "list", required: false }
               - { label: "Demo URL", name: "demo_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
@@ -102,6 +104,8 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Slug", name: "slug", widget: "string", hint: "Lowercase URL identifier, for example: building-my-portfolio", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Use lowercase words separated by hyphens."] }
               - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false, required: false }
+              - { label: "Featured Order", name: "featured_order", widget: "number", value_type: "int", default: 0, required: false, hint: "Lower numbers appear first on the homepage. At most three notes may be featured." }
               - { label: "Tags", name: "tags", widget: "list", required: false }
               - { label: "Summary", name: "summary", widget: "text" }
               - { label: "Body", name: "body", widget: "markdown", required: false }
