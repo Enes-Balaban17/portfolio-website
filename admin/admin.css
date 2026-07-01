@@ -628,6 +628,17 @@ body {
   min-height: 180px;
 }
 
+.admin-cms-page.cms-editor-authenticated [data-cms-login-notice] {
+  display: none;
+}
+
+.admin-cms-page [class*="SidebarNavList"] {
+  min-height: 0;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
 .admin-inline-button {
   align-self: flex-start;
   margin-top: 1rem;
