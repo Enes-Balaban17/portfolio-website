@@ -1,35 +1,39 @@
 {
   "items": [
     {
-      "title": "Personal Portfolio Website",
-      "year": 2026,
-      "featured": true,
-      "featured_order": 1,
-      "description": "A minimal personal website for projects, notes, skills, and development progress.",
+      "body": "Static portfolio website for Enes Balaban.",
       "technologies": [
         "HTML",
         "CSS",
         "JavaScript",
-        "GitHub Pages"
+        "Decap CMS",
+        "GitHub Pages",
+        "Vite"
       ],
-      "demo_url": "",
       "source_url": "https://github.com/Enes-Balaban17/portfolio-website",
-      "status": "In Progress",
-      "body": "Static portfolio website for Enes Balaban."
+      "featured": true,
+      "status": "Published",
+      "demo_url": "https://enesbalaban.dev/",
+      "title": "Personal Portfolio Website",
+      "description": "A minimal personal website for projects, notes, skills, and development progress.",
+      "year": 2026,
+      "featured_order": 1
     },
     {
+      "featured": true,
+      "featured_order": 2,
       "status": "In Progress",
-      "title": "Test Project",
-      "year": 2019,
-      "featured": false,
-      "featured_order": 0,
-      "description": "Test Project",
+      "title": "BellEquation",
+      "year": 2026,
+      "description": "BellEquation is a simple daily helper app. It focuses on organizing tasks, tracking small routines, and keeping everyday work more structured.",
+      "source_url": "https://github.com/Enes-Balaban17/CloneBlast-Web-Based-Game",
       "technologies": [
-        "TestTech"
-      ],
-      "demo_url": "https://github.com/Enes-Balaban17/portfolio-website",
-      "source_url": "https://github.com/Enes-Balaban17/portfolio-website",
-      "body": "Am Am AM"
+        "C#",
+        ".NET11",
+        "AvaloniaUI",
+        "MVVM",
+        "NuGet"
+      ]
     }
   ]
 }
