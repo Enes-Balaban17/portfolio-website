@@ -58,9 +58,11 @@ The CMS wrapper is protected by Supabase Auth first. Decap CMS then uses its own
 
 For local development, Decap CMS uses `local_backend: true` with the Decap local proxy server. It should not redirect to Netlify auth locally.
 
-For production, Decap CMS still needs a real authentication setup. The recommended production path is Netlify Identity + Git Gateway. If the site is hosted only on GitHub Pages, Decap CMS needs an external OAuth proxy for GitHub login.
+For production, Decap CMS still needs a real authentication setup. The recommended production path is Netlify Identity + Git Gateway. Sign in with the email and password from the Netlify Identity invitation. A GitHub account email/password and the Supabase admin credentials do not authenticate Decap CMS. If the site is hosted only on GitHub Pages, Decap CMS needs an external OAuth proxy for GitHub login.
 
 Do not claim production CMS login works until that auth setup is configured.
+
+The CMS wrapper displays a readable connection status before Decap loads. If an external CMS or Identity script fails, it replaces short or opaque failures with a clear configuration/network error instead of exposing an unhelpful one-character message.
 
 ## 4. Content Storage
 
@@ -207,11 +209,12 @@ For Decap CMS production editing:
 - recommended path: Netlify Identity + Git Gateway
 - enable Netlify Identity and Git Gateway manually for the production site
 - invite the CMS editor email through Netlify Identity before attempting to sign in
+- complete the invitation and set the Netlify Identity password before using the production CMS
 - confirm the backend branch is `main`
 - confirm media uploads commit to `assets/uploads`
 - remember that Supabase Auth protects the custom admin hub, while Decap/GitHub auth protects repository editing
 
-Supabase admin credentials do not authenticate Decap CMS. Local editing uses `npx decap-server` and does not prove that production Git Gateway login is configured. If the production CMS accepts the custom admin login but then rejects Decap login, verify the Netlify Identity invitation and Git Gateway settings in the Netlify dashboard; do not add repository tokens or Supabase secrets to frontend files.
+Supabase admin credentials and GitHub passwords do not authenticate Decap CMS. Local editing uses `npx decap-server` and does not prove that production Git Gateway login is configured. If the production CMS accepts the custom admin login but then rejects Decap login, verify the Netlify Identity invitation and Git Gateway settings in the Netlify dashboard; do not add repository tokens or Supabase secrets to frontend files.
 
 ## 9. Remaining Production TODOs
 

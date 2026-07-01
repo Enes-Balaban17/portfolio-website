@@ -609,11 +609,6 @@ textarea:focus-visible {
   object-fit: contain;
 }
 
-.hero-action-button[href="about.html"] .hero-action-icon img {
-  transform: scale(1.35);
-  transform-origin: center;
-}
-
 .hero-divider {
   width: 100%;
   max-width: 570px;
