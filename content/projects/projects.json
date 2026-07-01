@@ -7,8 +7,7 @@
         "CSS",
         "JavaScript",
         "Decap CMS",
-        "GitHub Pages",
-        "Vite"
+        "Netlify"
       ],
       "source_url": "https://github.com/Enes-Balaban17/portfolio-website",
       "featured": true,
@@ -26,7 +25,6 @@
       "title": "BellEquation",
       "year": 2026,
       "description": "BellEquation is a simple daily helper app. It focuses on organizing tasks, tracking small routines, and keeping everyday work more structured.",
-      "source_url": "https://github.com/Enes-Balaban17/CloneBlast-Web-Based-Game",
       "technologies": [
         "C#",
         ".NET11",
