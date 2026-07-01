@@ -1,0 +1,149 @@
+local_backend: true
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    files:
+      - label: "Projects"
+        name: "projects"
+        file: "content/projects/projects.json"
+        format: "json"
+        fields:
+          - label: "Projects"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "number", value_type: "int" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Technologies", name: "technologies", widget: "list", required: false }
+              - { label: "Demo URL", name: "demo_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - { label: "Source URL", name: "source_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - { label: "Status", name: "status", widget: "select", options: ["In Progress", "Published", "Private", "Archived"], default: "In Progress" }
+              - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "certificates"
+    label: "Certificates"
+    files:
+      - label: "Certificates"
+        name: "certificates"
+        file: "content/certificates/certificates.json"
+        format: "json"
+        fields:
+          - label: "Certificates"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Organization", name: "organization", widget: "string" }
+              - { label: "Type", name: "type", widget: "string" }
+              - { label: "Date Range", name: "date_range", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Built-in Logo Path", name: "logo", widget: "string", required: false, hint: "Use an existing repository image, for example: assets/images/certificates/ege-university-logo.png" }
+              - label: "Logo Upload"
+                name: "logo_upload"
+                widget: "image"
+                required: false
+                allow_multiple: false
+                choose_url: false
+                media_folder: "/assets/uploads/certificates"
+                public_folder: "assets/uploads/certificates"
+                hint: "Upload a new certificate logo. An uploaded logo takes priority over the built-in logo path."
+                media_library:
+                  config:
+                    multiple: false
+                    max_file_size: 5242880
+              - label: "Certificate Action Type"
+                name: "certificate_action_type"
+                widget: "select"
+                default: "none"
+                options:
+                  - { label: "None", value: "none" }
+                  - { label: "External Link", value: "link" }
+                  - { label: "PDF File", value: "pdf" }
+              - { label: "Certificate URL", name: "certificate_url", widget: "string", required: false, hint: "Used only when action type is External Link.", pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - label: "Certificate PDF"
+                name: "certificate_pdf"
+                widget: "file"
+                required: false
+                allow_multiple: false
+                choose_url: false
+                media_folder: "/assets/uploads/certificates"
+                public_folder: "assets/uploads/certificates"
+                hint: "Used only when action type is PDF File. Upload a PDF certificate."
+                media_library:
+                  config:
+                    multiple: false
+                    max_file_size: 10485760
+              - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "notes"
+    label: "Notes"
+    files:
+      - label: "Notes"
+        name: "notes"
+        file: "content/notes/notes.json"
+        format: "json"
+        fields:
+          - label: "Notes"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "Lowercase URL identifier, for example: building-my-portfolio", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Use lowercase words separated by hyphens."] }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+              - { label: "Tags", name: "tags", widget: "list", required: false }
+              - { label: "Summary", name: "summary", widget: "text" }
+              - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "illustrations"
+    label: "Illustrations"
+    files:
+      - label: "Illustrations"
+        name: "illustrations"
+        file: "content/illustrations/illustrations.json"
+        format: "json"
+        fields:
+          - label: "Illustrations"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Tags", name: "tags", widget: "list", required: false }
+              - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "minigames"
+    label: "Minigames"
+    files:
+      - label: "Minigames"
+        name: "minigames"
+        file: "content/minigames/minigames.json"
+        format: "json"
+        fields:
+          - label: "Minigames"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "number", value_type: "int" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Play URL", name: "play_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - { label: "Source URL", name: "source_url", widget: "string", required: false, pattern: ['^https?://.+$', "Use a complete http:// or https:// URL."] }
+              - { label: "Technologies", name: "technologies", widget: "list", required: false }
+              - { label: "Status", name: "status", widget: "select", options: ["Prototype", "Playable", "In Progress", "Archived"], default: "Prototype" }
+              - { label: "Body", name: "body", widget: "markdown", required: false }

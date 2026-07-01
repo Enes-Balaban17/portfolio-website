@@ -17,12 +17,12 @@ Reasoning:
 - The project is currently a personal portfolio with static pages.
 - Notes and Projects can be managed as static HTML pages at first.
 - A static structure is enough for the first release.
-- A framework can be added later after the content and design are stable.
+- The maintained architecture remains static HTML, CSS, and JavaScript.
 
-Future upgrade option:
+Growth strategy:
 
-- If Notes, Projects, Resume, Minigames, and Illustrations grow significantly, migrate to a lightweight SSG such as Astro or Eleventy.
-- Gatsby is not preferred for the first version because it adds unnecessary complexity for this stage.
+- Keep content in repository JSON and improve the existing vanilla JavaScript renderers as collections grow.
+- Treat any future framework or build-system proposal as a separate architectural decision, not an automatic migration path.
 
 ## Final First Version Structure
 
@@ -31,8 +31,8 @@ portfolio-website/
 │
 ├── index.html
 ├── notes.html
+├── note.html
 ├── projects.html
-├── skills.html
 ├── about.html
 ├── resume.html
 ├── minigames.html
@@ -41,24 +41,48 @@ portfolio-website/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
+├── .env.example
+├── package.json
+├── package-lock.json
+│
+├── .github/
+│   └── workflows/
+│       └── static-validation.yml
+│
+├── scripts/
+│   ├── validate-content.mjs
+│   ├── scan-secrets.mjs
+│   └── check-media.mjs
 │
 ├── assets/
 │   ├── icons/
+│   │   ├── aboutme-icon.svg
+│   │   ├── aboutme_icon.png
 │   │   ├── assembly.svg
+│   │   ├── blender.svg
 │   │   ├── c.svg
 │   │   ├── cpp.svg
 │   │   ├── csharp.svg
-│   │   ├── java.svg
-│   │   ├── kotlin.svg
-│   │   ├── react.svg
-│   │   ├── html.svg
 │   │   ├── css.svg
+│   │   ├── email-newsletter.svg
+│   │   ├── filesection_icon.png
+│   │   ├── folder-open.svg
+│   │   ├── github-dark-theme.svg
+│   │   ├── github-light-theme.svg
+│   │   ├── html.svg
+│   │   ├── java.svg
 │   │   ├── javascript.svg
-│   │   ├── typescript.svg
-│   │   ├── terminal.svg
-│   │   ├── blender.svg
+│   │   ├── kotlin.svg
+│   │   ├── mailnewsletter-icon.svg
+│   │   ├── notebook.svg
+│   │   ├── oracle-db.svg
+│   │   ├── projects.svg
+│   │   ├── react.svg
 │   │   ├── sql.svg
-│   │   └── oracle-db.svg
+│   │   ├── terminal.svg
+│   │   ├── theme-moon.svg
+│   │   ├── theme-sun.svg
+│   │   └── typescript.svg
 │   │
 │   ├── images/
 │   │   ├── gba-icon.png or gba-icon.svg
@@ -66,9 +90,37 @@ portfolio-website/
 │   │   └── profile/optional
 │   │
 │   ├── cv/
-│   │   └── Enes_Balaban_CV.pdf optional
+│   │   └── enes-balaban-cv.pdf
+│   │
+│   ├── uploads/
+│   │   └── certificates/
+│   │       └── uploaded-certificate.pdf
 │   │
 │   └── screenshots/
+│
+├── admin/
+│   ├── login.html
+│   ├── index.html
+│   ├── new-content.html
+│   ├── messages.html
+│   ├── cms.html
+│   ├── config.yml
+│   ├── admin.css
+│   ├── admin-auth.js
+│   ├── admin-dashboard.js
+│   └── admin-messages.js
+│
+├── content/
+│   ├── notes/
+│   │   └── notes.json
+│   ├── projects/
+│   │   └── projects.json
+│   ├── certificates/
+│   │   └── certificates.json
+│   ├── illustrations/
+│   │   └── illustrations.json
+│   └── minigames/
+│       └── minigames.json
 │
 ├── css/
 │   └── style.css
@@ -81,7 +133,16 @@ portfolio-website/
     ├── DESIGN_SYSTEM.md
     ├── SKILLS_PLAN.md
     ├── ICON_SOURCES.md
-    └── FILE_STRUCTURE.md
+    ├── FILE_STRUCTURE.md
+    ├── CMS_AND_MESSAGES_SETUP.md
+    ├── SUPABASE_SETUP.md
+    ├── SUPABASE_ADMIN_AUTH_SETUP.md
+    ├── ADMIN_DASHBOARD_SETUP.md
+    ├── DECAP_CMS_SETUP.md
+    ├── LOCAL_DEVELOPMENT.md
+    ├── CMS_CONTENT_MODEL.md
+    ├── SECURITY_REVIEW.md
+    └── DEPLOYMENT_CHECKLIST.md
 ```
 
 ## Page Responsibilities
@@ -98,6 +159,7 @@ Includes:
 - Hero mascot image from `assets/images/enescot.png`
 - Vertical links to Notes, Projects, About Me
 - Contact block in sidebar
+- Homepage Email Newsletter opens the contact/message modal; sidebar Email signup remains a mailto link
 
 ### `about.html`
 
@@ -126,6 +188,10 @@ Includes:
 - Short development notes
 - Search input if needed
 
+### `note.html`
+
+Static-friendly note detail page. It reads the `slug` query parameter, loads `content/notes/notes.json`, and safely renders the matching note without injecting CMS HTML.
+
 ### `projects.html`
 
 Projects archive page.
@@ -136,16 +202,6 @@ Includes:
 - Project descriptions
 - Demo / Source / Details links
 - Optional project status labels
-
-### `skills.html`
-
-Skills grid page.
-
-Includes:
-
-- 3-column icon grid on desktop
-- SVG icons from `assets/icons/`
-- Responsive layout
 
 ### `resume.html`
 
@@ -167,9 +223,7 @@ Since the first version will not use a framework, the sidebar will be repeated i
 
 This is acceptable for the first version because the website is small.
 
-Future improvement:
-
-- Move repeated layout into a component system if the site migrates to Astro, Eleventy, React, or another SSG/framework.
+The repeated layout is deliberate for the current no-build architecture. Any future component-generation step requires an explicit tooling decision and must preserve GitHub Pages output.
 
 ## CSS Plan
 
@@ -206,7 +260,38 @@ Initial JavaScript responsibilities:
 
 - Dark/light theme toggle
 - Save selected theme to localStorage
-- Optional search/filter for Notes and Projects later
+- Load JSON content for Notes, Projects, Certificates, Illustrations, and Minigames
+- Render individual note details from a stable note slug
+- Optional search/filter for Notes
+- Contact/message modal behavior, client-side validation, and Supabase submission
+
+## CMS Content Structure
+
+Decap CMS manages repository JSON files for content editing:
+
+```txt
+content/notes/notes.json
+content/projects/projects.json
+content/certificates/certificates.json
+content/illustrations/illustrations.json
+content/minigames/minigames.json
+```
+
+Each file uses:
+
+```json
+{
+  "items": []
+}
+```
+
+This keeps the first version static and avoids adding a framework or static site generator.
+
+## Skills Structure Decision
+
+The current version does not use a separate `skills.html` page.
+
+Skills are shown as a homepage section in `index.html` using the order and grid rules from `docs/SKILLS_PLAN.md`.
 
 ## Deployment Plan
 

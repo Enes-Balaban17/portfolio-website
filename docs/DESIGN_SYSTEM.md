@@ -49,6 +49,9 @@ border radius: 6px
 - show left sidebar
 - hide compact top navigation
 - use two-column layout: 260px sidebar + main content
+- main content left padding: 200px
+- main content right padding: 2rem
+- main content max width preserves the readable text column by adding the desktop offset and right padding to the content width
 
 1360px and above:
 - allow wider layout with optional right-side content area
@@ -78,9 +81,13 @@ Sidebar identity styling:
 ```txt
 horizontal flex row
 items centered vertically
-0.75rem gap
+0.35rem gap between identity items
+Game Boy Advance icon width: 35px
 site name font size: 18px
 site name weight: 500
+theme toggle margin-left: 0.50rem
+theme toggle size: 32px by 32px
+theme toggle icon size: 20px by 20px
 ```
 
 Sidebar section styling:
@@ -245,6 +252,37 @@ First version accent:
 
 ```txt
 pink
+```
+
+Mascot circle colors:
+
+```txt
+light theme mascot circle: #d33682
+dark theme mascot circle: #ff8ac0
+```
+
+Mascot frame rules:
+
+```txt
+hero mascot image: assets/images/enescot.png
+desktop mascot frame max width: 400px
+base mascot frame max width: 380px
+mascot image uses object-fit: contain
+circle is created with CSS only using .hero-mascot-frame::before
+circle width: clamp(190px, 52%, 255px)
+circle position: left 48%, top 55%
+mascot image stays above the circle
+```
+
+Homepage desktop hero layout:
+
+```txt
+display as grid
+grid-template-columns: minmax(350px, 1fr) minmax(250px, 400px)
+align-items: start
+gap: clamp(1.5rem, 4vw, 3rem)
+hero visual aligns right
+hero visual padding-top: 2.1rem
 ```
 
 Main color mapping:

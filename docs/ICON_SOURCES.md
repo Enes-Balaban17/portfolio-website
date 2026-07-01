@@ -80,11 +80,24 @@ Project button GitHub icon rules:
 
 ## Current Decision
 
-The first version will use local SVG files from `assets/icons/`.
+The first version will use local files from `assets/icons/`.
 
-Some icons are custom minimal SVGs. Some icons are SVG wrappers containing embedded image data. This keeps the site independent from external image URLs during normal use.
+Some icons are custom minimal SVGs. Some icons are SVG wrappers containing embedded image data. Some finalized sidebar icons are PNG files. This keeps the site independent from external image URLs during normal use.
 
 During the implementation phase, icons can be replaced or improved while keeping the same file names.
+
+## Current Icon Usage
+
+- Sidebar About Me link uses `assets/icons/filesection_icon.png`.
+- Sidebar Notes link uses `assets/icons/aboutme_icon.png`.
+- Sidebar Projects link uses `assets/icons/github-dark-theme.svg` in dark theme and `assets/icons/github-light-theme.svg` in light theme.
+- Homepage About Me action button uses `assets/icons/filesection_icon.png`.
+- Homepage Email Newsletter action button uses `assets/icons/mailnewsletter-icon.svg`.
+- Notes preview heading uses `assets/icons/notebook.svg`.
+- Projects preview heading uses `assets/icons/projects.svg`.
+- Theme toggle uses `assets/icons/theme-sun.svg` and `assets/icons/theme-moon.svg`.
+- Site identity uses `assets/images/gba-icon.png`.
+- Homepage hero mascot uses `assets/images/enescot.png`.
 
 ## Possible Future Icon Sources
 

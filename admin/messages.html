@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Protected portfolio message reader.">
+    <title>Messages | Enes Balaban</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
+    <script src="admin-auth.js" defer></script>
+    <script src="admin-messages.js" defer></script>
+  </head>
+  <body class="admin-page admin-protected">
+    <div class="admin-auth-loading" role="status" aria-live="polite">Checking admin session...</div>
+
+    <main class="admin-layout admin-protected-content">
+      <nav class="admin-top-nav" aria-label="Admin navigation">
+        <div class="admin-nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="new-content.html">New Content</a>
+          <a href="messages.html" aria-current="page">Messages</a>
+          <a href="cms.html">CMS</a>
+        </div>
+        <div class="admin-nav-account">
+          <span class="admin-user" data-admin-user-email>Signed in</span>
+          <button class="admin-nav-logout" type="button" data-admin-logout>Logout</button>
+        </div>
+      </nav>
+
+      <header class="admin-header">
+        <div>
+          <p class="admin-eyebrow">Inbox</p>
+          <h1>Messages</h1>
+          <p class="admin-intro">Unread contact messages are shown by default. Data loads only after Supabase Auth confirms the admin session.</p>
+        </div>
+      </header>
+
+      <section class="admin-toolbar" aria-label="Message filters">
+        <div class="admin-tabs" role="group" aria-label="Filter messages">
+          <button type="button" data-message-filter="unread" aria-pressed="true">Unread</button>
+          <button type="button" data-message-filter="read" aria-pressed="false">Read</button>
+          <button type="button" data-message-filter="archived" aria-pressed="false">Archived</button>
+          <button type="button" data-message-filter="spam" aria-pressed="false">Spam</button>
+          <button type="button" data-message-filter="all" aria-pressed="false">All</button>
+        </div>
+        <button class="admin-button admin-button-secondary" type="button" data-refresh-messages>Refresh</button>
+      </section>
+
+      <p class="admin-status" role="status" aria-live="polite" data-messages-status>Loading messages...</p>
+
+      <section class="admin-messages-grid" aria-label="Messages dashboard">
+        <div class="admin-message-list" data-messages-list></div>
+
+        <article class="admin-message-detail" aria-live="polite" data-message-detail>
+          <p>Select a message to view details.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
