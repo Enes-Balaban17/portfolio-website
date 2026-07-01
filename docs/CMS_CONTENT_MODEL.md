@@ -23,7 +23,9 @@ Required fields:
 - `date`: `YYYY-MM-DD`
 - `summary`
 
-Optional fields: `tags`, `body`.
+Optional fields: `tags`, `body`, `featured`, and `featured_order`.
+
+Set `featured` to `true` to include a note in the homepage preview. Lower `featured_order` values appear first; date descending and title are stable fallbacks. At most three notes may be featured.
 
 The archive links to `note.html?slug=...`. Changing a published slug changes its public URL.
 
@@ -31,7 +33,9 @@ The archive links to `note.html?slug=...`. Changing a published slug changes its
 
 Required fields: `title`, integer `year`, `description`, and `status`.
 
-Optional fields: `technologies`, `demo_url`, `source_url`, and `body`. Public URLs must use HTTP or HTTPS. Empty links are not rendered.
+Optional fields: `technologies`, `demo_url`, `source_url`, `body`, `featured`, and `featured_order`. Public URLs must use HTTP or HTTPS. Empty links are not rendered.
+
+Set `featured` to `true` to include a project in the homepage preview. Lower `featured_order` values appear first; year descending and title are stable fallbacks. At most three projects may be featured.
 
 ## Certificates
 
