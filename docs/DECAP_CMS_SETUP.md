@@ -62,6 +62,8 @@ For production, Decap CMS still needs a real authentication setup. The recommend
 
 On `admin/cms.html`, the Netlify Identity widget loads before the custom CMS login controller. The `Open Netlify Identity login` button initializes and opens that widget directly. A successful Identity login reloads the protected CMS wrapper so Decap can use the stored Git Gateway session.
 
+Netlify Identity invitation, confirmation, email-change, and password-recovery emails can redirect to the main site with a token in the URL hash. `index.html` loads the Identity widget and `js/netlify-identity-flow.js`, which detects supported token parameter names and opens the appropriate widget flow automatically. The helper never logs, copies, or manually stores token values. If a reset link opens the homepage without a form, confirm that `netlify-identity-widget.js` and the helper both load successfully on `index.html`.
+
 Do not claim production CMS login works until that auth setup is configured.
 
 The CMS wrapper displays a readable connection status before Decap loads. If an external CMS or Identity script fails, it replaces short or opaque failures with a clear configuration/network error instead of exposing an unhelpful one-character message.
