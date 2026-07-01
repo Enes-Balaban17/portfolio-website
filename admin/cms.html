@@ -6,13 +6,13 @@
     <meta name="robots" content="noindex">
     <meta name="description" content="Protected Decap CMS editor.">
     <title>CMS | Enes Balaban</title>
-    <link rel="stylesheet" href="admin.css?v=20260701-cms-login">
+    <link rel="stylesheet" href="admin.css?v=20260701-small-ui">
     <link href="config.yml" type="text/yaml" rel="cms-config-url">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.108.2/dist/umd/supabase.min.js"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="admin-auth.js" defer></script>
     <script src="../js/netlify-identity-flow.js?v=20260701-recovery-flow" defer></script>
-    <script src="cms-login.js?v=20260701-identity-fix" defer></script>
+    <script src="cms-login.js?v=20260701-small-ui" defer></script>
   </head>
   <body class="admin-page admin-protected admin-cms-page">
     <div class="admin-auth-loading" role="status" aria-live="polite">Checking admin session...</div>
@@ -39,7 +39,7 @@
         </div>
       </header>
 
-      <section class="admin-section admin-cms-guidance" aria-labelledby="cms-sign-in-title">
+      <section class="admin-section admin-cms-guidance" data-cms-login-notice aria-labelledby="cms-sign-in-title">
         <div class="admin-section-heading">
           <div>
             <p class="admin-eyebrow">Content editor access</p>

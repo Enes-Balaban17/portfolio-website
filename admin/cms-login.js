@@ -31,6 +31,10 @@
     return "Netlify Identity login failed: " + message;
   }
 
+  function setEditorAuthenticated(authenticated) {
+    document.body.classList.toggle("cms-editor-authenticated", Boolean(authenticated));
+  }
+
   function openIdentityLogin() {
     if (!window.netlifyIdentity) {
       setStatus("Netlify Identity widget did not load.", "error");
@@ -63,10 +67,21 @@
         return;
       }
 
+      setEditorAuthenticated(window.netlifyIdentity.currentUser());
+
+      window.netlifyIdentity.on("init", function (user) {
+        setEditorAuthenticated(user);
+      });
+
       window.netlifyIdentity.on("login", function () {
+        setEditorAuthenticated(true);
         window.netlifyIdentity.close();
         setStatus("Netlify Identity login succeeded. Reloading Decap CMS...", "success");
         window.location.reload();
+      });
+
+      window.netlifyIdentity.on("logout", function () {
+        setEditorAuthenticated(false);
       });
 
       window.netlifyIdentity.on("error", function (error) {
@@ -104,6 +119,7 @@
     script.async = true;
     script.addEventListener("load", function () {
       if (isLocal) {
+        setEditorAuthenticated(true);
         setStatus("Decap CMS loaded through the local proxy.", "success");
       } else if (identityReady) {
         setStatus("Decap CMS loaded. Sign in with the invited Netlify Identity account.", "success");
