@@ -452,6 +452,23 @@ input:focus-visible {
   color: var(--admin-accent);
 }
 
+.admin-status[data-state="loading"] {
+  color: var(--admin-muted);
+}
+
+.admin-cms-guidance {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+}
+
+.admin-cms-guidance > p {
+  max-width: 760px;
+}
+
+.admin-cms-guidance .admin-status {
+  margin: 0.9rem 0 0;
+}
+
 .admin-footnote {
   margin: 1rem 0 0;
   font-size: 0.9rem;
