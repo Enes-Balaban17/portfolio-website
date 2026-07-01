@@ -1,56 +1,43 @@
 {
   "items": [
     {
-      "title": "Computer Programming",
-      "organization": "Ege University",
-      "type": "Associate Degree",
-      "date_range": "2024 - 2026",
-      "description": "Associate Degree in Computer Programming.",
+      "body": "",
+      "certificate_url": "",
+      "certificate_pdf": "",
       "logo": "assets/images/certificates/ege-university-logo.png",
+      "date_range": "2024 - 2026",
+      "organization": "Ege University",
       "logo_upload": "",
+      "title": "Computer Programming",
+      "type": "Associate Degree",
       "certificate_action_type": "none",
-      "certificate_url": "",
-      "certificate_pdf": "",
-      "body": ""
+      "description": "Associate Degree in Computer Programming."
     },
     {
-      "title": "Artificial Intelligence Module",
-      "organization": "Data Analysis School",
-      "type": "Completed Education",
-      "date_range": "2025 - 2026",
-      "description": "Free online training program carried out under the auspices of the Council of Higher Education, coordinated by Marmara University Population and Social Research Institute, with contributions from METU, ITU, and Bogazici University. The program focuses on combining theoretical knowledge and practical skills in data analysis, statistics, and artificial intelligence.",
+      "body": "",
+      "certificate_url": "",
+      "certificate_pdf": "",
       "logo": "assets/images/certificates/data-analysis-ai-logo.png",
+      "date_range": "2025 - 2026",
+      "organization": "Data Analysis School",
       "logo_upload": "",
+      "title": "Artificial Intelligence Module",
+      "type": "Completed Education",
       "certificate_action_type": "none",
-      "certificate_url": "",
-      "certificate_pdf": "",
-      "body": ""
+      "description": "Free online training program carried out under the auspices of the Council of Higher Education, coordinated by Marmara University Population and Social Research Institute, with contributions from METU, ITU, and Bogazici University. The program focuses on combining theoretical knowledge and practical skills in data analysis, statistics, and artificial intelligence."
     },
     {
-      "title": "Industry-Oriented Undergraduate Graduation Projects Conference",
-      "organization": "TUSAS LIFT UP",
-      "type": "Certificate of Participation",
-      "date_range": "2024 - 2025",
-      "description": "Certificate of Participation.",
+      "body": "",
+      "certificate_url": "",
+      "certificate_pdf": "",
       "logo": "assets/images/certificates/tusas-lift-up-logo.png",
+      "date_range": "2024 - 2025",
+      "organization": "TUSAS LIFT UP",
       "logo_upload": "",
+      "title": "Industry-Oriented Undergraduate Graduation Projects Conference",
+      "type": "Certificate of Participation",
       "certificate_action_type": "none",
-      "certificate_url": "",
-      "certificate_pdf": "",
-      "body": ""
-    },
-    {
-      "title": "Test Certificate",
-      "organization": "Test Universty",
-      "type": "Test Degree",
-      "date_range": "2012 - 2015",
-      "description": "its a test",
-      "logo": "",
-      "logo_upload": "assets/uploads/certificates/logo_of_metu.svg.png",
-      "certificate_action_type": "link",
-      "certificate_url": "https://puginarug.com/",
-      "certificate_pdf": "",
-      "body": ""
+      "description": "Certificate of Participation."
     }
   ]
 }
