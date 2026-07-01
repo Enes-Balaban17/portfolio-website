@@ -16,8 +16,8 @@
       "title": "Hello this a test",
       "slug": "hello-this-is-a-test",
       "date": "2026-06-26",
-      "featured": false,
-      "featured_order": 0,
+      "featured": true,
+      "featured_order": 2,
       "tags": [
         "hi",
         "mi",
