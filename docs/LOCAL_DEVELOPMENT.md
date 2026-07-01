@@ -1,70 +1,52 @@
 # Local Development
 
-This is the canonical local workflow for the static portfolio. Feature-specific documents link here instead of repeating the full setup.
+The portfolio is a static website. It does not require a build step, but it must be served over HTTP because the public pages fetch JSON content.
 
 ## Prerequisites
 
 - Git
 - Node.js 20 or newer
 - Python 3
-- Supabase CLI only for local Edge Function work
 
-The public website has no build step. Node.js is used for repository checks and the optional Decap local proxy.
-
-## Initial Setup
+## Setup
 
 ```bash
 git clone https://github.com/Enes-Balaban17/portfolio-website.git
 cd portfolio-website
 npm install
-```
-
-Run the repository checks before starting work:
-
-```bash
 npm run check
 ```
 
-## Public Site Preview
-
-From the repository root:
+## Preview the Public Site
 
 ```bash
 python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Open:
+Open `http://127.0.0.1:8080/`.
 
-```txt
-http://127.0.0.1:8080/
-```
+Opening pages through `file://` is unsupported because browsers commonly block local `fetch()` requests.
 
-Use an HTTP server rather than opening HTML through `file://`. Notes, projects, certificates, illustrations, and minigames use `fetch()` to load repository JSON, and browsers commonly block those requests from local files.
+## Edit Content Locally
 
-## Decap CMS Preview
-
-Keep the static server running. Start the Decap local backend in a second terminal:
+Keep the static server running. In a second terminal, run:
 
 ```bash
 npx decap-server
 ```
 
-Then open:
+Open `http://127.0.0.1:8080/admin/cms.html`. The local proxy writes changes to `content/` and `assets/uploads/`; it does not create commits.
 
-```txt
-http://127.0.0.1:8080/admin/login.html
-http://127.0.0.1:8080/admin/cms.html
+After editing:
+
+```bash
+git diff
+npm run check
 ```
 
-The Supabase admin guard and Decap content authentication are separate layers. The local Decap proxy writes changes to repository files; it does not commit or push them.
+Preview the affected public page before committing. Uploaded files are public once pushed.
 
-## Supabase Development
-
-The public site can be previewed without running Supabase locally. Contact submission and protected message operations require either the configured remote project or a local Supabase stack.
-
-Configuration names are documented in `.env.example`. Store privileged values through Supabase CLI secrets or an untracked local environment file. See `SUPABASE_SETUP.md` for Edge Function commands and `SUPABASE_ADMIN_AUTH_SETUP.md` for RLS requirements.
-
-## Validation Commands
+## Validation
 
 ```bash
 npm run validate:content
@@ -73,11 +55,9 @@ npm run check:media
 npm run check
 ```
 
-Run the combined check before committing. Also manually test theme switching, responsive layouts, contact modal validation, admin login, CMS editing, and message authorization when those areas change.
-
 ## Troubleshooting
 
-- JSON content missing on a page: confirm the page is served over HTTP and inspect the browser Network panel.
-- CMS redirects to Netlify locally: confirm `npx decap-server` is running and `local_backend: true` remains configured.
-- Admin page redirects to login: confirm the Supabase Auth session and allowed admin account.
-- Message queries fail: inspect RLS policies before changing browser code.
+- **Content does not load:** confirm the page is served over HTTP and inspect the browser Network panel.
+- **CMS requests a production login locally:** confirm `npx decap-server` is running and `local_backend: true` remains in `admin/config.yml`.
+- **Admin pages redirect to login:** protected pages require a configured Supabase Auth session.
+- **Contact submission fails locally:** the public pages still load, but submission requires the configured remote service and an allowed local origin.

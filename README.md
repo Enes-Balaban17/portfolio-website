@@ -1,84 +1,73 @@
-# Enes Balaban — Portfolio Website
+# Enes Balaban - Portfolio Website
 
-A CMS-driven personal portfolio for sharing software projects, development notes, certificates, illustrations, minigames, and ongoing experiments. The site is built with plain HTML, CSS, and JavaScript so it stays fast, portable, and easy to maintain.
+A lightweight personal portfolio for software projects, technical notes, certificates, illustrations, and small game experiments. The public site uses plain HTML, CSS, and JavaScript and is deployed directly from this repository.
 
-![Static Site](https://img.shields.io/badge/Static%20Site-HTML%20%2B%20CSS%20%2B%20JS-d33682)
-![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-f7df1e?logo=javascript&logoColor=111111)
-![CMS Driven](https://img.shields.io/badge/Content-CMS%20Driven-6c63ff)
-![Portfolio](https://img.shields.io/badge/Project-Developer%20Portfolio-1f6feb)
-![Status](https://img.shields.io/badge/Status-In%20Progress-f08c46)
+**Live site:** [enesbalaban.dev](https://enesbalaban.dev/)
 
-## Preview
+## V1 Status
 
-Screenshots will be added after the final visual pass.
-
-## Overview
-
-This repository is the working home of my personal developer website. It brings together project archives, short technical notes, completed education and certificates, visual work, small game experiments, a web resume, and contact options in one responsive interface.
-
-## Features
-
-- [x] Static HTML, CSS, and JavaScript structure
-- [x] Responsive dark and light interface
-- [x] CMS-managed projects
-- [x] CMS-managed notes and note details
-- [x] CMS-managed certificates
-- [x] CMS-managed illustrations
-- [x] CMS-managed minigames
+- [x] Public portfolio deployed
+- [x] Custom domain connected
+- [x] Static HTML, CSS, and JavaScript frontend
+- [x] Responsive light and dark interface
+- [x] CMS-backed Projects content
+- [x] CMS-backed Notes content and note details
+- [x] CMS-backed Certificates content
+- [x] CMS-backed Illustrations content
+- [x] CMS-backed Minigames content
+- [x] Resume page and downloadable CV
 - [x] Contact message modal
-- [x] Protected admin area foundation
-- [x] Local content, media, and secret-pattern checks
-- [ ] Final production deployment
-- [ ] Final screenshot gallery
-- [ ] Accessibility pass
-- [ ] Performance pass
+- [x] Local Decap CMS workflow
+- [x] Netlify production deployment
+- [x] Repository content, media, and secret checks
+- [x] V1 release cleanup
 
-## Project Progress
+## Architecture
 
-| Area | Status | Notes |
-| --- | --- | --- |
-| Public pages | Stable locally | Home, About, Projects, Notes, Resume, Illustrations, and Minigames |
-| CMS content | Stable locally | Public content is loaded from repository-managed JSON files |
-| Admin dashboard | In progress | Authentication and content-management workflow require production configuration |
-| Contact flow | Testing | Managed submission flow is implemented; production settings still need verification |
-| Security review | Reviewed | Defensive repository checks and a release checklist are in place |
-| Deployment | Pending | Final hosting and production integration checks remain |
-
-## Tech Stack
-
-| Layer | Tools |
-| --- | --- |
-| Frontend | HTML, CSS, vanilla JavaScript |
-| Content | JSON content files and a CMS editing workflow |
-| Admin | Static admin UI with authenticated data access |
-| Validation | Lightweight Node.js scripts |
-| Hosting target | Static hosting |
-
-## Repository Structure
+The website is served as static files with no frontend build step.
 
 ```txt
-portfolio-website/
-├── admin/                  # Admin and CMS entry pages
-├── assets/                 # Icons, images, uploads, and CV assets
-├── content/                # Public CMS-managed JSON content
-├── css/                    # Global styles
-├── docs/                   # Design, setup, and maintenance notes
-├── js/                     # Public site behavior and content renderers
-├── scripts/                # Local validation and repository checks
-├── supabase/               # Managed backend function source and local config
-├── index.html
-├── about.html
-├── projects.html
-├── notes.html
-├── note.html
-├── resume.html
-├── illustrations.html
-├── minigames.html
-├── package.json
-└── README.md
+Browser
+  |-- HTML pages and css/style.css
+  |-- js/main.js
+  |-- content/*/*.json
+  |-- public assets
+  |-- Supabase Edge Function (contact submission)
+  `-- protected admin pages (Supabase Auth and RLS)
+```
+
+Public content is stored in JSON files under `content/`. Decap CMS provides a local editing interface for those files. Contact submissions are sent to a Supabase Edge Function; private message access remains behind Supabase authentication and database policies.
+
+## Key Features
+
+- Responsive sidebar and compact mobile navigation
+- Persistent light and dark themes
+- Repository-managed projects, notes, certificates, illustrations, and minigames
+- Featured projects and notes on the homepage
+- Safe content rendering with controlled empty and error states
+- Accessible contact modal with validation and keyboard controls
+- Lightweight repository checks with no application framework
+
+## Repository Layout
+
+```txt
+admin/       protected admin and local CMS pages
+assets/      public images, icons, uploads, and CV files
+content/     CMS-managed JSON collections
+css/         shared public styles
+docs/        public maintenance documentation
+js/          public site behavior and renderers
+scripts/     content, media, and secret checks
+supabase/    contact Edge Function source and local config
 ```
 
 ## Local Development
+
+Requirements:
+
+- Git
+- Node.js 20 or newer
+- Python 3
 
 ```bash
 git clone https://github.com/Enes-Balaban17/portfolio-website.git
@@ -87,33 +76,21 @@ npm install
 python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Open:
+Open `http://127.0.0.1:8080/`. Do not use `file://`; JSON-backed pages require an HTTP server.
 
-```txt
-http://127.0.0.1:8080/
-```
+See [Local Development](docs/LOCAL_DEVELOPMENT.md) for the CMS workflow and troubleshooting.
 
-Do not open the pages through `file://`. JSON-backed pages require a local HTTP server.
+## Content Management
 
-For additional local notes, see [Local Development](docs/LOCAL_DEVELOPMENT.md).
-
-## CMS Local Editing
-
-Start the local CMS proxy in a separate terminal:
+Start the local Decap proxy in a second terminal:
 
 ```bash
 npx decap-server
 ```
 
-Then open:
+Then open `http://127.0.0.1:8080/admin/cms.html`. CMS saves modify repository files; they do not commit or push changes automatically. Review the diff and run validation before publishing.
 
-```txt
-http://127.0.0.1:8080/admin/cms.html
-```
-
-Local CMS edits modify repository files. Review the resulting Git diff before committing, and remember that uploaded files become public when they are committed.
-
-The public content fields are documented in [CMS Content Model](docs/CMS_CONTENT_MODEL.md).
+Collection fields and media rules are documented in [CMS Content Model](docs/CMS_CONTENT_MODEL.md).
 
 ## Validation
 
@@ -124,65 +101,45 @@ npm run check:media
 npm run check
 ```
 
-- `validate:content` checks CMS JSON structure and required fields.
-- `scan:secrets` checks common privileged credential patterns.
-- `check:media` verifies local content and media references.
+- `validate:content` checks collection structure and required fields.
+- `scan:secrets` detects common privileged credential patterns.
+- `check:media` verifies local page and content references.
 - `check` runs the complete validation sequence.
 
-These lightweight checks support review but do not replace a full security, accessibility, or browser audit.
+These checks support review; they do not replace browser, accessibility, or production security testing.
 
-## Security Notes
+## Deployment
 
-- Never commit private keys, credentials, or local environment files.
-- Review CMS content and uploaded files before deployment; committed content is public.
-- Contact and admin features depend on provider-side authentication and access rules.
-- Production configuration must be verified before release.
-- Do not commit exported messages, private submissions, database dumps, or diagnostic files containing personal data.
+Netlify publishes the repository root from `main`; no build command is required. A release should pass `npm run check`, be reviewed through a pull request, and be smoke-tested on the production domain.
 
-Use the [Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md) before publishing a release.
+Use the [Deployment Checklist](docs/DEPLOYMENT_CHECKLIST.md) before tagging a release.
 
-## Roadmap
+## Security
 
-### Completed
+- Never commit environment files, private keys, exported messages, or database credentials.
+- Browser-visible Supabase publishable keys identify the project but do not grant privileged access.
+- Private contact data depends on Supabase Auth and Row Level Security, not hidden HTML.
+- CMS content and uploads become public when committed.
 
-- [x] Static page structure and sidebar navigation
-- [x] Theme support
-- [x] CMS-rendered projects, notes, certificates, illustrations, and minigames
-- [x] Contact message modal
-- [x] Admin interface foundation
-- [x] Local validation scripts
+See [Security](docs/SECURITY.md) for the public security boundary and reporting guidance.
 
-### In Progress
+## Contribution Guidelines
 
-- [ ] Final visual polish
-- [ ] Screenshot gallery
-- [ ] Accessibility review
-- [ ] Responsive QA
-- [ ] Content cleanup
-- [ ] Production deployment setup
+1. Create a focused branch from `main`.
+2. Keep the site framework-free unless the architecture is intentionally reconsidered.
+3. Review content and uploaded media for private data.
+4. Run `npm run check` and preview affected pages.
+5. Use a clear Conventional Commit message and open a pull request.
 
-### Planned
+## Next Improvements
 
-- [ ] More project case studies
-- [ ] More technical notes
-- [ ] Better illustration gallery filtering
-- [ ] Minigame experiments
-- [ ] Performance audit
-
-## Git Workflow
-
-- Work on focused feature branches.
-- Use Conventional Commits.
-- Run `npm run check` before pushing.
-- Keep secrets and generated local files out of commits.
-
-```bash
-git checkout -b feature/readme-refresh
-npm run check
-git add README.md
-git commit -m "docs: refresh public repository readme"
-```
+- [ ] Add more project case studies
+- [ ] Add more screenshots and demo media
+- [ ] Complete a dedicated accessibility review
+- [ ] Complete a production performance pass
+- [ ] Publish more technical notes
+- [ ] Add more minigame experiments
 
 ## License
 
-This project is available under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE).

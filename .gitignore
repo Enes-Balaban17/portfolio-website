@@ -7,6 +7,11 @@ Desktop.ini
 .idea/
 .vscode/
 *.code-workspace
+.local/
+.agents/
+skills-lock.json
+handoff/
+*.local.md
 
 # Logs and local diagnostics
 *.log
