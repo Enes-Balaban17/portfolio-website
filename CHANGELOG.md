@@ -2,6 +2,19 @@
 
 Notable changes to the portfolio are recorded here.
 
+## [1.1.0] - 2026-07-02
+
+### Fixed
+
+- Aligned the homepage Notes and Projects previews consistently on phone-sized screens.
+- Added safe-area spacing so homepage actions remain reachable above mobile browser controls.
+
+### Added
+
+- Added canonical, social sharing, author, and crawler metadata to public pages.
+- Added `robots.txt`, `sitemap.xml`, and structured data for the portfolio owner and website.
+- Added dynamic SEO metadata for CMS-rendered note detail pages.
+
 ## [1.0.0] - 2026-07-01
 
 ### Added
