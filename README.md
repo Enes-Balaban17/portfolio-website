@@ -4,7 +4,7 @@ A lightweight personal portfolio for software projects, technical notes, certifi
 
 **Live site:** [enesbalaban.dev](https://enesbalaban.dev/)
 
-**Current release:** `v1.1.0`
+**Current release:** `v1.1.1`
 
 ## V1 Status
 
@@ -22,6 +22,8 @@ A lightweight personal portfolio for software projects, technical notes, certifi
 - [x] Local Decap CMS workflow
 - [x] Netlify production deployment
 - [x] Repository content, media, and secret checks
+- [x] Page-specific SEO, social metadata, sitemap, and crawler controls
+- [x] Automated SEO validation
 - [x] V1 release cleanup
 
 ## Architecture
