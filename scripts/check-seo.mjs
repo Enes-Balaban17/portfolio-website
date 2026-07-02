@@ -4,6 +4,10 @@ import { fileURLToPath } from "node:url";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const siteOrigin = "https://enesbalaban.dev";
+const gtmContainerId = "GTM-NV8G86KK";
+const ga4MeasurementId = "G-H30CXY75SF";
+const googleVerificationToken = "NhDQuZafU-BxAUIGExI_Qlv00l7CyfhJtklUOzJVZIc";
+const googleVerificationFilename = "google9caad667b8f95174.html";
 const publicPages = [
   "index.html",
   "about.html",
@@ -31,6 +35,10 @@ function report(page, message) {
   errors.push(`${page}: ${message}`);
 }
 
+function occurrenceCount(source, value) {
+  return source.split(value).length - 1;
+}
+
 function validateSocialImage(page, imageUrl) {
   if (!imageUrl.startsWith(`${siteOrigin}/`)) {
     report(page, "og:image must use the production domain.");
@@ -53,6 +61,10 @@ for (const page of publicPages) {
   const ogUrl = capture(html, /<meta\s+property="og:url"\s+content="([^"]+)"/i);
   const ogImage = capture(html, /<meta\s+property="og:image"\s+content="([^"]+)"/i);
   const twitterCard = capture(html, /<meta\s+name="twitter:card"\s+content="([^"]+)"/i);
+  const gtmScriptUrl = "googletagmanager.com/gtm.js";
+  const gtmNoScriptUrl = `googletagmanager.com/ns.html?id=${gtmContainerId}`;
+  const ga4ScriptUrl = `googletagmanager.com/gtag/js?id=${ga4MeasurementId}`;
+  const ga4Config = `gtag('config', '${ga4MeasurementId}')`;
 
   if (/<meta\s+name="keywords"/i.test(html)) report(page, "meta keywords must not be used.");
   if (!title) report(page, "missing title.");
@@ -64,6 +76,13 @@ for (const page of publicPages) {
   if (!ogImage) report(page, "missing og:image.");
   if (twitterCard !== "summary_large_image") report(page, "twitter:card must be summary_large_image.");
   if (ogImage) validateSocialImage(page, ogImage);
+  if (occurrenceCount(html, gtmScriptUrl) !== 1) report(page, "must include one GTM head script.");
+  if (occurrenceCount(html, gtmNoScriptUrl) !== 1) report(page, "must include one GTM noscript iframe.");
+  if (!new RegExp(`<body[^>]*>\\s*<!-- Google Tag Manager \\(noscript\\) -->`, "i").test(html)) {
+    report(page, "GTM noscript block must immediately follow the opening body tag.");
+  }
+  if (occurrenceCount(html, ga4ScriptUrl) !== 1) report(page, "must include one GA4 loader script.");
+  if (occurrenceCount(html, ga4Config) !== 1) report(page, "must include one GA4 config call.");
 
   if (title) {
     if (titles.has(title)) report(page, `title duplicates ${titles.get(title)}.`);
@@ -76,6 +95,13 @@ for (const page of publicPages) {
 }
 
 const homeHtml = read("index.html");
+const googleVerificationMeta = `<meta name="google-site-verification" content="${googleVerificationToken}">`;
+if (occurrenceCount(homeHtml, googleVerificationMeta) !== 1) {
+  errors.push("index.html must include one Google site verification meta tag.");
+}
+if (!existsSync(resolve(repositoryRoot, googleVerificationFilename))) {
+  errors.push(`${googleVerificationFilename} is missing from the repository root.`);
+}
 const structuredDataSource = capture(homeHtml, /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/i);
 try {
   const structuredData = JSON.parse(structuredDataSource);
@@ -93,6 +119,9 @@ for (const filename of adminPages) {
   const robots = capture(html, /<meta\s+name="robots"\s+content="([^"]+)"/i).toLowerCase();
   if (!robots.includes("noindex") || !robots.includes("nofollow")) {
     report(page, "must include noindex, nofollow.");
+  }
+  if (/GTM-NV8G86KK|G-H30CXY75SF|googletagmanager\.com\/(?:gtm|gtag|ns)/i.test(html)) {
+    report(page, "must not include public GTM or GA4 tracking.");
   }
 }
 

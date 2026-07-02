@@ -33,6 +33,14 @@ The public site uses page-specific titles, descriptions, canonical URLs, Open Gr
 - Keep admin pages out of the sitemap and protected with `noindex, nofollow`.
 - Replace the current mascot-based social image with a purpose-designed 1200x630 image in a future visual asset pass.
 
+## Analytics and Tag Management
+
+- Google Tag Manager container: `GTM-NV8G86KK`.
+- Google Analytics 4 measurement ID: `G-H30CXY75SF`.
+- Public pages load GTM and GA4; admin pages intentionally load neither.
+- If GA4 is configured inside the GTM container with the same measurement ID, disable one pageview source to avoid duplicate analytics events.
+- Verify the published tags with Google Tag Assistant and confirm visits in the GA4 Realtime report after deployment.
+
 ## Reference Documentation
 
 - [Google Search title guidance](https://developers.google.com/search/docs/appearance/title-link)
