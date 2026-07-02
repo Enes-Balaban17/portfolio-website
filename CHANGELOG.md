@@ -2,6 +2,18 @@
 
 Notable changes to the portfolio are recorded here.
 
+## [1.1.1] - 2026-07-02
+
+### Fixed
+
+- Corrected the Projects favicon colors for the saved light and dark site themes.
+- Tightened the phone-only alignment of homepage Notes and Projects previews.
+
+### Added
+
+- Added a stable social preview image and expanded page-specific search and social metadata.
+- Added an automated SEO validation script, Search Console checklist, sitemap priorities, and admin crawler headers.
+
 ## [1.1.0] - 2026-07-02
 
 ### Fixed

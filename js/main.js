@@ -760,6 +760,7 @@
       headline: noteEntry.title,
       description: description,
       datePublished: noteEntry.date || undefined,
+      image: "https://enesbalaban.dev/assets/images/social/og-image.png",
       mainEntityOfPage: canonicalUrl,
       author: {
         "@type": "Person",
