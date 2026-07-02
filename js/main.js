@@ -726,9 +726,53 @@
     ].join("");
   }
 
-  function renderNoteDetail(container, noteEntry) {
+  function setMetaContent(selector, value) {
+    var metaElement = document.querySelector(selector);
+    if (metaElement) {
+      metaElement.setAttribute("content", value);
+    }
+  }
+
+  function updateNoteMetadata(noteEntry, requestedSlug) {
+    var pageTitle = noteEntry.title + " | Enes Balaban";
+    var descriptionSource = noteEntry.summary || noteEntry.body || "Read a software development note by Enes Balaban.";
+    var description = String(descriptionSource).replace(/\s+/g, " ").trim().slice(0, 160);
+    var canonicalUrl = "https://enesbalaban.dev/note.html?slug=" + encodeURIComponent(requestedSlug);
+    var canonicalLink = document.querySelector('link[rel="canonical"]');
+
+    document.title = pageTitle;
+    if (canonicalLink) {
+      canonicalLink.setAttribute("href", canonicalUrl);
+    }
+
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:title"]', pageTitle);
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[property="og:url"]', canonicalUrl);
+    setMetaContent('meta[name="twitter:title"]', pageTitle);
+    setMetaContent('meta[name="twitter:description"]', description);
+
+    var structuredData = document.createElement("script");
+    structuredData.type = "application/ld+json";
+    structuredData.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: noteEntry.title,
+      description: description,
+      datePublished: noteEntry.date || undefined,
+      mainEntityOfPage: canonicalUrl,
+      author: {
+        "@type": "Person",
+        name: "Enes Balaban",
+        url: "https://enesbalaban.dev/"
+      }
+    });
+    document.head.appendChild(structuredData);
+  }
+
+  function renderNoteDetail(container, noteEntry, requestedSlug) {
     var tags = renderLabels(noteEntry.tags, "tag");
-    document.title = noteEntry.title + " | Enes Balaban";
+    updateNoteMetadata(noteEntry, requestedSlug);
     container.innerHTML = [
       '<article class="note-detail">',
       '  <a class="note-back-link" href="notes.html">Back to Notes</a>',
@@ -767,7 +811,7 @@
           return;
         }
 
-        renderNoteDetail(container, matchingNote);
+        renderNoteDetail(container, matchingNote, requestedSlug);
       })
       .catch(function (error) {
         console.error("Note loading failed for " + source + ":", error);

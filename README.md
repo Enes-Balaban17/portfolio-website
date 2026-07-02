@@ -4,6 +4,8 @@ A lightweight personal portfolio for software projects, technical notes, certifi
 
 **Live site:** [enesbalaban.dev](https://enesbalaban.dev/)
 
+**Current release:** `v1.1.0`
+
 ## V1 Status
 
 - [x] Public portfolio deployed
