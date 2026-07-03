@@ -24,6 +24,22 @@ The public site uses page-specific titles, descriptions, canonical URLs, Open Gr
 - Keep GitHub and LinkedIn links current on the portfolio.
 - Continue publishing useful projects and development notes over time.
 
+## Google Search Favicon
+
+- The production hostname serves stable root assets at `/favicon.ico`, `/favicon-48x48.png`, `/favicon-192x192.png`, and `/apple-touch-icon.png`.
+- Keep these paths stable. Replace the files in place when updating the brand icon instead of adding timestamped favicon URLs.
+- Keep the favicon square, recognizable at small sizes, and accessible to crawlers through `robots.txt`.
+- After a favicon update, inspect `https://enesbalaban.dev/` in Search Console and request indexing. Google may need time to recrawl the homepage before the search result icon changes.
+
+## Sitelinks Eligibility
+
+- Google generates sitelinks automatically; the site cannot force or submit them directly.
+- Keep page titles and primary headings concise and distinct.
+- Preserve the homepage `Explore the site` links and inner-page section navigation so important pages remain reachable through plain HTML links.
+- Keep canonical URLs and sitemap entries aligned with the public routes.
+- Use URL Inspection for the homepage and important section pages after navigation or metadata changes.
+- Review search results over time rather than repeatedly changing titles solely to trigger sitelinks.
+
 ## Maintenance
 
 - Run `npm run check:seo` after changing public page heads or routes.
@@ -47,3 +63,5 @@ The public site uses page-specific titles, descriptions, canonical URLs, Open Gr
 - [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
 - [Google structured data introduction](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
 - [Google favicon guidance](https://developers.google.com/search/docs/appearance/favicon-in-search)
+- [Google sitelinks guidance](https://developers.google.com/search/docs/appearance/sitelinks)
+- [Google breadcrumb structured data](https://developers.google.com/search/docs/appearance/structured-data/breadcrumb)

@@ -22,6 +22,14 @@ const adminPages = ["cms.html", "index.html", "login.html", "messages.html", "ne
 const errors = [];
 const titles = new Map();
 const canonicalUrls = new Map();
+const rootFaviconPaths = ["/favicon.ico", "/favicon-48x48.png", "/favicon-192x192.png", "/apple-touch-icon.png"];
+const expectedTitles = new Map([
+  ["about.html", "About Me | Enes Balaban"],
+  ["projects.html", "Projects | Enes Balaban"],
+  ["notes.html", "Notes | Enes Balaban"],
+  ["illustrations.html", "Illustrations | Enes Balaban"],
+  ["minigames.html", "Minigames | Enes Balaban"]
+]);
 
 function read(relativePath) {
   return readFileSync(resolve(repositoryRoot, relativePath), "utf8");
@@ -37,6 +45,21 @@ function report(page, message) {
 
 function occurrenceCount(source, value) {
   return source.split(value).length - 1;
+}
+
+function structuredDataBlocks(page, html) {
+  const blocks = [];
+  const pattern = /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi;
+
+  for (const match of html.matchAll(pattern)) {
+    try {
+      blocks.push(JSON.parse(match[1]));
+    } catch (error) {
+      report(page, `contains invalid JSON-LD: ${error.message}`);
+    }
+  }
+
+  return blocks;
 }
 
 function validateSocialImage(page, imageUrl) {
@@ -83,6 +106,12 @@ for (const page of publicPages) {
   }
   if (occurrenceCount(html, ga4ScriptUrl) !== 1) report(page, "must include one GA4 loader script.");
   if (occurrenceCount(html, ga4Config) !== 1) report(page, "must include one GA4 config call.");
+  rootFaviconPaths.forEach((faviconPath) => {
+    if (!html.includes(`href="${faviconPath}"`)) report(page, `missing stable favicon link ${faviconPath}.`);
+  });
+  if (expectedTitles.has(page) && title !== expectedTitles.get(page)) {
+    report(page, `title must be "${expectedTitles.get(page)}".`);
+  }
 
   if (title) {
     if (titles.has(title)) report(page, `title duplicates ${titles.get(title)}.`);
@@ -102,16 +131,30 @@ if (occurrenceCount(homeHtml, googleVerificationMeta) !== 1) {
 if (!existsSync(resolve(repositoryRoot, googleVerificationFilename))) {
   errors.push(`${googleVerificationFilename} is missing from the repository root.`);
 }
-const structuredDataSource = capture(homeHtml, /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/i);
-try {
-  const structuredData = JSON.parse(structuredDataSource);
-  const graphTypes = new Set((structuredData["@graph"] || []).map((entry) => entry["@type"]));
-  ["Person", "WebSite", "WebPage"].forEach((type) => {
-    if (!graphTypes.has(type)) errors.push(`index.html structured data is missing ${type}.`);
-  });
-} catch (error) {
-  errors.push(`index.html contains invalid JSON-LD: ${error.message}`);
-}
+rootFaviconPaths.forEach((faviconPath) => {
+  const localPath = faviconPath.replace(/^\//, "");
+  if (!existsSync(resolve(repositoryRoot, localPath))) errors.push(`${localPath} is missing from the repository root.`);
+});
+
+const homeStructuredData = structuredDataBlocks("index.html", homeHtml);
+const homeGraphEntries = homeStructuredData.flatMap((entry) => entry["@graph"] || [entry]);
+const homeGraphTypes = new Set(homeGraphEntries.map((entry) => entry["@type"]));
+["Person", "WebSite", "WebPage", "ItemList"].forEach((type) => {
+  if (!homeGraphTypes.has(type)) errors.push(`index.html structured data is missing ${type}.`);
+});
+
+const sectionPaths = ["about.html", "notes.html", "projects.html", "illustrations.html", "minigames.html"];
+sectionPaths.forEach((sectionPath) => {
+  if (!homeHtml.includes(`href="${sectionPath}"`)) {
+    errors.push(`index.html is missing a crawlable link to ${sectionPath}.`);
+  }
+
+  const sectionHtml = read(sectionPath);
+  const sectionData = structuredDataBlocks(sectionPath, sectionHtml);
+  if (!sectionData.some((entry) => entry["@type"] === "BreadcrumbList")) {
+    report(sectionPath, "structured data is missing BreadcrumbList.");
+  }
+});
 
 for (const filename of adminPages) {
   const page = `admin/${filename}`;
@@ -134,6 +177,9 @@ if (existsSync(robotsPath)) {
   const robots = read("robots.txt");
   if (!robots.includes(`Sitemap: ${siteOrigin}/sitemap.xml`)) {
     errors.push("robots.txt does not reference the production sitemap.");
+  }
+  if (/Disallow:\s*\/(?:favicon|assets)/i.test(robots)) {
+    errors.push("robots.txt must not block favicon or asset crawling.");
   }
 }
 
