@@ -37,9 +37,23 @@
     <meta name="twitter:image" content="https://enesbalaban.dev/assets/images/social/og-image.png">
     <title>Notes | Enes Balaban</title>
     <link rel="canonical" href="https://enesbalaban.dev/notes.html">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="assets/icons/favicons/notes-icon.png">
     <link rel="stylesheet" href="css/style.css?v=20260702-seo">
     <script src="js/main.js?v=20260702-seo" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://enesbalaban.dev/"},
+          {"@type": "ListItem", "position": 2, "name": "Notes", "item": "https://enesbalaban.dev/notes.html"}
+        ]
+      }
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -112,6 +126,13 @@
           </div>
         </div>
         <p class="no-results" data-no-results hidden>No notes match your search.</p>
+        <nav class="site-sections-nav" aria-label="Explore site sections">
+          <a href="about.html">About Me</a>
+          <a href="notes.html" aria-current="page">Notes</a>
+          <a href="projects.html">Projects</a>
+          <a href="illustrations.html">Illustrations</a>
+          <a href="minigames.html">Minigames</a>
+        </nav>
         <footer class="site-footer">
           <p>&copy; 2026 Enes Balaban</p>
         </footer>
