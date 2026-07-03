@@ -1888,6 +1888,16 @@ body,
     gap: 0.5rem;
   }
 
+  .main-content-home #home-notes-title,
+  .main-content-home #home-projects-title {
+    gap: 0;
+  }
+
+  .main-content-home #home-notes-title .section-icon,
+  .main-content-home #home-projects-title .section-icon {
+    display: none;
+  }
+
   .main-content-home .home-section-header h2,
   .main-content-home .home-section-link,
   .main-content-home .home-preview-list .archive-date,
