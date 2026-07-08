@@ -37,7 +37,54 @@
       : "light";
   }
 
+  function isProjectsPage() {
+    var pathname = window.location.pathname.replace(/\/$/, "");
+    return document.body.classList.contains("projects-page") ||
+      pathname.endsWith("/projects") ||
+      pathname.endsWith("/projects.html");
+  }
+
+  function getProjectsFaviconPath(theme) {
+    return theme === "light"
+      ? "/assets/icons/favicons/github_light_theme.svg"
+      : "/assets/icons/favicons/github_dark_theme.svg";
+  }
+
+  function updateProjectsFaviconForTheme(theme) {
+    if (!isProjectsPage()) {
+      return;
+    }
+
+    var normalizedTheme = theme === "light" ? "light" : "dark";
+    var version = normalizedTheme === "light" ? "projects-light-v2" : "projects-dark-v2";
+    var nextHref = getProjectsFaviconPath(normalizedTheme) + "?v=" + version;
+    var favicon = document.querySelector("#dynamic-page-favicon");
+
+    if (!favicon) {
+      favicon = document.createElement("link");
+      favicon.id = "dynamic-page-favicon";
+      favicon.rel = "icon";
+      favicon.type = "image/svg+xml";
+      document.head.appendChild(favicon);
+    }
+
+    document.querySelectorAll('link[rel~="icon"], link[rel="shortcut icon"]').forEach(function (iconLink) {
+      if (iconLink !== favicon) {
+        iconLink.parentNode.removeChild(iconLink);
+      }
+    });
+
+    favicon.rel = "icon";
+    favicon.type = "image/svg+xml";
+    favicon.setAttribute("href", nextHref);
+  }
+
   function updatePageFaviconForTheme(theme) {
+    if (isProjectsPage()) {
+      updateProjectsFaviconForTheme(theme);
+      return;
+    }
+
     var favicon = document.querySelector("[data-theme-favicon]");
     if (!favicon) {
       return;
