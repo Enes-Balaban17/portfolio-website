@@ -2,6 +2,21 @@
 
 Notable changes to the portfolio are recorded here.
 
+## [1.2.0] - 2026-07-08
+
+### Changed
+
+- Refined public repository documentation for human contributors.
+- Hardened ignored files and environment variable handling.
+- Removed public `.codex` repository artifacts.
+- Consolidated validation workflow coverage for cleaner pull request checks.
+- Updated the release metadata for `enesbalaban.dev v1.2`.
+
+### Security
+
+- Rechecked the repository for common secret patterns and private local files.
+- Clarified which configuration values are public browser settings and which belong only in server-side runtimes.
+
 ## [1.1.1] - 2026-07-02
 
 ### Fixed
