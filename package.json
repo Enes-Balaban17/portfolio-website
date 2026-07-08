@@ -1,6 +1,6 @@
 {
   "name": "enes-balaban-portfolio",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "private": true,
   "description": "Static personal portfolio with repository-managed content and Supabase-backed contact features.",
   "scripts": {

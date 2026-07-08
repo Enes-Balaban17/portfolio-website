@@ -4,7 +4,7 @@ A lightweight personal portfolio for software projects, technical notes, certifi
 
 **Live site:** [enesbalaban.dev](https://enesbalaban.dev/)
 
-**Current release:** `v1.1.1`
+**Current release:** `v1.2.0`
 
 ## V1 Status
 
@@ -25,6 +25,7 @@ A lightweight personal portfolio for software projects, technical notes, certifi
 - [x] Page-specific SEO, social metadata, sitemap, and crawler controls
 - [x] Automated SEO validation
 - [x] V1 release cleanup
+- [x] v1.2 repository cleanup and contributor documentation
 
 ## Architecture
 
@@ -42,6 +43,8 @@ Browser
 
 Public content is stored in JSON files under `content/`. Decap CMS provides a local editing interface for those files. Contact submissions are sent to a Supabase Edge Function; private message access remains behind Supabase authentication and database policies.
 
+This repository is intentionally framework-free. The public portfolio should stay readable as static files unless a future version deliberately changes the architecture.
+
 ## Key Features
 
 - Responsive sidebar and compact mobile navigation
@@ -51,6 +54,8 @@ Public content is stored in JSON files under `content/`. Decap CMS provides a lo
 - Safe content rendering with controlled empty and error states
 - Accessible contact modal with validation and keyboard controls
 - Lightweight repository checks with no application framework
+- Page-specific SEO metadata, sitemap, robots rules, and social preview data
+- Protected admin/message tooling separated from the public static pages
 
 ## Repository Layout
 
@@ -102,12 +107,14 @@ Collection fields and media rules are documented in [CMS Content Model](docs/CMS
 npm run validate:content
 npm run scan:secrets
 npm run check:media
+npm run check:seo
 npm run check
 ```
 
 - `validate:content` checks collection structure and required fields.
 - `scan:secrets` detects common privileged credential patterns.
 - `check:media` verifies local page and content references.
+- `check:seo` verifies public metadata, sitemap, crawler files, and social preview references.
 - `check` runs the complete validation sequence.
 
 These checks support review; they do not replace browser, accessibility, or production security testing.
@@ -129,20 +136,39 @@ See [Security](docs/SECURITY.md) for the public security boundary and reporting 
 
 ## Contribution Guidelines
 
+Start with [Contributing](docs/CONTRIBUTING.md). In short:
+
 1. Create a focused branch from `main`.
 2. Keep the site framework-free unless the architecture is intentionally reconsidered.
 3. Review content and uploaded media for private data.
 4. Run `npm run check` and preview affected pages.
 5. Use a clear Conventional Commit message and open a pull request.
 
-## Next Improvements
+## Release Process
 
-- [ ] Add more project case studies
-- [ ] Add more screenshots and demo media
-- [ ] Complete a dedicated accessibility review
-- [ ] Complete a production performance pass
-- [ ] Publish more technical notes
-- [ ] Add more minigame experiments
+Release steps are documented in [Release Process](docs/RELEASE_PROCESS.md). The short version is: validate locally, merge through a pull request, let Netlify deploy from `main`, smoke-test production, then tag the release.
+
+## Roadmap
+
+### V2
+
+- Spotify library integration
+- Music player support on the website
+- CMS-editable personal photo on the About Me page
+- Detailed project pages
+- Project demo screenshots and media previews
+
+### V3
+
+- Visitor comments
+- Personal AI assistant
+- More projects, notes, illustrations, and experiments
+
+### Ongoing Maintenance
+
+- Publish more technical notes and project case studies
+- Complete dedicated accessibility and performance passes
+- Expand minigame experiments without changing the static-site architecture
 
 ## License
 

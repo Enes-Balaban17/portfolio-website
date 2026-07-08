@@ -7,6 +7,7 @@ Desktop.ini
 .idea/
 .vscode/
 *.code-workspace
+.codex/
 .local/
 .agents/
 skills-lock.json
