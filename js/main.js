@@ -56,7 +56,7 @@
     }
 
     var normalizedTheme = theme === "light" ? "light" : "dark";
-    var version = normalizedTheme === "light" ? "projects-light-v2" : "projects-dark-v2";
+    var version = normalizedTheme === "light" ? "projects-light-v3" : "projects-dark-v3";
     var nextHref = getProjectsFaviconPath(normalizedTheme) + "?v=" + version;
     var favicon = document.querySelector("#dynamic-page-favicon");
 
