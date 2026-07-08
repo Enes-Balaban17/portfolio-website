@@ -8,7 +8,6 @@ Notable changes to the portfolio are recorded here.
 
 - Refined public repository documentation for human contributors.
 - Hardened ignored files and environment variable handling.
-- Removed public `.codex` repository artifacts.
 - Consolidated validation workflow coverage for cleaner pull request checks.
 - Updated the release metadata for `enesbalaban.dev v1.2`.
 
